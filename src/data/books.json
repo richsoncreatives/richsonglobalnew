@@ -1,0 +1,737 @@
+{
+  "solo": [
+    {
+      "id": "altar-field-home",
+      "title": "The Altar, The Home & The Field",
+      "subtitle": "Integrating the Three-Fold Cord for Success",
+      "category": "Spiritual Formation",
+      "coverUrl": "/assets/media/7444963dd_3cord1NEW.jpg",
+      "description": "Exploring the spiritual intersection of personal devotion (Altar), daily vocational labour and society (Field), and domestic sanctuary (Home), revealing how imbalance in one fractures the whole.",
+      "synopsis": "A three-fold cord is not quickly broken. This work unites the Altar of personal devotion, the Home of family order, and the Field of vocational labour into a single architecture of success — showing how neglect of any one strand fractures the whole.",
+      "focusPoints": [
+        "The Altar — personal devotion & spiritual formation",
+        "The Home — domestic sanctuary & family order",
+        "The Field — vocational labour & societal influence",
+        "Integrating the three-fold cord for lasting success"
+      ],
+      "priceGhs": 70,
+      "priceUsd": 14,
+      "format": "ePub & PDF",
+      "featured": true
+    },
+    {
+      "id": "deleazo",
+      "title": "Deleazo",
+      "subtitle": "Moving Beyond the Butterflies to the Stability of Love",
+      "category": "Relational Intelligence",
+      "coverUrl": "/assets/media/dbfa87cba_DELEAZOCOVER11.jpg",
+      "description": "Dismantling emotional infatuation and superficial romantic thrills to anchor relationships in enduring resilience, psychological maturity, and shared covenant reality.",
+      "synopsis": "Deleazo — to cleave with intent. This book dismantles the shallow high of emotional infatuation and rebuilds love on the stability of covenant, psychological maturity, and shared reality.",
+      "focusPoints": [
+        "Dismantling emotional infatuation",
+        "Anchoring love in covenant reality",
+        "Psychological maturity over thrill",
+        "From butterflies to stability"
+      ],
+      "priceGhs": 60,
+      "priceUsd": 12,
+      "format": "ePub & PDF",
+      "featured": true
+    },
+    {
+      "id": "unmasking-strange-partner",
+      "title": "Unmasking the Strange Partner",
+      "subtitle": "10 Signs You Are Dating a Stranger",
+      "category": "Relational Intelligence",
+      "coverUrl": "/assets/media/178a78320_STRANGENEW.jpg",
+      "description": "Diagnostic insights on behavioral inconsistencies, hidden character red flags, and discernment frameworks before emotional or marital entanglement.",
+      "synopsis": "Ten diagnostic signs that expose when charm is hiding a stranger. A discernment framework for reading character before emotional or marital entanglement — because character, not chemistry, is what you actually marry.",
+      "focusPoints": [
+        "10 diagnostic signs of a stranger",
+        "Behavioural red-flag detection",
+        "Discernment before entanglement",
+        "Character over charm"
+      ],
+      "priceGhs": 60,
+      "priceUsd": 12,
+      "format": "ePub & PDF",
+      "featured": true
+    },
+    {
+      "id": "far-bond",
+      "title": "The Far Bond",
+      "subtitle": "Keeping Hearts Connected When Worlds Apart",
+      "category": "Relational Intelligence",
+      "coverUrl": "/assets/media/6ec5b31b0_bond1NEW.jpg",
+      "description": "Practical, time-tested relational engineering for cross-border, diaspora, or career-separated couples to maintain intimacy, trust, and alignment without erosion.",
+      "synopsis": "Distance does not dissolve a bond — neglect does. Practical, time-tested relational engineering for cross-border, diaspora, and career-separated couples to hold intimacy, trust, and alignment across the miles without erosion.",
+      "focusPoints": [
+        "Trust architecture for cross-border couples",
+        "Intimacy maintenance across distance",
+        "Communication discipline for separation",
+        "Alignment without erosion"
+      ],
+      "priceGhs": 60,
+      "priceUsd": 12,
+      "format": "ePub & PDF",
+      "featured": true
+    },
+    {
+      "id": "360-man-capacity",
+      "title": "360 Degrees Man of Capacity",
+      "subtitle": "A Modern Man's Blueprint",
+      "category": "Leadership & Discipline",
+      "coverUrl": "/assets/media/7ba28426e_360COVER1.jpg",
+      "description": "A comprehensive blueprint for modern men to develop spiritual authority, emotional intelligence, financial stewardship, and physical and intellectual discipline.",
+      "synopsis": "A complete 360-degree blueprint for the modern man — spiritual authority, emotional intelligence, financial stewardship, and physical and intellectual discipline held in one integrated life.",
+      "focusPoints": [
+        "Spiritual authority & identity",
+        "Emotional intelligence",
+        "Financial stewardship",
+        "Physical & intellectual discipline"
+      ],
+      "priceGhs": 70,
+      "priceUsd": 14,
+      "format": "ePub & PDF",
+      "featured": true
+    },
+    {
+      "id": "dont-marry",
+      "title": "Don't Marry",
+      "subtitle": "The Truth for Those Who Can Receive It",
+      "category": "Relational Intelligence",
+      "coverUrl": "/assets/media/3066a3d8e_dontmarrycoverda.jpg",
+      "description": "A provocative yet sobering precautionary guide examining the hidden costs of premature or ill-prepared marital vows — counting the tower cost before laying brick.",
+      "synopsis": "A sobering, provocative precaution — the hidden costs of premature or ill-prepared vows. Count the tower before you lay the brick; the altar only consecrates what the table has already prepared. For those who can receive it.",
+      "focusPoints": [
+        "Counting the cost before the vow",
+        "Hidden costs of premature marriage",
+        "Sobering precautionary framework",
+        "Discernment over impulse"
+      ],
+      "priceGhs": 60,
+      "priceUsd": 12,
+      "format": "ePub & PDF",
+      "featured": true
+    },
+    {
+      "id": "sides-of-life",
+      "title": "Sides of Life",
+      "subtitle": "For Better or Bitter",
+      "category": "Leadership & Discipline",
+      "coverUrl": "/assets/media/a992edeee_sidescover.jpg",
+      "description": "Philosophy and pastoral psychology on response-ability; turning life's inevitable pressure points into refinement rather than cynicism.",
+      "synopsis": "Every life meets the same pressure; the difference is posture. A pastoral psychology of response-ability — choosing better over bitter, and turning pressure into refinement rather than cynicism.",
+      "focusPoints": [
+        "Response-ability over reaction",
+        "Pressure into refinement",
+        "Choosing your posture to life",
+        "The psychology of better or bitter"
+      ],
+      "priceGhs": 60,
+      "priceUsd": 12,
+      "format": "ePub & PDF",
+      "featured": true
+    },
+    {
+      "id": "love-scan",
+      "title": "Love Scan",
+      "subtitle": "Questions to Ask Before 'I Do'",
+      "category": "Relational Intelligence",
+      "coverUrl": "/assets/media/f5d89a8c0_LOVESCANCOVER11.jpg",
+      "description": "A structured audit checklist of deep relational, theological, financial, and family-background interrogation probes for engaged partners.",
+      "synopsis": "A friendly path to knowing yourself, learning your partner, and asking the essential questions. A structured audit of relational, theological, financial, and family-background probes for engaged partners — before the 'I do'.",
+      "focusPoints": [
+        "Deep relational interrogation probes",
+        "Theological & financial compatibility",
+        "Family-background audit",
+        "Knowing yourself and your partner"
+      ],
+      "priceGhs": 70,
+      "priceUsd": 14,
+      "format": "ePub & PDF",
+      "featured": true
+    },
+    {
+      "id": "love-capsules",
+      "title": "Love Capsules",
+      "subtitle": "500 Powerful Nuggets to Build a Relationship That Lasts",
+      "category": "Daily Love Capsules",
+      "coverUrl": "/assets/media/4103f6dca_LOVECAPSCOVER111NEW.jpg",
+      "description": "A dense compendium of 500 sharp, high-density conceptual nuggets designed for daily meditation, counseling preparation, and relational recalibration.",
+      "synopsis": "Five hundred sharp, high-density nuggets engineered for daily meditation, counseling preparation, and relational recalibration — a dense compendium of wisdom distilled to a sentence, built to make a relationship last.",
+      "focusPoints": [
+        "500 high-density daily nuggets",
+        "Counseling preparation resource",
+        "Relational recalibration tools",
+        "Meditation-grade compression"
+      ],
+      "priceGhs": 100,
+      "priceUsd": 18,
+      "format": "ePub & PDF",
+      "featured": true
+    },
+    {
+      "id": "love-scope",
+      "title": "Love Scope",
+      "subtitle": "A Guide to the Heart, Head & Hand of Modern Relationships",
+      "category": "Relational Intelligence",
+      "coverUrl": "/assets/media/b6883d534_scope1.jpg",
+      "description": "Mapping the breadth, boundaries, and emotional architecture required to love wisely, sacrificially, and sustainably.",
+      "synopsis": "A guide to the Heart, Head, and Hand of modern relationships — mapping the emotional architecture, mental alignment, and practical action required to love wisely, sacrificially, and sustainably.",
+      "focusPoints": [
+        "The Heart — emotional architecture",
+        "The Head — mental alignment",
+        "The Hand — practical action",
+        "Boundaries of loving well sustainably"
+      ],
+      "priceGhs": 70,
+      "priceUsd": 14,
+      "format": "ePub & PDF",
+      "featured": true
+    },
+    {
+      "id": "you-need-jethro",
+      "title": "You Need a Jethro",
+      "subtitle": "The Governance of Counsel · Vol. One",
+      "category": "Leadership & Discipline",
+      "coverUrl": "/assets/media/502a7df4a_JETHROCOVER1.jpg",
+      "description": "Administrative, spiritual, and mentorship governance lessons on why burnout happens when leaders reject external counsel, systems review, and operational delegation.",
+      "synopsis": "Volume One of the Governance of Counsel. Administrative, spiritual, and mentorship lessons on why burnout is inevitable when leaders reject external counsel, systems review, and operational delegation — and how to build the layers that outlast the leader.",
+      "focusPoints": [
+        "Why solo leadership breeds burnout",
+        "The architecture of delegation",
+        "Building secondary leadership layers",
+        "Operational counsel governance"
+      ],
+      "priceGhs": 60,
+      "priceUsd": 12,
+      "format": "ePub & PDF",
+      "featured": true
+    },
+    {
+      "id": "skills-boundaries",
+      "title": "Skills & Boundaries",
+      "subtitle": "Protecting Your Skills, Maximizing Your Value",
+      "category": "Leadership & Discipline",
+      "coverUrl": "/assets/media/f8dd8712b_SKILLS2.jpg",
+      "description": "Defining personal, professional, and relational competency limits to prevent scope creep, burnout, and emotional exploitation.",
+      "synopsis": "Your skills are an asset; your boundaries are its fence. A framework for defining competency limits to protect your skills, prevent scope creep and burnout, and maximize your true value.",
+      "focusPoints": [
+        "Defining your competency limits",
+        "Preventing scope creep & burnout",
+        "Protecting your skills",
+        "Maximizing your value"
+      ],
+      "priceGhs": 60,
+      "priceUsd": 12,
+      "format": "ePub & PDF",
+      "featured": true
+    },
+    {
+      "id": "word-your-world",
+      "title": "Word Your World",
+      "subtitle": "Speak Your Future into Existence",
+      "category": "Spiritual Formation",
+      "coverUrl": "/assets/media/b53f49146_WORDNEW1.jpg",
+      "description": "Linguistic discipline, declarative alignment, and how internal monologue and verbal architecture shape external reality and destiny.",
+      "synopsis": "Words build worlds — and they demolish them. A treatise on linguistic discipline, declarative alignment, and how internal monologue and verbal architecture shape external reality and destiny. Speak your future into existence.",
+      "focusPoints": [
+        "Linguistic discipline & declarative alignment",
+        "Internal monologue shapes reality",
+        "Verbal architecture for destiny",
+        "Speaking your future into existence"
+      ],
+      "priceGhs": 60,
+      "priceUsd": 12,
+      "format": "ePub & PDF",
+      "featured": true
+    },
+    {
+      "id": "vessels-scepters",
+      "title": "Vessels & Scepters",
+      "subtitle": "Unlocking Heaven's Favour Through Earthly Excellence",
+      "category": "Leadership & Discipline",
+      "coverUrl": "/assets/media/aa6273fe7_VESSELSSCEPTERSCOVER20.jpg",
+      "description": "Kingdom leadership dynamics focusing on character preparation (vessel) meeting governmental authority and influence (scepter).",
+      "synopsis": "Heaven's favour flows through earthly excellence. Kingdom leadership dynamics where character preparation (the vessel) meets governmental authority and influence (the scepter) — and both must be ready.",
+      "focusPoints": [
+        "Character preparation (the vessel)",
+        "Governmental authority (the scepter)",
+        "Earthly excellence",
+        "Unlocking heavenly favour"
+      ],
+      "priceGhs": 60,
+      "priceUsd": 12,
+      "format": "ePub & PDF",
+      "featured": true
+    },
+    {
+      "id": "marital-battles",
+      "title": "Marital Battles, Kingdom Victories",
+      "subtitle": "Tactical Resilience for Marriages",
+      "category": "Relational Intelligence",
+      "description": "Spiritual warfare, forgiveness mechanics, and tactical resilience for marriages under systemic external or internal pressure."
+    }
+  ],
+  "coauthored": [
+    {
+      "id": "priority-of-self",
+      "title": "The Priority of Self",
+      "subtitle": "With Collins Angel Ross",
+      "category": "Co-Authored",
+      "coverUrl": "/assets/media/37a074907_self1.jpg",
+      "description": "Establishing that healthy communal and marital contribution requires God-centered individual identity, internal healing, and self-governance first."
+    },
+    {
+      "id": "red-flags",
+      "title": "Red Flags",
+      "subtitle": "With Collins Angel Ross",
+      "category": "Co-Authored",
+      "coverUrl": "/assets/media/7b3d862cb_REDD.jpg",
+      "description": "Spotlighting early warning behavioral pathologies, boundary breaches, and manipulative patterns in dating and partnership trajectories."
+    },
+    {
+      "id": "i-will-marry-well",
+      "title": "I Will Marry Well",
+      "subtitle": "With Collins Angel Ross",
+      "category": "Co-Authored",
+      "coverUrl": "/assets/media/43a77939e_MARRYWELL.jpg",
+      "description": "A purposeful preparation manual shifting cultural panic about marriage into deliberate, faith-backed architectural readiness."
+    }
+  ],
+  "all": [
+    {
+      "id": "altar-field-home",
+      "title": "The Altar, The Home & The Field",
+      "subtitle": "Integrating the Three-Fold Cord for Success",
+      "category": "Spiritual Formation",
+      "coverUrl": "/assets/media/7444963dd_3cord1NEW.jpg",
+      "description": "Exploring the spiritual intersection of personal devotion (Altar), daily vocational labour and society (Field), and domestic sanctuary (Home), revealing how imbalance in one fractures the whole.",
+      "synopsis": "A three-fold cord is not quickly broken. This work unites the Altar of personal devotion, the Home of family order, and the Field of vocational labour into a single architecture of success — showing how neglect of any one strand fractures the whole.",
+      "focusPoints": [
+        "The Altar — personal devotion & spiritual formation",
+        "The Home — domestic sanctuary & family order",
+        "The Field — vocational labour & societal influence",
+        "Integrating the three-fold cord for lasting success"
+      ],
+      "priceGhs": 70,
+      "priceUsd": 14,
+      "format": "ePub & PDF",
+      "featured": true
+    },
+    {
+      "id": "deleazo",
+      "title": "Deleazo",
+      "subtitle": "Moving Beyond the Butterflies to the Stability of Love",
+      "category": "Relational Intelligence",
+      "coverUrl": "/assets/media/dbfa87cba_DELEAZOCOVER11.jpg",
+      "description": "Dismantling emotional infatuation and superficial romantic thrills to anchor relationships in enduring resilience, psychological maturity, and shared covenant reality.",
+      "synopsis": "Deleazo — to cleave with intent. This book dismantles the shallow high of emotional infatuation and rebuilds love on the stability of covenant, psychological maturity, and shared reality.",
+      "focusPoints": [
+        "Dismantling emotional infatuation",
+        "Anchoring love in covenant reality",
+        "Psychological maturity over thrill",
+        "From butterflies to stability"
+      ],
+      "priceGhs": 60,
+      "priceUsd": 12,
+      "format": "ePub & PDF",
+      "featured": true
+    },
+    {
+      "id": "unmasking-strange-partner",
+      "title": "Unmasking the Strange Partner",
+      "subtitle": "10 Signs You Are Dating a Stranger",
+      "category": "Relational Intelligence",
+      "coverUrl": "/assets/media/178a78320_STRANGENEW.jpg",
+      "description": "Diagnostic insights on behavioral inconsistencies, hidden character red flags, and discernment frameworks before emotional or marital entanglement.",
+      "synopsis": "Ten diagnostic signs that expose when charm is hiding a stranger. A discernment framework for reading character before emotional or marital entanglement — because character, not chemistry, is what you actually marry.",
+      "focusPoints": [
+        "10 diagnostic signs of a stranger",
+        "Behavioural red-flag detection",
+        "Discernment before entanglement",
+        "Character over charm"
+      ],
+      "priceGhs": 60,
+      "priceUsd": 12,
+      "format": "ePub & PDF",
+      "featured": true
+    },
+    {
+      "id": "far-bond",
+      "title": "The Far Bond",
+      "subtitle": "Keeping Hearts Connected When Worlds Apart",
+      "category": "Relational Intelligence",
+      "coverUrl": "/assets/media/6ec5b31b0_bond1NEW.jpg",
+      "description": "Practical, time-tested relational engineering for cross-border, diaspora, or career-separated couples to maintain intimacy, trust, and alignment without erosion.",
+      "synopsis": "Distance does not dissolve a bond — neglect does. Practical, time-tested relational engineering for cross-border, diaspora, and career-separated couples to hold intimacy, trust, and alignment across the miles without erosion.",
+      "focusPoints": [
+        "Trust architecture for cross-border couples",
+        "Intimacy maintenance across distance",
+        "Communication discipline for separation",
+        "Alignment without erosion"
+      ],
+      "priceGhs": 60,
+      "priceUsd": 12,
+      "format": "ePub & PDF",
+      "featured": true
+    },
+    {
+      "id": "360-man-capacity",
+      "title": "360 Degrees Man of Capacity",
+      "subtitle": "A Modern Man's Blueprint",
+      "category": "Leadership & Discipline",
+      "coverUrl": "/assets/media/7ba28426e_360COVER1.jpg",
+      "description": "A comprehensive blueprint for modern men to develop spiritual authority, emotional intelligence, financial stewardship, and physical and intellectual discipline.",
+      "synopsis": "A complete 360-degree blueprint for the modern man — spiritual authority, emotional intelligence, financial stewardship, and physical and intellectual discipline held in one integrated life.",
+      "focusPoints": [
+        "Spiritual authority & identity",
+        "Emotional intelligence",
+        "Financial stewardship",
+        "Physical & intellectual discipline"
+      ],
+      "priceGhs": 70,
+      "priceUsd": 14,
+      "format": "ePub & PDF",
+      "featured": true
+    },
+    {
+      "id": "dont-marry",
+      "title": "Don't Marry",
+      "subtitle": "The Truth for Those Who Can Receive It",
+      "category": "Relational Intelligence",
+      "coverUrl": "/assets/media/3066a3d8e_dontmarrycoverda.jpg",
+      "description": "A provocative yet sobering precautionary guide examining the hidden costs of premature or ill-prepared marital vows — counting the tower cost before laying brick.",
+      "synopsis": "A sobering, provocative precaution — the hidden costs of premature or ill-prepared vows. Count the tower before you lay the brick; the altar only consecrates what the table has already prepared. For those who can receive it.",
+      "focusPoints": [
+        "Counting the cost before the vow",
+        "Hidden costs of premature marriage",
+        "Sobering precautionary framework",
+        "Discernment over impulse"
+      ],
+      "priceGhs": 60,
+      "priceUsd": 12,
+      "format": "ePub & PDF",
+      "featured": true
+    },
+    {
+      "id": "sides-of-life",
+      "title": "Sides of Life",
+      "subtitle": "For Better or Bitter",
+      "category": "Leadership & Discipline",
+      "coverUrl": "/assets/media/a992edeee_sidescover.jpg",
+      "description": "Philosophy and pastoral psychology on response-ability; turning life's inevitable pressure points into refinement rather than cynicism.",
+      "synopsis": "Every life meets the same pressure; the difference is posture. A pastoral psychology of response-ability — choosing better over bitter, and turning pressure into refinement rather than cynicism.",
+      "focusPoints": [
+        "Response-ability over reaction",
+        "Pressure into refinement",
+        "Choosing your posture to life",
+        "The psychology of better or bitter"
+      ],
+      "priceGhs": 60,
+      "priceUsd": 12,
+      "format": "ePub & PDF",
+      "featured": true
+    },
+    {
+      "id": "love-scan",
+      "title": "Love Scan",
+      "subtitle": "Questions to Ask Before 'I Do'",
+      "category": "Relational Intelligence",
+      "coverUrl": "/assets/media/f5d89a8c0_LOVESCANCOVER11.jpg",
+      "description": "A structured audit checklist of deep relational, theological, financial, and family-background interrogation probes for engaged partners.",
+      "synopsis": "A friendly path to knowing yourself, learning your partner, and asking the essential questions. A structured audit of relational, theological, financial, and family-background probes for engaged partners — before the 'I do'.",
+      "focusPoints": [
+        "Deep relational interrogation probes",
+        "Theological & financial compatibility",
+        "Family-background audit",
+        "Knowing yourself and your partner"
+      ],
+      "priceGhs": 70,
+      "priceUsd": 14,
+      "format": "ePub & PDF",
+      "featured": true
+    },
+    {
+      "id": "love-capsules",
+      "title": "Love Capsules",
+      "subtitle": "500 Powerful Nuggets to Build a Relationship That Lasts",
+      "category": "Daily Love Capsules",
+      "coverUrl": "/assets/media/4103f6dca_LOVECAPSCOVER111NEW.jpg",
+      "description": "A dense compendium of 500 sharp, high-density conceptual nuggets designed for daily meditation, counseling preparation, and relational recalibration.",
+      "synopsis": "Five hundred sharp, high-density nuggets engineered for daily meditation, counseling preparation, and relational recalibration — a dense compendium of wisdom distilled to a sentence, built to make a relationship last.",
+      "focusPoints": [
+        "500 high-density daily nuggets",
+        "Counseling preparation resource",
+        "Relational recalibration tools",
+        "Meditation-grade compression"
+      ],
+      "priceGhs": 100,
+      "priceUsd": 18,
+      "format": "ePub & PDF",
+      "featured": true
+    },
+    {
+      "id": "love-scope",
+      "title": "Love Scope",
+      "subtitle": "A Guide to the Heart, Head & Hand of Modern Relationships",
+      "category": "Relational Intelligence",
+      "coverUrl": "/assets/media/b6883d534_scope1.jpg",
+      "description": "Mapping the breadth, boundaries, and emotional architecture required to love wisely, sacrificially, and sustainably.",
+      "synopsis": "A guide to the Heart, Head, and Hand of modern relationships — mapping the emotional architecture, mental alignment, and practical action required to love wisely, sacrificially, and sustainably.",
+      "focusPoints": [
+        "The Heart — emotional architecture",
+        "The Head — mental alignment",
+        "The Hand — practical action",
+        "Boundaries of loving well sustainably"
+      ],
+      "priceGhs": 70,
+      "priceUsd": 14,
+      "format": "ePub & PDF",
+      "featured": true
+    },
+    {
+      "id": "you-need-jethro",
+      "title": "You Need a Jethro",
+      "subtitle": "The Governance of Counsel · Vol. One",
+      "category": "Leadership & Discipline",
+      "coverUrl": "/assets/media/502a7df4a_JETHROCOVER1.jpg",
+      "description": "Administrative, spiritual, and mentorship governance lessons on why burnout happens when leaders reject external counsel, systems review, and operational delegation.",
+      "synopsis": "Volume One of the Governance of Counsel. Administrative, spiritual, and mentorship lessons on why burnout is inevitable when leaders reject external counsel, systems review, and operational delegation — and how to build the layers that outlast the leader.",
+      "focusPoints": [
+        "Why solo leadership breeds burnout",
+        "The architecture of delegation",
+        "Building secondary leadership layers",
+        "Operational counsel governance"
+      ],
+      "priceGhs": 60,
+      "priceUsd": 12,
+      "format": "ePub & PDF",
+      "featured": true
+    },
+    {
+      "id": "skills-boundaries",
+      "title": "Skills & Boundaries",
+      "subtitle": "Protecting Your Skills, Maximizing Your Value",
+      "category": "Leadership & Discipline",
+      "coverUrl": "/assets/media/f8dd8712b_SKILLS2.jpg",
+      "description": "Defining personal, professional, and relational competency limits to prevent scope creep, burnout, and emotional exploitation.",
+      "synopsis": "Your skills are an asset; your boundaries are its fence. A framework for defining competency limits to protect your skills, prevent scope creep and burnout, and maximize your true value.",
+      "focusPoints": [
+        "Defining your competency limits",
+        "Preventing scope creep & burnout",
+        "Protecting your skills",
+        "Maximizing your value"
+      ],
+      "priceGhs": 60,
+      "priceUsd": 12,
+      "format": "ePub & PDF",
+      "featured": true
+    },
+    {
+      "id": "word-your-world",
+      "title": "Word Your World",
+      "subtitle": "Speak Your Future into Existence",
+      "category": "Spiritual Formation",
+      "coverUrl": "/assets/media/b53f49146_WORDNEW1.jpg",
+      "description": "Linguistic discipline, declarative alignment, and how internal monologue and verbal architecture shape external reality and destiny.",
+      "synopsis": "Words build worlds — and they demolish them. A treatise on linguistic discipline, declarative alignment, and how internal monologue and verbal architecture shape external reality and destiny. Speak your future into existence.",
+      "focusPoints": [
+        "Linguistic discipline & declarative alignment",
+        "Internal monologue shapes reality",
+        "Verbal architecture for destiny",
+        "Speaking your future into existence"
+      ],
+      "priceGhs": 60,
+      "priceUsd": 12,
+      "format": "ePub & PDF",
+      "featured": true
+    },
+    {
+      "id": "vessels-scepters",
+      "title": "Vessels & Scepters",
+      "subtitle": "Unlocking Heaven's Favour Through Earthly Excellence",
+      "category": "Leadership & Discipline",
+      "coverUrl": "/assets/media/aa6273fe7_VESSELSSCEPTERSCOVER20.jpg",
+      "description": "Kingdom leadership dynamics focusing on character preparation (vessel) meeting governmental authority and influence (scepter).",
+      "synopsis": "Heaven's favour flows through earthly excellence. Kingdom leadership dynamics where character preparation (the vessel) meets governmental authority and influence (the scepter) — and both must be ready.",
+      "focusPoints": [
+        "Character preparation (the vessel)",
+        "Governmental authority (the scepter)",
+        "Earthly excellence",
+        "Unlocking heavenly favour"
+      ],
+      "priceGhs": 60,
+      "priceUsd": 12,
+      "format": "ePub & PDF",
+      "featured": true
+    },
+    {
+      "id": "marital-battles",
+      "title": "Marital Battles, Kingdom Victories",
+      "subtitle": "Tactical Resilience for Marriages",
+      "category": "Relational Intelligence",
+      "description": "Spiritual warfare, forgiveness mechanics, and tactical resilience for marriages under systemic external or internal pressure."
+    },
+    {
+      "id": "priority-of-self",
+      "title": "The Priority of Self",
+      "subtitle": "With Collins Angel Ross",
+      "category": "Co-Authored",
+      "coverUrl": "/assets/media/37a074907_self1.jpg",
+      "description": "Establishing that healthy communal and marital contribution requires God-centered individual identity, internal healing, and self-governance first."
+    },
+    {
+      "id": "red-flags",
+      "title": "Red Flags",
+      "subtitle": "With Collins Angel Ross",
+      "category": "Co-Authored",
+      "coverUrl": "/assets/media/7b3d862cb_REDD.jpg",
+      "description": "Spotlighting early warning behavioral pathologies, boundary breaches, and manipulative patterns in dating and partnership trajectories."
+    },
+    {
+      "id": "i-will-marry-well",
+      "title": "I Will Marry Well",
+      "subtitle": "With Collins Angel Ross",
+      "category": "Co-Authored",
+      "coverUrl": "/assets/media/43a77939e_MARRYWELL.jpg",
+      "description": "A purposeful preparation manual shifting cultural panic about marriage into deliberate, faith-backed architectural readiness."
+    }
+  ],
+  "client": [
+    {
+      "id": "let-this-mind",
+      "title": "Let This Mind Be In You",
+      "subtitle": "The Power of Your Mindset",
+      "author": "Isaiah K. Laaji",
+      "coverUrl": "/assets/media/d798770dd_Book_Cover_Mockup_1.jpg"
+    },
+    {
+      "id": "choose-right",
+      "title": "Choose Right",
+      "subtitle": "A Student Career Guidance Handbook for JHS & SHS Students in Ghana",
+      "author": "Christopher Debar",
+      "coverUrl": "/assets/media/adc8df0a8_choosemockup.jpg"
+    },
+    {
+      "id": "crazy-faith",
+      "title": "Crazy Faith",
+      "subtitle": "JKN Books",
+      "author": "Jerioth Kyerewaa Nyarko",
+      "coverUrl": "/assets/media/ec1ca5803_crazyfaithad.jpg"
+    },
+    {
+      "id": "daughter-of-the-king",
+      "title": "You Are a Daughter of the King",
+      "subtitle": "",
+      "author": "Emmanuella Fremah Adamah",
+      "coverUrl": "/assets/media/dd46ceb6e_DAUGHTER111.jpg"
+    },
+    {
+      "id": "four-forces-investment",
+      "title": "The Four Powerful Forces of Investment",
+      "subtitle": "",
+      "author": "Rosemond Fariba",
+      "coverUrl": "/assets/media/68a52dc17_invest1.jpg"
+    },
+    {
+      "id": "missionarys-prayer-guide",
+      "title": "The Missionary's Prayer Guide",
+      "subtitle": "",
+      "author": "Isaiah K. Laaji",
+      "coverUrl": "/assets/media/d12f9d358_MISSIONARYCOVER.jpg"
+    },
+    {
+      "id": "mustard-seed",
+      "title": "The Mystery of the Mustard Seed",
+      "subtitle": "Practical Steps to Financing the Work of the Ministry",
+      "author": "Isaiah K. Laaji",
+      "coverUrl": "/assets/media/81042d746_MYSTERYOFMUSTARDSEEDPSISAIAH.jpg"
+    },
+    {
+      "id": "right-foundation",
+      "title": "Right Foundation for a Relationship",
+      "subtitle": "",
+      "author": "Collins Angel Ross",
+      "coverUrl": "/assets/media/4fff7d9c0_FOUNDATIONFLIER.jpg"
+    },
+    {
+      "id": "major-causes-conflicts",
+      "title": "Major Causes of Conflicts in Relationships",
+      "subtitle": "",
+      "author": "Collins Angel Ross",
+      "coverUrl": "/assets/media/438765706_major1.jpg"
+    },
+    {
+      "id": "major-self-decisions",
+      "title": "The Major Self Decisions to Make Before Marriage",
+      "subtitle": "",
+      "author": "Collins Angel Ross",
+      "coverUrl": "/assets/media/e5738f61d_ordernow1.jpg"
+    },
+    {
+      "id": "13-signs-loves-you",
+      "title": "13 Signs That a Person Truly Loves You",
+      "subtitle": "",
+      "author": "Collins Angel Ross",
+      "coverUrl": "/assets/media/6e219a034_13SIGNS.jpg"
+    },
+    {
+      "id": "rules-of-engagement",
+      "title": "Rules of Engagement",
+      "subtitle": "Protecting Your Honour & Destiny in Dating",
+      "author": "Collins Angel Ross",
+      "coverUrl": "/assets/media/22d337f5e_RULES.jpg"
+    },
+    {
+      "id": "relationship-handbook",
+      "title": "The Relationship Handbook",
+      "subtitle": "A Guide to a Beautiful and Godly Relationship",
+      "author": "Collins Angel Ross",
+      "coverUrl": "/assets/media/aa9aa6d00_RELATIONSHIPHANDBOOKCOVER12.jpg"
+    },
+    {
+      "id": "wife-material",
+      "title": "The Wife Material",
+      "subtitle": "Qualities the Woman Needs to Birth an Enviable Marriage",
+      "author": "Collins Angel Ross",
+      "coverUrl": "/assets/media/dd6f0d646_WIFEMAT.jpg"
+    },
+    {
+      "id": "little-giants",
+      "title": "Little Giants",
+      "subtitle": "The Value of Little Things in Your Success or Failure",
+      "author": "Dr. Josiah B. Andor",
+      "coverUrl": "/assets/media/66f069e2d_WhatsAppImage2026-05-21at150645.jpeg"
+    },
+    {
+      "id": "assignment-and-tools",
+      "title": "The Assignment & The Tools",
+      "subtitle": "Kingdom Laws for Purpose, Excellence and Business",
+      "author": "Isaiah Adegoke",
+      "coverUrl": "/assets/media/9b4323681_ASSIGNMOCKUP.jpg"
+    },
+    {
+      "id": "everything-about-proposal",
+      "title": "Everything About Proposal",
+      "subtitle": "",
+      "author": "Collins Angel Ross",
+      "coverUrl": "/assets/media/81ed17d6b_PROPOSAL.jpg"
+    },
+    {
+      "id": "stages-into-glorious-marriage",
+      "title": "Stages into a Glorious Marriage",
+      "subtitle": "The Step-by-Step Blueprint from Friendship to Forever",
+      "author": "Collins Angel Ross",
+      "coverUrl": "/assets/media/fd7f959cf_STEPSSS.jpg"
+    },
+    {
+      "id": "too-blessed-to-be-stranded",
+      "title": "Too Blessed to Be Stranded",
+      "subtitle": "",
+      "author": "Collins Angel Ross",
+      "coverUrl": "/assets/media/343e1ca05_tooblessedflier.jpg"
+    }
+  ]
+}
