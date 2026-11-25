@@ -11,8 +11,7 @@ import {
   AFFILIATIONS,
   EDUCATION_LIST,
   SKILLS_LIST,
-  LANGUAGES_LIST,
-  CORE_VALUES
+  LANGUAGES_LIST
 } from '../data/siteData';
 
 export const AboutPage: React.FC = () => {
@@ -30,7 +29,7 @@ export const AboutPage: React.FC = () => {
               Author · Creative Director · Technology Professional · Associate Pastor
             </p>
             <p className="mt-6 text-base md:text-lg leading-relaxed text-muted-foreground">
-              A multidisciplinary practitioner bridging creative design, robust IT infrastructure, intellectual publishing, and spiritual formation. Based in Accra, Ghana, operating across international spheres.
+              A multidisciplinary practitioner bridging creative design, enterprise IT infrastructure, intellectual authorship, and pastoral formation. Based in Accra, Ghana, serving organisations and communities locally and internationally.
             </p>
             <div className="pt-6 flex flex-wrap gap-4">
               <Link to="/contact" className="btn-navy py-3 px-6 text-xs font-semibold whitespace-nowrap">
@@ -57,11 +56,11 @@ export const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Biography Section */}
+      {/* Biography & Leadership Philosophy */}
       <section className="py-20 border-b border-border bg-linen">
         <div className="container-arc grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
-            <p className="eyebrow text-gold mb-3">The Narrative</p>
+            <p className="eyebrow text-gold mb-3">Verified Background</p>
             <h2 className="font-display text-3xl md:text-4xl font-semibold text-obsidian leading-tight">
               An Architecture of Multiple Competencies
             </h2>
@@ -72,13 +71,13 @@ export const AboutPage: React.FC = () => {
               "We believe that real leadership is not the preservation of an individual's charisma, but the establishment of enduring capacity."
             </p>
             <p>
-              Eric Richson Darko is a Ghanaian author, creative director, information systems professional, and ordained youth pastor whose life work centers on personal capacity, relational intelligence, and institutional resilience.
+              Eric Richson Darko is a Ghanaian author, creative director, information systems professional, and ordained youth pastor whose work centers on personal capacity, relational intelligence, and institutional resilience.
             </p>
             <p>
-              With a professional background spanning over seven years managing enterprise IT infrastructure and leading brand communication projects, Eric couples technical rigor with deep relational counseling insight. As author of 18 published books (15 solo titles and 3 co-authored volumes), he provides practical frameworks for youth leadership, marital readiness, and purposeful living.
+              With over seven years of enterprise IT infrastructure administration (maintaining 99.5% network uptime across 100+ user environments) and brand direction experience, Eric pairs technical precision with relational counseling insight. As author of 18 published books (15 solo titles and 3 co-authored volumes), he provides practical frameworks for youth leadership, marital readiness, and purposeful living.
             </p>
             <p>
-              He serves as the Associate Pastor with dedicated youth oversight at Charismatic Evangelistic Ministry (CEM), East Legon, and Vice President of the College of Relationship &amp; Marriage (CORM).
+              He serves as Associate Pastor with dedicated youth oversight at Charismatic Evangelistic Ministry (CEM), East Legon, and Vice President of the College of Relationship &amp; Marriage (CORM).
             </p>
           </div>
         </div>
@@ -93,7 +92,7 @@ export const AboutPage: React.FC = () => {
               Leadership &amp; Institutional Affiliations
             </h2>
             <p className="mt-2 text-sm text-muted-foreground">
-              Independent organizations and ministerial bodies where Eric serves or has provided leadership.
+              Independent institutions and ministerial bodies where Eric serves or has provided executive leadership.
             </p>
           </div>
 
@@ -122,18 +121,6 @@ export const AboutPage: React.FC = () => {
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                     {affil.summary}
                   </p>
-
-                  {affil.screenshotUrl && (
-                    <div className="mt-5 overflow-hidden border border-border bg-obsidian">
-                      <img
-                        src={affil.screenshotUrl}
-                        alt={`${affil.name} website front page`}
-                        loading="lazy"
-                        referrerPolicy="no-referrer"
-                        className="w-full aspect-[16/9] object-cover object-top"
-                      />
-                    </div>
-                  )}
                 </div>
 
                 {affil.url && (
@@ -218,37 +205,21 @@ export const AboutPage: React.FC = () => {
               </p>
             </div>
 
-            <div className="pt-6 mt-8 border-t border-border">
-              <p className="eyebrow text-gold mb-3">Institutional Creed</p>
+            <div className="pt-6 mt-8 border-t border-border space-y-4">
+              <p className="eyebrow text-gold">Continue Exploring</p>
               <p className="font-display text-lg text-obsidian italic">
                 "Work designed to outlive the season that produced it."
               </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Core Values */}
-      <section className="py-20 bg-obsidian text-linen">
-        <div className="container-arc">
-          <div className="max-w-2xl mb-14">
-            <p className="eyebrow text-gold mb-3">Guiding Principles</p>
-            <h2 className="font-display text-3xl md:text-4xl font-semibold text-linen">
-              Our Non-Negotiable Values
-            </h2>
-          </div>
-
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {CORE_VALUES.map((val) => (
-              <div key={val.name} className="border border-linen/15 p-6 bg-linen/5">
-                <span className="text-gold font-display text-lg font-bold">
-                  {val.name}
-                </span>
-                <p className="mt-2 text-xs leading-relaxed text-linen/70">
-                  {val.body}
-                </p>
+              <div className="flex flex-wrap gap-3 pt-1">
+                <Link to="/approach" className="btn-navy py-2.5 px-5 text-xs whitespace-nowrap">
+                  <span>Framework &amp; Values</span>
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+                <Link to="/ecosystem" className="btn-outline py-2.5 px-5 text-xs whitespace-nowrap">
+                  <span>Ecosystem Architecture</span>
+                </Link>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>

@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, Check, ArrowRight } from 'lucide-react';
-import { ALL_BOOKS, Book, CLIENT_PUBLISHED_BOOKS, SITE_COORDINATES, CREATIVES_COORDINATES } from '../data/siteData';
+import { Search, ArrowRight } from 'lucide-react';
+import { ALL_BOOKS, Book, SITE_COORDINATES, CREATIVES_COORDINATES } from '../data/siteData';
 import { BookModal } from '../components/BookModal';
 
 const CATEGORIES = [
@@ -180,81 +180,25 @@ export const LibraryStorePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Client Book Design, Formatting & Publishing Services — Explicitly Under Richson Creatives */}
-      <section id="publishing" className="py-20 md:py-28 border-b border-border bg-secondary/30 scroll-mt-24">
-        <div className="container-arc">
-          <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] items-center">
-            <div>
-              <p className="eyebrow text-gold mb-3">Delivered by Richson Creatives · {CREATIVES_COORDINATES.phoneDisplay}</p>
-              <h2 className="font-display text-3xl md:text-5xl font-semibold text-obsidian leading-tight">
-                Client Book Design, Formatting &amp; Publishing Services
-              </h2>
-              <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-                Separate from Eric Richson Darko's personal authorship above, all commercial book design, typesetting, and publishing production for external authors and institutions is executed by <strong className="text-obsidian">Richson Creatives</strong>:
-              </p>
-              <div className="mt-6 space-y-3">
-                <div className="flex items-start gap-3">
-                  <Check className="h-5 w-5 text-gold shrink-0 mt-0.5" />
-                  <div>
-                    <h4 className="font-semibold text-sm text-obsidian">Book Cover Design &amp; Art Direction</h4>
-                    <p className="text-xs text-muted-foreground">High-impact, shelf-commanding cover typography, illustrations, and 3D mockups.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Check className="h-5 w-5 text-gold shrink-0 mt-0.5" />
-                  <div>
-                    <h4 className="font-semibold text-sm text-obsidian">Interior Layout &amp; Typesetting</h4>
-                    <p className="text-xs text-muted-foreground">Clean book interior formatting, drop caps, indices, and press-ready pagination.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Check className="h-5 w-5 text-gold shrink-0 mt-0.5" />
-                  <div>
-                    <h4 className="font-semibold text-sm text-obsidian">Print-Ready Production &amp; Digital Publishing</h4>
-                    <p className="text-xs text-muted-foreground">Pre-flight CMYK press files, print coordination, ePub/PDF conversion, and store setup.</p>
-                  </div>
-                </div>
-              </div>
-              <div className="pt-6 flex flex-wrap gap-4">
-                <Link to="/creatives#start" className="btn-ember py-3 px-7 text-xs font-semibold whitespace-nowrap">
-                  <span>Commission Richson Creatives</span>
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link to="/creatives#client-books" className="btn-outline py-3 px-7 text-xs font-semibold whitespace-nowrap">
-                  <span>View All {CLIENT_PUBLISHED_BOOKS.length} Client Books</span>
-                </Link>
-              </div>
-            </div>
-
-            <div className="border border-border bg-linen p-6 md:p-8">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold mb-4">
-                Selected Client Books by Richson Creatives ({CLIENT_PUBLISHED_BOOKS.length} Titles)
-              </p>
-              <div className="grid grid-cols-3 gap-3">
-                {CLIENT_PUBLISHED_BOOKS.slice(0, 6).map((cb) => (
-                  <div key={cb.id} className="group relative aspect-[3/4] overflow-hidden bg-obsidian border border-border">
-                    <img
-                      src={cb.coverUrl}
-                      alt={cb.title}
-                      loading="lazy"
-                      referrerPolicy="no-referrer"
-                      className="h-full w-full object-cover transition-transform group-hover:scale-105"
-                      onError={(e) => {
-                        e.currentTarget.src = SITE_COORDINATES.logoUrl;
-                      }}
-                    />
-                    <div className="absolute inset-0 bg-obsidian/70 opacity-0 group-hover:opacity-100 transition-opacity p-2 flex flex-col justify-end text-linen text-[0.62rem]">
-                      <p className="font-bold line-clamp-1">{cb.title}</p>
-                      <p className="text-gold text-[0.55rem]">{cb.author}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <p className="mt-4 text-xs text-muted-foreground italic text-center">
-                Client book covers, formatting, and print production delivered by Richson Creatives ({CREATIVES_COORDINATES.phoneDisplay}).
-              </p>
-            </div>
+      {/* Concise Entity Separation Pointer -> Richson Creatives */}
+      <section className="py-14 bg-obsidian text-linen">
+        <div className="container-arc flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div className="max-w-2xl space-y-2">
+            <p className="eyebrow text-gold">Looking to Publish Your Own Book?</p>
+            <h2 className="font-display text-2xl md:text-3xl font-semibold text-linen">
+              Commercial Book Design &amp; Publishing Belongs Under Richson Creatives
+            </h2>
+            <p className="text-xs sm:text-sm text-linen/70 leading-relaxed">
+              This store showcases Eric Richson Darko's personal authorship only. For external author cover design, interior layout, typesetting, and print production, visit Richson Creatives ({CREATIVES_COORDINATES.phoneDisplay}).
+            </p>
           </div>
+          <Link
+            to="/creatives/portfolio#client-books"
+            className="btn-ember py-3 px-6 text-xs font-semibold whitespace-nowrap self-start md:self-auto"
+          >
+            <span>Client Book Services</span>
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       </section>
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Check, ShoppingBag, MessageSquare, CreditCard, ExternalLink, Sparkles } from 'lucide-react';
+import { X, Check, ShoppingBag, MessageSquare } from 'lucide-react';
 import { Book, SITE_COORDINATES } from '../data/siteData';
 
 interface BookModalProps {

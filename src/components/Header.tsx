@@ -67,7 +67,7 @@ export const Header: React.FC = () => {
             if (link.children) {
               const isEcosystemActive =
                 location.pathname.startsWith('/ecosystem') ||
-                location.pathname === '/creatives' ||
+                location.pathname.startsWith('/creatives') ||
                 location.pathname === '/library-store' ||
                 location.pathname === '/ministry' ||
                 location.pathname === '/partnerships';
@@ -190,7 +190,7 @@ export const Header: React.FC = () => {
                 <Link to="/ecosystem" className="block text-sm text-obsidian/80 hover:text-maritime">
                   Ecosystem Overview
                 </Link>
-                <Link to="/creatives" className="block text-sm text-obsidian/90 hover:text-maritime font-medium">
+                <Link to="/creatives/portfolio" className="block text-sm text-obsidian/90 hover:text-maritime font-medium">
                   Richson Creatives Studio
                 </Link>
                 <Link to="/library-store" className="block text-sm text-obsidian/80 hover:text-maritime">
@@ -224,7 +224,7 @@ export const Header: React.FC = () => {
               <span>Book Us</span>
               <ArrowRight className="h-4 w-4" />
             </Link>
-            <Link to="/creatives" className="btn-navy w-full text-center">
+            <Link to="/creatives/portfolio" className="btn-navy w-full text-center">
               <span>Richson Creatives Studio</span>
               <ArrowRight className="h-4 w-4" />
             </Link>

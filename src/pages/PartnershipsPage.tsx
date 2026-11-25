@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
-import { CheckCircle2, MessageSquare, Send, Mail } from 'lucide-react';
-import { SITE_COORDINATES } from '../data/siteData';
-import { submitInquiry, SubmissionOutcome } from '../lib/formService';
+import { CheckCircle2, MessageSquare, Send, AlertCircle, Copy, Check } from 'lucide-react';
+import { CREATIVES_COORDINATES } from '../data/siteData';
+import {
+  submitViaWeb3Forms,
+  buildWhatsAppRoutingUrl,
+  formatInquirySummary,
+  copyTextToClipboard,
+  FormPayload,
+  EmailSubmissionResult
+} from '../lib/formService';
 
 const PARTNERSHIP_MODELS = [
   {
@@ -25,10 +32,12 @@ const PARTNERSHIP_MODELS = [
     desc: "Editorial direction, client book cover design, interior layout, printing coordination, and distribution via Richson Creatives."
   },
   {
-    title: "Institutional Development Initiatives",
-    desc: "Capacity workshops, pre-marital counseling curriculum integration, and youth mentorship programs."
+    title: "Institutional & NGO Development Initiatives",
+    desc: "Capacity workshops, pre-marital counseling curriculum integration, and youth mentorship alliances."
   }
 ];
+
+const FORM_SOURCE = 'Richson Global - Partnerships Page';
 
 export const PartnershipsPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -36,31 +45,54 @@ export const PartnershipsPage: React.FC = () => {
     email: '',
     organisation: '',
     phone: '',
-    focus: 'Strategic Partnerships',
+    focus: PARTNERSHIP_MODELS[0].title,
     proposal: ''
   });
-  const [outcome, setOutcome] = useState<SubmissionOutcome | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [emailResult, setEmailResult] = useState<EmailSubmissionResult | null>(null);
+  const [copiedSummary, setCopiedSummary] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const buildPayload = (): FormPayload => ({
+    formSource: FORM_SOURCE,
+    subject: `${FORM_SOURCE} — ${formData.focus}`,
+    name: formData.name,
+    email: formData.email,
+    organisation: formData.organisation,
+    phone: formData.phone,
+    topic: formData.focus,
+    message: formData.proposal
+  });
+
+  const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    const res = await submitInquiry({
-      channel: 'partnerships',
-      name: formData.name,
-      email: formData.email,
-      organisation: formData.organisation,
-      phone: formData.phone,
-      topic: formData.focus,
-      message: formData.proposal
-    });
-    setOutcome(res);
+    setEmailResult(null);
+    const res = await submitViaWeb3Forms(buildPayload(), true);
+    setEmailResult(res);
     setSubmitting(false);
   };
 
-  const whatsappUrl = `https://wa.me/${SITE_COORDINATES.phoneRaw}?text=${encodeURIComponent(
-    `Hello Eric, I am interested in discussing a partnership regarding "${formData.focus}".`
-  )}`;
+  const handleCopySummary = async () => {
+    const ok = await copyTextToClipboard(formatInquirySummary(buildPayload()));
+    if (ok) {
+      setCopiedSummary(true);
+      setTimeout(() => setCopiedSummary(false), 2500);
+    }
+  };
+
+  const handleReset = () => {
+    setFormData({
+      name: '',
+      email: '',
+      organisation: '',
+      phone: '',
+      focus: PARTNERSHIP_MODELS[0].title,
+      proposal: ''
+    });
+    setEmailResult(null);
+  };
+
+  const whatsappUrl = buildWhatsAppRoutingUrl(buildPayload());
 
   return (
     <div className="bg-linen min-h-screen pt-24 md:pt-28">
@@ -72,7 +104,7 @@ export const PartnershipsPage: React.FC = () => {
             Partnerships &amp; Co-Creation
           </h1>
           <p className="mt-6 text-base sm:text-lg leading-relaxed text-muted-foreground">
-            Richson Global welcomes strategic partnerships, business collaborations, creative &amp; technology engagements, publishing projects, and institutional development initiatives.
+            Richson Global welcomes strategic partnerships, institutional and NGO alliances, commercial collaborations, and emerging venture pathways.
           </p>
         </div>
       </section>
@@ -81,9 +113,9 @@ export const PartnershipsPage: React.FC = () => {
       <section className="py-20 border-b border-border bg-linen">
         <div className="container-arc">
           <div className="max-w-2xl mb-14">
-            <p className="eyebrow text-gold mb-3">Avenues of Engagement</p>
+            <p className="eyebrow text-gold mb-3">Collaboration Models</p>
             <h2 className="font-display text-3xl md:text-4xl font-semibold text-obsidian">
-              How We Collaborate
+              Partnership Pathways
             </h2>
           </div>
 
@@ -95,7 +127,7 @@ export const PartnershipsPage: React.FC = () => {
               >
                 <div>
                   <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gold tabular-nums">
-                    0{idx + 1}. Model
+                    0{idx + 1}. Pathway
                   </span>
                   <h3 className="mt-3 font-display text-xl font-semibold text-obsidian">
                     {model.title}
@@ -114,56 +146,65 @@ export const PartnershipsPage: React.FC = () => {
       <section className="py-20 border-b border-border bg-secondary/30">
         <div className="container-arc max-w-4xl">
           <div className="border border-border bg-linen p-8 md:p-14">
-            {outcome ? (
-              <div className="py-8 space-y-6">
+            {emailResult?.ok ? (
+              <div className="py-6 space-y-6">
                 <div className="h-12 w-12 rounded-full bg-gold/15 text-gold flex items-center justify-center">
                   <CheckCircle2 className="h-6 w-6" />
                 </div>
                 <h3 className="font-display text-3xl font-semibold text-obsidian">
-                  {outcome.status === 'delivered'
-                    ? 'Partnership Proposal Dispatched'
-                    : 'Proposal Ready for Direct Dispatch'}
+                  Partnership Proposal Delivered
                 </h3>
                 <p className="text-muted-foreground max-w-xl text-sm leading-relaxed">
-                  {outcome.message}
+                  {emailResult.message}
                 </p>
                 <div className="pt-2 flex flex-wrap gap-3">
                   <a
-                    href={outcome.mailtoUrl}
-                    className="btn-navy py-3 px-6 text-xs whitespace-nowrap"
-                  >
-                    <Mail className="h-4 w-4" />
-                    <span>Send via Email</span>
-                  </a>
-                  <a
-                    href={outcome.whatsappUrl}
+                    href={whatsappUrl}
                     target="_blank"
                     rel="noreferrer"
                     className="btn-gold py-3 px-6 text-xs whitespace-nowrap"
                   >
                     <MessageSquare className="h-4 w-4" />
-                    <span>Send via WhatsApp</span>
+                    <span>Also Send via WhatsApp</span>
                   </a>
                   <button
                     type="button"
-                    onClick={() => setOutcome(null)}
-                    className="btn-outline py-3 px-6 text-xs whitespace-nowrap"
+                    onClick={handleCopySummary}
+                    className="btn-outline py-3 px-5 text-xs whitespace-nowrap"
                   >
-                    Edit Proposal
+                    {copiedSummary ? <Check className="h-4 w-4 text-gold" /> : <Copy className="h-4 w-4" />}
+                    <span>{copiedSummary ? 'Summary Copied' : 'Copy Summary'}</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleReset}
+                    className="btn-navy py-3 px-5 text-xs whitespace-nowrap"
+                  >
+                    Submit Another Brief
                   </button>
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-8">
+              <form onSubmit={handleEmailSubmit} className="space-y-8">
+                <input type="hidden" name="form_source" value={FORM_SOURCE} />
+                <input type="hidden" name="subject" value={`${FORM_SOURCE} — ${formData.focus}`} />
+
                 <div>
                   <p className="eyebrow text-gold mb-2">Initiate Alignment</p>
                   <h2 className="font-display text-2xl md:text-3xl font-semibold text-obsidian">
                     Submit a Partnership Brief
                   </h2>
                   <p className="mt-2 text-sm text-muted-foreground">
-                    Provide the key dimensions of your proposal. Every brief is reviewed personally by Eric Richson Darko.
+                    Provide the key dimensions of your proposal. Submit via Email or route directly via WhatsApp ({CREATIVES_COORDINATES.phoneDisplay}).
                   </p>
                 </div>
+
+                {emailResult && !emailResult.ok && (
+                  <div className="flex items-start gap-2.5 border border-ember/40 bg-ember/10 p-3.5 text-xs text-obsidian">
+                    <AlertCircle className="h-4 w-4 text-ember shrink-0 mt-0.5" />
+                    <span>{emailResult.message}</span>
+                  </div>
+                )}
 
                 <div className="grid gap-6 sm:grid-cols-2">
                   <div>
@@ -193,18 +234,30 @@ export const PartnershipsPage: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="eyebrow block mb-2" htmlFor="part-org">Organisation / Firm</label>
+                    <label className="eyebrow block mb-2" htmlFor="part-org">Organisation / Institution</label>
                     <input
                       id="part-org"
                       type="text"
                       value={formData.organisation}
                       onChange={(e) => setFormData({ ...formData, organisation: e.target.value })}
-                      placeholder="e.g. Heritage Bank / Independent"
+                      placeholder="e.g. Heritage Bank / NGO / Independent"
                       className="w-full border-b border-border bg-transparent py-2.5 text-sm text-obsidian focus:outline-none focus:border-maritime"
                     />
                   </div>
 
                   <div>
+                    <label className="eyebrow block mb-2" htmlFor="part-phone">Phone Number</label>
+                    <input
+                      id="part-phone"
+                      type="tel"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      placeholder="e.g. +233 24 000 0000"
+                      className="w-full border-b border-border bg-transparent py-2.5 text-sm text-obsidian focus:outline-none focus:border-maritime"
+                    />
+                  </div>
+
+                  <div className="sm:col-span-2">
                     <label className="eyebrow block mb-2" htmlFor="part-focus">Partnership Focus</label>
                     <select
                       id="part-focus"
@@ -232,25 +285,39 @@ export const PartnershipsPage: React.FC = () => {
                   />
                 </div>
 
-                <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-                  <button
-                    type="submit"
-                    disabled={submitting}
-                    className="btn-navy w-full sm:w-auto py-3.5 px-8 text-xs font-semibold whitespace-nowrap"
-                  >
-                    <Send className="h-4 w-4" />
-                    <span>{submitting ? 'Submitting Brief...' : 'Transmit Proposal'}</span>
-                  </button>
+                <div className="pt-2 space-y-3">
+                  <div className="flex flex-wrap items-center gap-3">
+                    <button
+                      type="submit"
+                      disabled={submitting}
+                      className="btn-navy py-3.5 px-7 text-xs font-semibold whitespace-nowrap disabled:opacity-60"
+                    >
+                      <Send className="h-4 w-4" />
+                      <span>{submitting ? 'Sending via Email...' : 'Send via Email'}</span>
+                    </button>
 
-                  <a
-                    href={whatsappUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-xs text-muted-foreground hover:text-maritime flex items-center gap-1.5"
-                  >
-                    <MessageSquare className="h-4 w-4 text-gold" />
-                    <span>Or converse directly via WhatsApp</span>
-                  </a>
+                    <a
+                      href={whatsappUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="btn-gold py-3.5 px-7 text-xs font-semibold whitespace-nowrap"
+                    >
+                      <MessageSquare className="h-4 w-4" />
+                      <span>Send via WhatsApp</span>
+                    </a>
+
+                    <button
+                      type="button"
+                      onClick={handleCopySummary}
+                      className="btn-outline py-3.5 px-5 text-xs font-semibold whitespace-nowrap"
+                    >
+                      {copiedSummary ? <Check className="h-4 w-4 text-gold" /> : <Copy className="h-4 w-4" />}
+                      <span>{copiedSummary ? 'Summary Copied' : 'Copy Summary'}</span>
+                    </button>
+                  </div>
+                  <p className="text-[0.72rem] text-muted-foreground">
+                    WhatsApp routes your formatted proposal directly to {CREATIVES_COORDINATES.phoneDisplay}. Use Copy Summary if pop-ups are blocked.
+                  </p>
                 </div>
               </form>
             )}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, BookOpen, Users, CheckCircle2, ExternalLink } from 'lucide-react';
-import { EMERGING_VENTURE, SITE_COORDINATES, CREATIVES_COORDINATES, WEB_PROJECTS } from '../data/siteData';
+import { ArrowRight, BookOpen, Users } from 'lucide-react';
+import { EMERGING_VENTURE, SITE_COORDINATES, CREATIVES_COORDINATES } from '../data/siteData';
 
 export const EcosystemPage: React.FC = () => {
   return (
@@ -9,104 +9,97 @@ export const EcosystemPage: React.FC = () => {
       {/* Page Header */}
       <section className="container-arc py-12 md:py-20 border-b border-border">
         <div className="max-w-3xl">
-          <p className="eyebrow text-gold mb-3">Our Ecosystem</p>
+          <p className="eyebrow text-gold mb-3">Institutional Architecture</p>
           <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-obsidian leading-[1.1]">
-            Ventures, Practices &amp; Initiatives
+            One Ecosystem. Six Distinct Entities.
           </h1>
           <p className="mt-6 text-base sm:text-lg leading-relaxed text-muted-foreground">
-            Explore the Richson Global ecosystem: each venture addresses a distinct societal or organizational need, operates with clear brand separation, and shares an uncompromising standard of execution.
+            Richson Global maintains deliberate brand and operational separation across its parent umbrella, commercial studio, personal authorship, reading network, pastoral ministry, and emerging ventures.
           </p>
         </div>
       </section>
 
-      {/* Ventures Detailed Breakdown */}
+      {/* Parent Entity: Richson Global */}
+      <section className="py-16 border-b border-border bg-obsidian text-linen">
+        <div className="container-arc grid gap-8 lg:grid-cols-[1.2fr_0.8fr] items-center">
+          <div className="space-y-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold">
+              Parent Institutional Umbrella
+            </p>
+            <h2 className="font-display text-3xl md:text-4xl font-semibold text-linen">
+              Richson Global
+            </h2>
+            <p className="text-sm md:text-base leading-relaxed text-linen/75 max-w-2xl">
+              The overarching strategic foundation founded by Eric Richson Darko. Richson Global anchors governance, institutional philosophy, and cross-venture stewardship while enabling each operating pillar to serve its distinct audience independently.
+            </p>
+          </div>
+          <div className="flex flex-wrap lg:justify-end gap-3">
+            <Link to="/approach" className="btn-gold py-3 px-6 text-xs whitespace-nowrap">
+              <span>Institutional Framework</span>
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link to="/about" className="btn-outline py-3 px-6 text-xs border-linen/30 text-linen hover:bg-linen hover:text-obsidian whitespace-nowrap">
+              <span>Founder Profile</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Structural Overview of Distinct Pillars */}
       <section className="py-20 border-b border-border bg-linen">
-        <div className="container-arc space-y-20">
-          {/* Venture 01: Richson Creatives */}
-          <div id="creatives" className="grid gap-12 lg:grid-cols-2 items-center border border-border bg-card p-8 md:p-14 scroll-mt-28">
-            <div className="space-y-6">
+        <div className="container-arc space-y-12">
+          {/* 01: Richson Creatives */}
+          <div id="creatives" className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] items-center border border-border bg-card p-8 md:p-12 scroll-mt-28">
+            <div className="space-y-5">
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold">
-                01 · Operating Venture
+                01 · Commercial Studio &amp; Technology Company
               </p>
               <h2 className="font-display text-3xl md:text-4xl font-semibold text-obsidian">
                 Richson Creatives
               </h2>
               <p className="text-xs font-semibold uppercase tracking-wider text-maritime">
-                Creative &amp; Technology Services Company · {CREATIVES_COORDINATES.phoneDisplay}
+                Branding · Client Book Publishing Production · Web Engineering · IT Systems
               </p>
               <p className="text-sm md:text-base leading-relaxed text-muted-foreground">
-                Richson Creatives brings together creative thinking, design excellence, client book publishing production, and technological innovation to help individuals, businesses, and institutions establish memorable identities and solve practical operational challenges.
+                The dedicated commercial agency and technology services company within the ecosystem. All client brand identity systems, website engineering, IT infrastructure engagements, and client book cover design, typesetting, and publishing services live exclusively under Richson Creatives.
               </p>
-              <div className="space-y-2 border-t border-border pt-4">
-                <p className="text-xs font-semibold text-obsidian uppercase tracking-wider">Practice Areas</p>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-muted-foreground">
-                  <li className="flex items-center gap-2"><CheckCircle2 className="h-3.5 w-3.5 text-gold shrink-0" />Brand identity &amp; strategy</li>
-                  <li className="flex items-center gap-2"><CheckCircle2 className="h-3.5 w-3.5 text-gold shrink-0" />Packaging design &amp; SKU systems</li>
-                  <li className="flex items-center gap-2"><CheckCircle2 className="h-3.5 w-3.5 text-gold shrink-0" />Client book design &amp; publishing</li>
-                  <li className="flex items-center gap-2"><CheckCircle2 className="h-3.5 w-3.5 text-gold shrink-0" />Web &amp; digital platforms</li>
-                  <li className="flex items-center gap-2"><CheckCircle2 className="h-3.5 w-3.5 text-gold shrink-0" />IT systems infrastructure</li>
-                  <li className="flex items-center gap-2"><CheckCircle2 className="h-3.5 w-3.5 text-gold shrink-0" />Print &amp; publishing coordination</li>
-                </ul>
-              </div>
-              <div className="pt-2 flex flex-wrap gap-4">
-                <Link to="/creatives" className="btn-ember py-3 px-6 text-xs whitespace-nowrap">
-                  <span>Enter Richson Creatives</span>
+              <div className="pt-2 flex flex-wrap gap-3">
+                <Link to="/creatives/portfolio" className="btn-ember py-3 px-6 text-xs whitespace-nowrap">
+                  <span>Open Creatives Portfolio</span>
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link to="/creatives#platforms" className="btn-outline py-3 px-6 text-xs whitespace-nowrap">
-                  <span>View Client Websites</span>
+                <Link to="/creatives/portfolio#client-books" className="btn-outline py-3 px-6 text-xs whitespace-nowrap">
+                  <span>Client Book Publishing</span>
                 </Link>
               </div>
             </div>
 
-            <div className="border border-border bg-obsidian text-linen p-8 md:p-10 flex flex-col justify-between space-y-6">
+            <div className="border border-border bg-obsidian text-linen p-8 space-y-5">
               <div className="flex items-center gap-4">
                 <img
                   src={CREATIVES_COORDINATES.markUrl}
                   alt="Richson Creatives emblem"
                   referrerPolicy="no-referrer"
-                  className="h-16 w-16 object-contain shrink-0"
+                  className="h-14 w-14 object-contain shrink-0"
                 />
                 <div>
-                  <p className="eyebrow text-gold">The Studio Creed</p>
-                  <blockquote className="mt-1 font-display text-xl font-semibold leading-snug text-linen">
-                    "To make good organisations visible, credible and easy to choose."
-                  </blockquote>
+                  <p className="eyebrow text-gold">Entity Boundary</p>
+                  <p className="text-xs text-linen/75 mt-1">
+                    Commercial client work &amp; studio services ({CREATIVES_COORDINATES.phoneDisplay})
+                  </p>
                 </div>
               </div>
-
-              {/* Client Platforms Mini Preview Grid */}
-              <div className="grid grid-cols-2 gap-3 pt-2">
-                {WEB_PROJECTS.map((wp) => (
-                  <a
-                    key={wp.domain}
-                    href={wp.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="group block border border-linen/15 overflow-hidden bg-black hover:border-gold transition-colors"
-                  >
-                    <img
-                      src={wp.screenshotUrl}
-                      alt={`${wp.name} front page`}
-                      loading="lazy"
-                      referrerPolicy="no-referrer"
-                      className="w-full aspect-[16/10] object-cover object-top"
-                    />
-                    <div className="px-2.5 py-1.5 flex items-center justify-between text-[0.65rem] text-linen/80 group-hover:text-gold">
-                      <span className="truncate">{wp.domain}</span>
-                      <ExternalLink className="h-3 w-3 shrink-0" />
-                    </div>
-                  </a>
-                ))}
-              </div>
+              <blockquote className="font-display text-lg font-semibold leading-snug text-linen border-t border-linen/15 pt-4">
+                "To make good organisations visible, credible and easy to choose."
+              </blockquote>
             </div>
           </div>
 
-          {/* Venture 02: Personal Authorship */}
-          <div id="authorship" className="grid gap-12 lg:grid-cols-2 items-center border border-border bg-card p-8 md:p-14 scroll-mt-28">
-            <div className="border border-border bg-linen p-8 md:p-12 flex flex-col justify-between space-y-8 order-2 lg:order-1">
+          {/* 02: Personal Authorship */}
+          <div id="authorship" className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] items-center border border-border bg-card p-8 md:p-12 scroll-mt-28">
+            <div className="border border-border bg-linen p-8 space-y-5 order-2 lg:order-1">
               <div className="flex items-center gap-4">
-                <span className="h-14 w-14 rounded-full bg-white border border-border overflow-hidden flex items-center justify-center shrink-0">
+                <span className="h-12 w-12 rounded-full bg-white border border-border overflow-hidden flex items-center justify-center shrink-0">
                   <img
                     src={SITE_COORDINATES.logoUrl}
                     alt="Eric Richson Darko authorship emblem"
@@ -114,54 +107,43 @@ export const EcosystemPage: React.FC = () => {
                     className="h-full w-full object-contain p-1"
                   />
                 </span>
-                <p className="eyebrow text-gold">Personal Authorship Practice</p>
+                <div>
+                  <p className="eyebrow text-gold">Entity Boundary</p>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    Separate from Richson Creatives client publishing
+                  </p>
+                </div>
               </div>
-              <blockquote className="font-display text-2xl font-semibold leading-snug text-obsidian">
-                "Words build worlds — and they demolish them. Ideas disciplined into print outlive empires."
+              <blockquote className="font-display text-lg font-semibold leading-snug text-obsidian border-t border-border pt-4">
+                "Ideas disciplined into print outlive seasons and build lasting intellectual equity."
               </blockquote>
-              <div className="pt-6 border-t border-border text-xs text-muted-foreground space-y-1">
-                <p className="font-semibold text-obsidian">Independent from Richson Creatives Client Services</p>
-                <p>Available directly via Selar, Mobile Money ({SITE_COORDINATES.momo}), and ePub &amp; PDF digital delivery.</p>
-              </div>
             </div>
 
-            <div className="space-y-6 order-1 lg:order-2">
+            <div className="space-y-5 order-1 lg:order-2">
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold">
-                02 · 18 Published Titles
+                02 · Independent Authorship Catalog · 18 Titles
               </p>
               <h2 className="font-display text-3xl md:text-4xl font-semibold text-obsidian">
-                Personal Authorship
+                Personal Authorship — Eric Richson Darko
               </h2>
               <p className="text-xs font-semibold uppercase tracking-wider text-maritime">
-                Books, Writing &amp; Intellectual Contributions by Eric Richson Darko
+                15 Solo Works · 3 Co-Authored Volumes
               </p>
               <p className="text-sm md:text-base leading-relaxed text-muted-foreground">
-                The personal authorship practice of Eric Richson Darko: 18 published works (15 solo treatises, 3 co-authored works with Collins Angel Ross) addressing pre-marital readiness, relational discernment, leadership capacity, and declarative faith.
+                Eric Richson Darko's personal catalog of written works covering spiritual formation, relational intelligence, pre-marital discernment, and leadership capacity—maintained strictly separate from commercial client book production handled by Richson Creatives.
               </p>
-              <div className="space-y-2 border-t border-border pt-4">
-                <p className="text-xs font-semibold text-obsidian uppercase tracking-wider">Key Sub-Disciplines</p>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-muted-foreground">
-                  <li className="flex items-center gap-2"><CheckCircle2 className="h-3.5 w-3.5 text-gold shrink-0" />The Three-Fold Cord (Altar, Home &amp; Field)</li>
-                  <li className="flex items-center gap-2"><CheckCircle2 className="h-3.5 w-3.5 text-gold shrink-0" />Relational Intelligence &amp; Red Flags</li>
-                  <li className="flex items-center gap-2"><CheckCircle2 className="h-3.5 w-3.5 text-gold shrink-0" />360° Men &amp; Women of Capacity</li>
-                  <li className="flex items-center gap-2"><CheckCircle2 className="h-3.5 w-3.5 text-gold shrink-0" />Declarative Prayer &amp; Mindset Renewal</li>
-                </ul>
-              </div>
-              <div className="pt-2 flex flex-wrap gap-4">
+              <div className="pt-2">
                 <Link to="/library-store" className="btn-navy py-3 px-6 text-xs whitespace-nowrap">
                   <BookOpen className="h-4 w-4" />
-                  <span>Browse Digital Bookstore</span>
-                </Link>
-                <Link to="/creatives#client-books" className="btn-outline py-3 px-6 text-xs whitespace-nowrap">
-                  <span>Client Book Services (Richson Creatives)</span>
+                  <span>Browse Personal Authorship Store</span>
                 </Link>
               </div>
             </div>
           </div>
 
-          {/* Venture 03: Wisefold Network */}
-          <div id="wisefold" className="grid gap-12 lg:grid-cols-2 items-center border border-border bg-card p-8 md:p-14 scroll-mt-28">
-            <div className="space-y-6">
+          {/* 03: Wisefold Network (Canonical Home) */}
+          <div id="wisefold" className="grid gap-10 lg:grid-cols-2 items-center border border-border bg-card p-8 md:p-12 scroll-mt-28">
+            <div className="space-y-5">
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold">
                 03 · Active Network Initiative · Founded July 10, 2024
               </p>
@@ -172,7 +154,7 @@ export const EcosystemPage: React.FC = () => {
                 Disciplined Reading Community &amp; Capacity Hub
               </p>
               <p className="text-sm md:text-base leading-relaxed text-muted-foreground">
-                Wisefold Network exists to counter superficial knowledge and mental stagnation by building a culture of intentional, book-by-book reading, rigorous knowledge synthesis, and peer accountability among young professionals, executives, and students.
+                Wisefold Network exists to counter superficial knowledge and mental stagnation through intentional, book-by-book reading, structured knowledge synthesis, and peer accountability among young professionals, executives, and students.
               </p>
               <div className="space-y-3 border-t border-border pt-4">
                 <div className="text-xs text-muted-foreground space-y-1">
@@ -181,7 +163,7 @@ export const EcosystemPage: React.FC = () => {
                 </div>
                 <div className="text-xs text-muted-foreground space-y-1">
                   <p className="font-semibold text-obsidian">Pillar 2: Intellectual Capacity Building</p>
-                  <p>Training members in the discipline of knowledge synthesis, critical thinking, and practical execution.</p>
+                  <p>Training members in knowledge synthesis, critical thinking, and practical execution.</p>
                 </div>
                 <div className="text-xs text-muted-foreground space-y-1">
                   <p className="font-semibold text-obsidian">Pillar 3: Leadership &amp; Character Development</p>
@@ -196,29 +178,29 @@ export const EcosystemPage: React.FC = () => {
               </div>
             </div>
 
-            <div className="border border-border bg-obsidian text-linen p-8 md:p-12 flex flex-col justify-between space-y-8">
+            <div className="border border-border bg-obsidian text-linen p-8 md:p-10 flex flex-col justify-between space-y-6">
               <div className="flex items-center gap-4">
                 <img
                   src={SITE_COORDINATES.wisefoldMark}
                   alt="Wisefold Network emblem"
                   referrerPolicy="no-referrer"
-                  className="h-16 w-16 object-contain shrink-0"
+                  className="h-14 w-14 object-contain shrink-0"
                 />
                 <p className="eyebrow text-gold">The Wisefold Mandate</p>
               </div>
               <blockquote className="font-display text-2xl font-semibold leading-snug text-linen">
                 "Ideas worth reading. Knowledge worth sharing. A disciplined mind cannot be easily enslaved."
               </blockquote>
-              <div className="pt-6 border-t border-linen/15 text-xs text-linen/65 space-y-1">
+              <div className="pt-5 border-t border-linen/15 text-xs text-linen/65 space-y-1">
                 <p>Convener: Eric Richson Darko</p>
                 <p>Format: Structured reading cohorts, synthesis papers, and discussion forums.</p>
               </div>
             </div>
           </div>
 
-          {/* Venture 04: Pastoral Ministry */}
-          <div id="ministry" className="grid gap-12 lg:grid-cols-2 items-center border border-border bg-card p-8 md:p-14 scroll-mt-28">
-            <div className="border border-border bg-linen overflow-hidden order-2 lg:order-1 flex flex-col">
+          {/* 04: Pastoral Ministry */}
+          <div id="ministry" className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] items-center border border-border bg-card p-8 md:p-12 scroll-mt-28">
+            <div className="border border-border bg-linen overflow-hidden order-2 lg:order-1">
               <div className="aspect-[16/10] w-full overflow-hidden bg-obsidian">
                 <img
                   src={SITE_COORDINATES.ministryPortrait}
@@ -227,51 +209,36 @@ export const EcosystemPage: React.FC = () => {
                   className="h-full w-full object-cover object-top"
                 />
               </div>
-              <div className="p-8 space-y-4">
-                <p className="eyebrow text-gold">Pastoral Oversight</p>
-                <blockquote className="font-display text-xl font-semibold leading-snug text-obsidian">
-                  "Discipleship that equips young adults to embody kingdom excellence in church and marketplace alike."
-                </blockquote>
-                <p className="text-xs text-muted-foreground pt-3 border-t border-border">
-                  Charismatic Evangelistic Ministry (CEM), East Legon, Accra, Ghana.
-                </p>
+              <div className="p-6 text-xs text-muted-foreground">
+                Charismatic Evangelistic Ministry (CEM), East Legon &amp; College of Relationship &amp; Marriage (CORM).
               </div>
             </div>
 
-            <div className="space-y-6 order-1 lg:order-2">
+            <div className="space-y-5 order-1 lg:order-2">
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold">
-                04 · Ongoing Pastoral Ministry
+                04 · Faith &amp; Relational Leadership
               </p>
               <h2 className="font-display text-3xl md:text-4xl font-semibold text-obsidian">
                 Ministry &amp; Discipleship
               </h2>
               <p className="text-xs font-semibold uppercase tracking-wider text-maritime">
-                Youth Leadership, Spiritual Formation &amp; Marital Preservation
+                Youth Oversight · Pre-Marital Counseling · Biblical Teaching
               </p>
               <p className="text-sm md:text-base leading-relaxed text-muted-foreground">
-                Eric serves as an Associate Pastor with dedicated youth pastoral oversight at Charismatic Evangelistic Ministry (CEM), East Legon. His ministerial focus combines deep biblical exposition with pragmatic relational guidance and youth leadership formation.
+                Pastoral oversight at Charismatic Evangelistic Ministry (CEM), East Legon, combined with relationship and marriage education through the College of Relationship &amp; Marriage (CORM).
               </p>
-              <div className="space-y-2 border-t border-border pt-4">
-                <p className="text-xs font-semibold text-obsidian uppercase tracking-wider">Pastoral Scope</p>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-muted-foreground">
-                  <li className="flex items-center gap-2"><CheckCircle2 className="h-3.5 w-3.5 text-gold shrink-0" />Youth pastoral care &amp; discipleship</li>
-                  <li className="flex items-center gap-2"><CheckCircle2 className="h-3.5 w-3.5 text-gold shrink-0" />Pre-marital counseling &amp; vetting</li>
-                  <li className="flex items-center gap-2"><CheckCircle2 className="h-3.5 w-3.5 text-gold shrink-0" />Leadership development &amp; mentoring</li>
-                  <li className="flex items-center gap-2"><CheckCircle2 className="h-3.5 w-3.5 text-gold shrink-0" />Sermon &amp; conference speaking</li>
-                </ul>
-              </div>
               <div className="pt-2">
                 <Link to="/ministry" className="btn-navy py-3 px-6 text-xs whitespace-nowrap">
-                  <span>Explore Pastoral Ministry Archive</span>
+                  <span>Explore Ministry Page</span>
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
             </div>
           </div>
 
-          {/* Venture 05: Emerging Ventures */}
-          <div id="emerging" className="border border-border bg-obsidian text-linen p-8 md:p-14 scroll-mt-28">
-            <div className="max-w-3xl space-y-6">
+          {/* 05: Emerging Ventures */}
+          <div id="emerging" className="border border-border bg-obsidian text-linen p-8 md:p-12 scroll-mt-28">
+            <div className="max-w-3xl space-y-5">
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold">
                 05 · Open Strategic Framework
               </p>
@@ -281,9 +248,9 @@ export const EcosystemPage: React.FC = () => {
               <p className="text-sm md:text-base leading-relaxed text-linen/75">
                 {EMERGING_VENTURE.description}
               </p>
-              <div className="pt-4 flex flex-wrap gap-4">
+              <div className="pt-2 flex flex-wrap gap-4">
                 <Link to="/partnerships" className="btn-gold py-3 px-7 text-xs whitespace-nowrap">
-                  <span>Submit Partnership Proposal</span>
+                  <span>Explore Partnership Pathways</span>
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link to="/contact" className="btn-outline py-3 px-7 text-xs border-linen/30 text-linen hover:bg-linen hover:text-obsidian whitespace-nowrap">

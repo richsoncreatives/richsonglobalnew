@@ -11,29 +11,61 @@ import {
   ArrowRight,
   CheckCircle2,
   ExternalLink,
-  MessageSquare
+  MessageSquare,
+  AlertCircle,
+  Copy,
+  Check
 } from 'lucide-react';
 import { SITE_COORDINATES, CREATIVES_COORDINATES, SOCIAL_LINKS } from '../data/siteData';
 import { XBrandIcon } from './Icons';
-import { submitInquiry, SubmissionOutcome } from '../lib/formService';
+import {
+  submitViaWeb3Forms,
+  buildWhatsAppRoutingUrl,
+  formatInquirySummary,
+  copyTextToClipboard
+} from '../lib/formService';
 
 export const Footer: React.FC = () => {
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [submitting, setSubmitting] = useState(false);
-  const [outcome, setOutcome] = useState<SubmissionOutcome | null>(null);
+  const [status, setStatus] = useState<{ type: 'idle' | 'success' | 'error'; message: string }>({
+    type: 'idle',
+    message: ''
+  });
+  const [copied, setCopied] = useState(false);
+
+  const newsletterPayload = {
+    formSource: 'Richson Global - Footer Newsletter',
+    subject: 'The Capacity Dispatch — Newsletter Subscription',
+    email: newsletterEmail.trim(),
+    message: `Please subscribe ${newsletterEmail.trim() || '(visitor)'} to The Capacity Dispatch.`
+  };
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newsletterEmail.trim()) return;
     setSubmitting(true);
-    const res = await submitInquiry({
-      channel: 'newsletter',
-      email: newsletterEmail.trim()
-    });
-    setOutcome(res);
+    setStatus({ type: 'idle', message: '' });
+
+    const res = await submitViaWeb3Forms(newsletterPayload, false);
     setSubmitting(false);
-    if (res.status === 'delivered') {
+
+    if (res.ok) {
+      setStatus({
+        type: 'success',
+        message: 'You are subscribed to The Capacity Dispatch. Thank you for joining.'
+      });
       setNewsletterEmail('');
+    } else {
+      setStatus({ type: 'error', message: res.message });
+    }
+  };
+
+  const handleCopySummary = async () => {
+    const ok = await copyTextToClipboard(formatInquirySummary(newsletterPayload));
+    if (ok) {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
     }
   };
 
@@ -71,52 +103,59 @@ export const Footer: React.FC = () => {
             </p>
           </div>
 
-          <div>
-            {outcome ? (
-              <div className="space-y-3 p-4 bg-maritime/40 border border-gold/40 text-linen text-sm">
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="h-5 w-5 text-gold shrink-0 mt-0.5" />
-                  <p className="leading-relaxed">{outcome.message}</p>
-                </div>
-                {outcome.status === 'handoff_required' && (
-                  <div className="flex flex-wrap gap-2 pl-8">
-                    <a
-                      href={outcome.mailtoUrl}
-                      className="btn-gold py-2 px-4 text-xs whitespace-nowrap"
-                    >
-                      <Mail className="h-3.5 w-3.5" />
-                      <span>Confirm via Email</span>
-                    </a>
-                    <a
-                      href={outcome.whatsappUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="btn-outline border-linen/30 text-linen py-2 px-4 text-xs whitespace-nowrap hover:bg-linen hover:text-obsidian"
-                    >
-                      <MessageSquare className="h-3.5 w-3.5" />
-                      <span>Join via WhatsApp</span>
-                    </a>
-                  </div>
-                )}
+          <div className="space-y-3">
+            {status.type === 'success' ? (
+              <div className="flex items-start gap-3 p-4 bg-maritime/40 border border-gold/40 text-linen text-sm">
+                <CheckCircle2 className="h-5 w-5 text-gold shrink-0 mt-0.5" />
+                <span>{status.message}</span>
               </div>
             ) : (
-              <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3">
-                <input
-                  type="email"
-                  required
-                  placeholder="Enter your email address"
-                  value={newsletterEmail}
-                  onChange={(e) => setNewsletterEmail(e.target.value)}
-                  className="bg-linen/5 border border-linen/20 px-4 py-3 text-sm text-linen placeholder:text-linen/40 focus:outline-none focus:border-gold flex-1"
-                />
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="btn-gold whitespace-nowrap py-3 px-6"
-                >
-                  <span>{submitting ? 'Submitting...' : 'Subscribe'}</span>
-                  <ArrowRight className="h-4 w-4" />
-                </button>
+              <form onSubmit={handleSubscribe} className="space-y-3">
+                <input type="hidden" name="form_source" value="Richson Global - Footer Newsletter" />
+                {status.type === 'error' && (
+                  <div className="flex items-start gap-2 p-3 bg-ember/20 border border-ember/40 text-xs text-linen">
+                    <AlertCircle className="h-4 w-4 text-gold shrink-0 mt-0.5" />
+                    <span>{status.message}</span>
+                  </div>
+                )}
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <input
+                    type="email"
+                    required
+                    placeholder="Enter your email address"
+                    value={newsletterEmail}
+                    onChange={(e) => setNewsletterEmail(e.target.value)}
+                    className="bg-linen/5 border border-linen/20 px-4 py-3 text-sm text-linen placeholder:text-linen/40 focus:outline-none focus:border-gold flex-1"
+                  />
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="btn-gold whitespace-nowrap py-3 px-6"
+                  >
+                    <span>{submitting ? 'Submitting...' : 'Subscribe via Email'}</span>
+                    <ArrowRight className="h-4 w-4" />
+                  </button>
+                </div>
+                <div className="flex flex-wrap items-center gap-3 text-xs text-linen/65">
+                  <a
+                    href={buildWhatsAppRoutingUrl(newsletterPayload)}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1.5 text-gold hover:text-linen transition-colors"
+                  >
+                    <MessageSquare className="h-3.5 w-3.5" />
+                    <span>Or subscribe via WhatsApp</span>
+                  </a>
+                  <span aria-hidden="true" className="text-linen/25">·</span>
+                  <button
+                    type="button"
+                    onClick={handleCopySummary}
+                    className="inline-flex items-center gap-1.5 hover:text-gold transition-colors cursor-pointer"
+                  >
+                    {copied ? <Check className="h-3.5 w-3.5 text-gold" /> : <Copy className="h-3.5 w-3.5" />}
+                    <span>{copied ? 'Summary Copied' : 'Copy Summary'}</span>
+                  </button>
+                </div>
               </form>
             )}
           </div>
@@ -148,7 +187,7 @@ export const Footer: React.FC = () => {
             </Link>
 
             <p className="text-sm leading-relaxed text-linen/65">
-              Author, Creative Director, IT Professional, and Associate Pastor. An architecture of purpose uniting vocational excellence, relational intelligence, and kingdom stewardship.
+              An ecosystem of ideas, enterprises, authorship, and purposeful leadership based in Accra, Ghana.
             </p>
 
             {/* Social Links with Original X Icon */}
@@ -176,8 +215,8 @@ export const Footer: React.FC = () => {
             </p>
             <ul className="space-y-3 text-sm text-linen/75">
               <li>
-                <Link to="/creatives" className="hover:text-gold transition-colors">
-                  Richson Creatives Studio
+                <Link to="/creatives/portfolio" className="hover:text-gold transition-colors">
+                  Richson Creatives
                 </Link>
               </li>
               <li>
@@ -192,12 +231,12 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link to="/ministry" className="hover:text-gold transition-colors">
-                  Pastoral Ministry Archive
+                  Pastoral Ministry
                 </Link>
               </li>
               <li>
                 <Link to="/partnerships" className="hover:text-gold transition-colors">
-                  Emerging Ventures
+                  Emerging Ventures &amp; Partnerships
                 </Link>
               </li>
               <li>
@@ -226,23 +265,23 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/ecosystem" className="hover:text-gold transition-colors">
+                  Ecosystem Structure
+                </Link>
+              </li>
+              <li>
                 <Link to="/approach" className="hover:text-gold transition-colors">
-                  Our Institutional Approach
+                  Our Approach
                 </Link>
               </li>
               <li>
                 <Link to="/insights" className="hover:text-gold transition-colors">
-                  Blog Nuggets &amp; Essays
-                </Link>
-              </li>
-              <li>
-                <Link to="/library-store#publishing" className="hover:text-gold transition-colors">
-                  Client Book Design &amp; Publishing
+                  Blog Nuggets &amp; Insights
                 </Link>
               </li>
               <li>
                 <Link to="/contact" className="hover:text-gold transition-colors">
-                  Direct Inquiries &amp; Briefs
+                  Contact &amp; Inquiries
                 </Link>
               </li>
               <li>
@@ -298,7 +337,7 @@ export const Footer: React.FC = () => {
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-2 gap-y-1">
             <span className="text-linen/60">Website Designed &amp; Engineered by</span>
             <Link
-              to="/creatives"
+              to="/creatives/portfolio"
               className="font-semibold text-gold hover:text-linen transition-colors underline underline-offset-4"
             >
               Richson Creatives
@@ -320,7 +359,7 @@ export const Footer: React.FC = () => {
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-4 text-[0.72rem] text-linen/65">
-            <Link to="/creatives#platforms" className="hover:text-gold transition-colors">
+            <Link to="/creatives/portfolio#platforms" className="hover:text-gold transition-colors">
               Client Platforms
             </Link>
             <span aria-hidden="true" className="text-linen/25">·</span>
@@ -359,11 +398,11 @@ export const Footer: React.FC = () => {
         <div className="container-arc flex flex-col sm:flex-row items-center justify-between gap-4 pb-12 sm:pb-0">
           <p>© {new Date().getFullYear()} Richson Global · Eric Richson Darko. All rights reserved.</p>
           <div className="flex items-center gap-4 text-[0.72rem]">
-            <Link to="/about" className="hover:text-gold">Bio</Link>
+            <Link to="/about" className="hover:text-gold">About</Link>
             <span aria-hidden="true" className="text-linen/20">·</span>
-            <Link to="/library-store" className="hover:text-gold">Bookstore</Link>
+            <Link to="/library-store" className="hover:text-gold">Library Store</Link>
             <span aria-hidden="true" className="text-linen/20">·</span>
-            <Link to="/creatives" className="hover:text-gold">Richson Creatives</Link>
+            <Link to="/creatives/portfolio" className="hover:text-gold">Richson Creatives</Link>
             <span aria-hidden="true" className="text-linen/20">·</span>
             <Link to="/contact" className="hover:text-gold">Contact</Link>
           </div>

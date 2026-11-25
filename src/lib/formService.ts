@@ -1,16 +1,17 @@
 /**
- * Transparent Form Submission Service for Cloudflare Pages.
- * Attempts real delivery via configured VITE_FORM_ENDPOINT or Cloudflare Pages Function (/api/inquire).
- * Never fabricates a backend delivery when no email gateway is configured — instead provides
- * structured, one-click Email (mailto:) and WhatsApp direct handoff links.
+ * Dual Contact Form Routing Service:
+ *  - Option A: Email delivery via Web3Forms (POST https://api.web3forms.com/submit)
+ *  - Option B: Formatted WhatsApp delivery via https://wa.me/233530554498?text=...
+ *  - Fallback: Copy formatted summary to clipboard in case pop-ups are blocked
  */
 
-import { CREATIVES_COORDINATES, SITE_COORDINATES } from '../data/siteData';
+export const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
+export const WEB3FORMS_ACCESS_KEY = '26fcdf27-22b5-40be-8527-e9f0da2c8866';
+export const WHATSAPP_ROUTING_NUMBER = '233530554498';
 
-export type InquiryChannel = 'contact' | 'partnerships' | 'creatives' | 'newsletter';
-
-export interface InquirySubmission {
-  channel: InquiryChannel;
+export interface FormPayload {
+  formSource: string;
+  subject?: string;
   name?: string;
   email: string;
   phone?: string;
@@ -21,117 +22,137 @@ export interface InquirySubmission {
   message?: string;
 }
 
-export interface SubmissionOutcome {
-  status: 'delivered' | 'handoff_required' | 'error';
+export interface EmailSubmissionResult {
+  ok: boolean;
   message: string;
-  mailtoUrl: string;
-  whatsappUrl: string;
 }
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-export function buildHandoffLinks(payload: InquirySubmission) {
-  const isCreatives = payload.channel === 'creatives';
-  const recipientEmail = isCreatives ? CREATIVES_COORDINATES.email : SITE_COORDINATES.email;
-  const recipientPhone = isCreatives ? CREATIVES_COORDINATES.phoneRaw : SITE_COORDINATES.phoneRaw;
-
-  const subjectMap: Record<InquiryChannel, string> = {
-    contact: `Richson Global Inquiry: ${payload.topic || 'General Enquiry'}`,
-    partnerships: `Partnership Proposal: ${payload.topic || 'Strategic Partnership'}`,
-    creatives: `Richson Creatives Project Brief: ${payload.topic || 'Studio Engagement'}`,
-    newsletter: `Subscribe to The Capacity Dispatch`
-  };
-
-  const lines = [
-    payload.channel === 'newsletter'
-      ? `Please add my email (${payload.email}) to The Capacity Dispatch newsletter.`
-      : null,
-    payload.name ? `Name: ${payload.name}` : null,
-    `Email: ${payload.email}`,
-    payload.phone ? `Phone: ${payload.phone}` : null,
-    payload.organisation ? `Organisation: ${payload.organisation}` : null,
-    payload.topic ? `Focus / Service: ${payload.topic}` : null,
-    payload.budget ? `Budget Range: ${payload.budget}` : null,
-    payload.timeline ? `Timeline: ${payload.timeline}` : null,
-    payload.message ? `\nDetails:\n${payload.message}` : null
-  ]
-    .filter(Boolean)
-    .join('\n');
-
-  const mailtoUrl = `mailto:${recipientEmail}?subject=${encodeURIComponent(
-    subjectMap[payload.channel]
-  )}&body=${encodeURIComponent(lines)}`;
-
-  const whatsappUrl = `https://wa.me/${recipientPhone}?text=${encodeURIComponent(
-    `${subjectMap[payload.channel]}\n\n${lines}`
-  )}`;
-
-  return { mailtoUrl, whatsappUrl };
+export function validateFormPayload(
+  payload: FormPayload,
+  requireNameAndMessage = true
+): string | null {
+  if (!payload.email || !EMAIL_RE.test(payload.email.trim())) {
+    return 'Please enter a valid email address.';
+  }
+  if (requireNameAndMessage) {
+    if (!payload.name?.trim()) {
+      return 'Please enter your name.';
+    }
+    if (!payload.message?.trim()) {
+      return 'Please enter your message or project details.';
+    }
+  }
+  return null;
 }
 
-export async function submitInquiry(payload: InquirySubmission): Promise<SubmissionOutcome> {
-  const { mailtoUrl, whatsappUrl } = buildHandoffLinks(payload);
+export function formatInquirySummary(payload: FormPayload): string {
+  const lines = [
+    `*${payload.formSource}*`,
+    payload.subject ? `Subject: ${payload.subject}` : null,
+    payload.name?.trim() ? `Name: ${payload.name.trim()}` : null,
+    payload.email?.trim() ? `Email: ${payload.email.trim()}` : null,
+    payload.phone?.trim() ? `Phone: ${payload.phone.trim()}` : null,
+    payload.organisation?.trim() ? `Organisation: ${payload.organisation.trim()}` : null,
+    payload.topic?.trim() ? `Topic / Service: ${payload.topic.trim()}` : null,
+    payload.budget?.trim() ? `Budget: ${payload.budget.trim()}` : null,
+    payload.timeline?.trim() ? `Timeline: ${payload.timeline.trim()}` : null,
+    payload.message?.trim() ? `\nMessage:\n${payload.message.trim()}` : null
+  ].filter(Boolean);
 
-  if (!payload.email || !EMAIL_RE.test(payload.email.trim())) {
-    return {
-      status: 'error',
-      message: 'Please enter a valid email address before submitting.',
-      mailtoUrl,
-      whatsappUrl
-    };
+  return lines.join('\n');
+}
+
+export function buildWhatsAppRoutingUrl(payload: FormPayload): string {
+  const summary = formatInquirySummary(payload);
+  return `https://wa.me/${WHATSAPP_ROUTING_NUMBER}?text=${encodeURIComponent(summary)}`;
+}
+
+export async function copyTextToClipboard(text: string): Promise<boolean> {
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      await navigator.clipboard.writeText(text);
+      return true;
+    }
+  } catch {
+    // Fallback below
+  }
+  try {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    const ok = document.execCommand('copy');
+    document.body.removeChild(textarea);
+    return ok;
+  } catch {
+    return false;
+  }
+}
+
+export async function submitViaWeb3Forms(
+  payload: FormPayload,
+  requireNameAndMessage = true
+): Promise<EmailSubmissionResult> {
+  const validationError = validateFormPayload(payload, requireNameAndMessage);
+  if (validationError) {
+    return { ok: false, message: validationError };
   }
 
-  if (payload.channel !== 'newsletter' && (!payload.name?.trim() || !payload.message?.trim())) {
-    return {
-      status: 'error',
-      message: 'Please complete your name and message details.',
-      mailtoUrl,
-      whatsappUrl
-    };
-  }
+  const resolvedSubject =
+    payload.subject ||
+    `${payload.formSource}${payload.topic ? ` — ${payload.topic}` : ''}`;
 
-  const endpoint = (import.meta.env.VITE_FORM_ENDPOINT as string | undefined)?.trim() || '/api/inquire';
+  const body: Record<string, string> = {
+    access_key: WEB3FORMS_ACCESS_KEY,
+    subject: resolvedSubject,
+    form_source: payload.formSource,
+    from_name: payload.name?.trim() || 'Richson Global Website Visitor',
+    email: payload.email.trim(),
+    replyto: payload.email.trim(),
+    botcheck: ''
+  };
+
+  if (payload.name?.trim()) body.name = payload.name.trim();
+  if (payload.phone?.trim()) body.phone = payload.phone.trim();
+  if (payload.organisation?.trim()) body.organisation = payload.organisation.trim();
+  if (payload.topic?.trim()) body.topic = payload.topic.trim();
+  if (payload.budget?.trim()) body.budget = payload.budget.trim();
+  if (payload.timeline?.trim()) body.timeline = payload.timeline.trim();
+  if (payload.message?.trim()) body.message = payload.message.trim();
 
   try {
-    const response = await fetch(endpoint, {
+    const response = await fetch(WEB3FORMS_ENDPOINT, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json'
       },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(body)
     });
 
-    if (response.ok) {
-      const data = await response.json().catch(() => ({ delivered: true }));
-      if (data.delivered !== false) {
-        return {
-          status: 'delivered',
-          message:
-            payload.channel === 'newsletter'
-              ? 'Your email has been received for The Capacity Dispatch.'
-              : 'Your brief has been dispatched securely to our desk. Expect a personal reply within two business days.',
-          mailtoUrl,
-          whatsappUrl
-        };
-      }
+    const data = await response.json().catch(() => null);
+    if (response.ok && data?.success) {
+      return {
+        ok: true,
+        message: 'Your inquiry has been delivered via email. Thank you — we will respond shortly.'
+      };
     }
 
-    // 404 (static dev/preview without Cloudflare Functions) or 501 (RESEND_API_KEY not yet set)
     return {
-      status: 'handoff_required',
+      ok: false,
       message:
-        'Automated email dispatch is not yet connected on this deployment (configure RESEND_API_KEY in Cloudflare Pages or VITE_FORM_ENDPOINT). Your message has been formatted below for immediate direct delivery via Email or WhatsApp.',
-      mailtoUrl,
-      whatsappUrl
+        data?.message ||
+        'Email submission could not be completed right now. You can send via WhatsApp or copy your summary below.'
     };
   } catch {
     return {
-      status: 'handoff_required',
+      ok: false,
       message:
-        'Automated email dispatch is unavailable in offline/static mode. Use the pre-filled Email or WhatsApp button below to send your brief directly.',
-      mailtoUrl,
-      whatsappUrl
+        'Network error while sending via email. Please try again, or use Send via WhatsApp / Copy Summary below.'
     };
   }
 }

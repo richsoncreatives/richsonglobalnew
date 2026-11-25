@@ -174,7 +174,7 @@ export const NAV_LINKS = [
     path: "/ecosystem",
     children: [
       { label: "Ecosystem Overview", path: "/ecosystem" },
-      { label: "Richson Creatives", path: "/creatives" },
+      { label: "Richson Creatives", path: "/creatives/portfolio" },
       { label: "Personal Authorship", path: "/library-store" },
       { label: "Wisefold Network", path: "/ecosystem#wisefold" },
       { label: "Ministry", path: "/ministry" },
@@ -221,15 +221,19 @@ export const PAGE_SEO: Record<string, PageSeoMeta> = {
   },
   "/library-store": {
     title: "Personal Authorship & Digital Bookstore — 18 Titles | Eric Richson Darko",
-    description: "Browse and order 18 published books by Eric Richson Darko on relational intelligence, leadership capacity, and faith, plus client publishing services via Richson Creatives."
+    description: "Browse and order 18 published books authored by Eric Richson Darko on relational intelligence, leadership capacity, and faith."
   },
   "/creatives": {
     title: "Richson Creatives — Brand, Publishing & Digital Engineering Studio",
     description: "Creative and technology studio in Accra, Ghana delivering brand identity, client book design & publishing services, websites, and IT systems. Call 0530554498."
   },
+  "/creatives/portfolio": {
+    title: "Richson Creatives Portfolio — Websites, Client Books & Enterprise Systems",
+    description: "Explore Richson Creatives' client websites, 19+ client-produced books, branding systems, and IT engineering services in Accra, Ghana. Call 0530554498."
+  },
   "/insights": {
-    title: "Insights & Blog Nuggets — Essays on Leadership, Tech & Faith | Richson Global",
-    description: "Read curated essays and diagnostic perspectives by Eric Richson Darko on systems thinking, relational intelligence, creative agency craft, and stewardship."
+    title: "Insights & Blog Nuggets — 183 Essays & 50 Daily Capsules | Richson Global",
+    description: "Explore 183 essays and 50 daily insight capsules by Eric Richson Darko across Tech, Systems & Professional Boundaries (Skills Boundaries), Emotional Stewardship, Spoken Declarations, Covenant Wisdom, and Singleness & Readiness."
   },
   "/contact": {
     title: "Contact & Direct Inquiries | Richson Global",
@@ -244,8 +248,8 @@ export const VENTURES: Venture[] = [
     name: "Richson Creatives",
     category: "Creative & Technology Solutions",
     status: "Operating venture",
-    path: "/creatives",
-    ctaLabel: "Explore Richson Creatives",
+    path: "/creatives/portfolio",
+    ctaLabel: "Open Creatives Portfolio",
     description: "Richson Creatives brings together creative thinking, design excellence and technological innovation to help individuals, businesses and organisations communicate effectively, establish strong brands and solve practical problems.",
     purpose: "To make good organisations visible, credible and easy to choose.",
     focus: [
@@ -593,3 +597,4 @@ export const FAITH_INSIGHTS: InsightArticle[] = insightsData.faith as unknown as
 export const CREATIVE_INSIGHTS: InsightArticle[] = insightsData.creative as unknown as InsightArticle[];
 export const ALL_INSIGHTS: InsightArticle[] = [...TECH_INSIGHTS, ...RELATIONSHIP_INSIGHTS, ...LEADERSHIP_INSIGHTS, ...FAITH_INSIGHTS, ...CREATIVE_INSIGHTS];
 export const CAPACITY_QUOTES: string[] = insightsData.quotes as string[];
+export const DAILY_CAPSULES: string[] = CAPACITY_QUOTES;

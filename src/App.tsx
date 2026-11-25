@@ -57,10 +57,9 @@ export default function App() {
           <Route path="/contact" element={<ContactPage />} />
 
           {/* Canonical Aliases & Redirects */}
-          <Route path="/publishing-services" element={<Navigate to="/library-store#publishing" replace />} />
+          <Route path="/publishing-services" element={<Navigate to="/creatives/portfolio#client-books" replace />} />
           <Route path="/leadership" element={<Navigate to="/about#affiliations" replace />} />
-          <Route path="/creatives/portfolio" element={<Navigate to="/creatives#work" replace />} />
-          <Route path="/agency-portfolio" element={<Navigate to="/creatives#work" replace />} />
+          <Route path="/agency-portfolio" element={<Navigate to="/creatives/portfolio" replace />} />
           <Route path="/blog-nuggets" element={<Navigate to="/insights" replace />} />
 
           {/* Portal Auth Information Pages */}
@@ -73,8 +72,9 @@ export default function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Route>
 
-        {/* Standalone Dark Luxury Agency Portal */}
+        {/* Standalone Dark Luxury Studio Portal (Both /creatives and /creatives/portfolio) */}
         <Route path="/creatives" element={<CreativesPage />} />
+        <Route path="/creatives/portfolio" element={<CreativesPage />} />
       </Routes>
       <EnquireWidget />
     </BrowserRouter>

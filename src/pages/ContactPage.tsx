@@ -7,6 +7,9 @@ import {
   MessageSquare,
   Send,
   CheckCircle2,
+  AlertCircle,
+  Copy,
+  Check,
   Facebook,
   Instagram,
   Linkedin,
@@ -14,7 +17,14 @@ import {
 } from 'lucide-react';
 import { SITE_COORDINATES, CREATIVES_COORDINATES, SOCIAL_LINKS } from '../data/siteData';
 import { XBrandIcon } from '../components/Icons';
-import { submitInquiry, SubmissionOutcome } from '../lib/formService';
+import {
+  submitViaWeb3Forms,
+  buildWhatsAppRoutingUrl,
+  formatInquirySummary,
+  copyTextToClipboard,
+  FormPayload,
+  EmailSubmissionResult
+} from '../lib/formService';
 
 const INQUIRY_TOPICS = [
   'General Enquiry',
@@ -26,6 +36,8 @@ const INQUIRY_TOPICS = [
   'Partnerships & Investments'
 ];
 
+const FORM_SOURCE = 'Richson Global - Contact Page';
+
 export const ContactPage: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -34,28 +46,49 @@ export const ContactPage: React.FC = () => {
     topic: INQUIRY_TOPICS[0],
     message: ''
   });
-  const [outcome, setOutcome] = useState<SubmissionOutcome | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [emailResult, setEmailResult] = useState<EmailSubmissionResult | null>(null);
+  const [copiedSummary, setCopiedSummary] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const buildPayload = (): FormPayload => ({
+    formSource: FORM_SOURCE,
+    subject: `${FORM_SOURCE} — ${formData.topic}`,
+    name: formData.name,
+    email: formData.email,
+    phone: formData.phone,
+    topic: formData.topic,
+    message: formData.message
+  });
+
+  const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    const res = await submitInquiry({
-      channel: 'contact',
-      name: formData.name,
-      email: formData.email,
-      phone: formData.phone,
-      topic: formData.topic,
-      message: formData.message
-    });
-    setOutcome(res);
+    setEmailResult(null);
+    const res = await submitViaWeb3Forms(buildPayload(), true);
+    setEmailResult(res);
     setSubmitting(false);
   };
 
-  const whatsappMessage = encodeURIComponent(
-    `Hello Eric, I am contacting you regarding "${formData.topic}".`
-  );
-  const whatsappUrl = `https://wa.me/${SITE_COORDINATES.phoneRaw}?text=${whatsappMessage}`;
+  const handleCopySummary = async () => {
+    const ok = await copyTextToClipboard(formatInquirySummary(buildPayload()));
+    if (ok) {
+      setCopiedSummary(true);
+      setTimeout(() => setCopiedSummary(false), 2500);
+    }
+  };
+
+  const handleReset = () => {
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      topic: INQUIRY_TOPICS[0],
+      message: ''
+    });
+    setEmailResult(null);
+  };
+
+  const whatsappUrl = buildWhatsAppRoutingUrl(buildPayload());
 
   const renderSocialIcon = (name: string) => {
     switch (name) {
@@ -84,7 +117,7 @@ export const ContactPage: React.FC = () => {
             Every Meaningful Connection Begins With a Conversation.
           </h1>
           <p className="mt-6 text-base sm:text-lg leading-relaxed text-muted-foreground">
-            Whether you are interested in our ventures, exploring a partnership, commissioning Richson Creatives, or simply wishing to connect, we welcome your enquiry.
+            Direct your inquiry to the right desk—send via Email or route immediately via WhatsApp.
           </p>
         </div>
       </section>
@@ -95,66 +128,80 @@ export const ContactPage: React.FC = () => {
           <div className="flex flex-wrap items-center gap-2">
             <span className="font-semibold uppercase tracking-[0.2em] text-gold">Direct Pay</span>
             <span aria-hidden="true" className="text-linen/30">·</span>
-            <span className="text-linen/85">Frictionless local ordering &amp; settlement</span>
+            <span className="text-linen/85">Local ordering &amp; settlement</span>
           </div>
           <div className="flex flex-wrap items-center gap-3 font-mono tabular-nums">
             <span>MTN MoMo: {SITE_COORDINATES.momo}</span>
             <span aria-hidden="true" className="text-linen/30">|</span>
-            <span>Studio Line: {CREATIVES_COORDINATES.phoneDisplay}</span>
+            <span>WhatsApp Desk: {CREATIVES_COORDINATES.phoneDisplay}</span>
           </div>
         </div>
       </section>
 
       {/* Main Contact Grid */}
       <section className="py-20 border-b border-border bg-linen">
-        <div className="container-arc grid gap-12 lg:grid-cols-[1fr_400px]">
-          {/* Inquiry Form */}
+        <div className="container-arc grid gap-12 lg:grid-cols-[1fr_390px]">
+          {/* Dual-Routed Inquiry Form */}
           <div className="border border-border bg-card p-8 md:p-12">
-            {outcome ? (
-              <div className="py-8 space-y-6">
+            {emailResult?.ok ? (
+              <div className="py-6 space-y-6">
                 <div className="h-12 w-12 rounded-full bg-gold/15 text-gold flex items-center justify-center">
                   <CheckCircle2 className="h-6 w-6" />
                 </div>
-                <h3 className="font-display text-3xl font-semibold text-obsidian">
-                  {outcome.status === 'delivered' ? 'Message Dispatched' : 'Message Ready for Direct Dispatch'}
-                </h3>
+                <h2 className="font-display text-3xl font-semibold text-obsidian">
+                  Inquiry Delivered via Email
+                </h2>
                 <p className="text-sm text-muted-foreground max-w-xl leading-relaxed">
-                  {outcome.message}
+                  {emailResult.message}
                 </p>
                 <div className="pt-2 flex flex-wrap gap-3">
                   <a
-                    href={outcome.mailtoUrl}
-                    className="btn-navy py-3 px-6 text-xs whitespace-nowrap"
-                  >
-                    <Mail className="h-4 w-4" />
-                    <span>Send via Email</span>
-                  </a>
-                  <a
-                    href={outcome.whatsappUrl}
+                    href={whatsappUrl}
                     target="_blank"
                     rel="noreferrer"
                     className="btn-gold py-3 px-6 text-xs whitespace-nowrap"
                   >
                     <MessageSquare className="h-4 w-4" />
-                    <span>Send via WhatsApp</span>
+                    <span>Also Send via WhatsApp</span>
                   </a>
                   <button
                     type="button"
-                    onClick={() => setOutcome(null)}
-                    className="btn-outline py-3 px-6 text-xs whitespace-nowrap"
+                    onClick={handleCopySummary}
+                    className="btn-outline py-3 px-5 text-xs whitespace-nowrap"
                   >
-                    Edit Message
+                    {copiedSummary ? <Check className="h-4 w-4 text-gold" /> : <Copy className="h-4 w-4" />}
+                    <span>{copiedSummary ? 'Summary Copied' : 'Copy Summary'}</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleReset}
+                    className="btn-navy py-3 px-5 text-xs whitespace-nowrap"
+                  >
+                    Send Another Inquiry
                   </button>
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleEmailSubmit} className="space-y-6">
+                <input type="hidden" name="form_source" value={FORM_SOURCE} />
+                <input type="hidden" name="subject" value={`${FORM_SOURCE} — ${formData.topic}`} />
+
                 <div>
                   <p className="eyebrow text-gold mb-2">Message The Desk</p>
                   <h2 className="font-display text-2xl md:text-3xl font-semibold text-obsidian">
                     Send an Official Inquiry
                   </h2>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    Choose Email delivery or instant WhatsApp routing ({CREATIVES_COORDINATES.phoneDisplay}).
+                  </p>
                 </div>
+
+                {emailResult && !emailResult.ok && (
+                  <div className="flex items-start gap-2.5 border border-ember/40 bg-ember/10 p-3.5 text-xs text-obsidian">
+                    <AlertCircle className="h-4 w-4 text-ember shrink-0 mt-0.5" />
+                    <span>{emailResult.message}</span>
+                  </div>
+                )}
 
                 <div className="grid gap-5 sm:grid-cols-2">
                   <div>
@@ -223,25 +270,39 @@ export const ContactPage: React.FC = () => {
                   />
                 </div>
 
-                <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
-                  <button
-                    type="submit"
-                    disabled={submitting}
-                    className="btn-navy py-3 px-8 text-xs font-semibold w-full sm:w-auto whitespace-nowrap"
-                  >
-                    <Send className="h-4 w-4" />
-                    <span>{submitting ? 'Submitting...' : 'Send Inquiry'}</span>
-                  </button>
+                <div className="pt-2 space-y-3">
+                  <div className="flex flex-wrap items-center gap-3">
+                    <button
+                      type="submit"
+                      disabled={submitting}
+                      className="btn-navy py-3 px-7 text-xs font-semibold whitespace-nowrap disabled:opacity-60"
+                    >
+                      <Send className="h-4 w-4" />
+                      <span>{submitting ? 'Sending via Email...' : 'Send via Email'}</span>
+                    </button>
 
-                  <a
-                    href={whatsappUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-xs text-muted-foreground hover:text-maritime flex items-center gap-1.5"
-                  >
-                    <MessageSquare className="h-4 w-4 text-gold" />
-                    <span>Direct WhatsApp Chat</span>
-                  </a>
+                    <a
+                      href={whatsappUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="btn-gold py-3 px-7 text-xs font-semibold whitespace-nowrap"
+                    >
+                      <MessageSquare className="h-4 w-4" />
+                      <span>Send via WhatsApp</span>
+                    </a>
+
+                    <button
+                      type="button"
+                      onClick={handleCopySummary}
+                      className="btn-outline py-3 px-5 text-xs font-semibold whitespace-nowrap"
+                    >
+                      {copiedSummary ? <Check className="h-4 w-4 text-gold" /> : <Copy className="h-4 w-4" />}
+                      <span>{copiedSummary ? 'Summary Copied' : 'Copy Summary'}</span>
+                    </button>
+                  </div>
+                  <p className="text-[0.72rem] text-muted-foreground">
+                    WhatsApp opens a pre-filled message to {CREATIVES_COORDINATES.phoneDisplay}. Use Copy Summary if pop-ups are blocked.
+                  </p>
                 </div>
               </form>
             )}
@@ -264,7 +325,7 @@ export const ContactPage: React.FC = () => {
                 <div className="flex items-start gap-3">
                   <Phone className="h-5 w-5 text-gold shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-semibold text-obsidian">Executive Telephone Lines</p>
+                    <p className="font-semibold text-obsidian">Telephone Lines</p>
                     <a href={`tel:${SITE_COORDINATES.phoneRaw}`} className="text-muted-foreground hover:text-maritime block font-mono tabular-nums text-xs mt-0.5">
                       {SITE_COORDINATES.phone1}
                     </a>
@@ -304,34 +365,34 @@ export const ContactPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Richson Creatives Dedicated Contact */}
+            {/* Richson Creatives Studio Routing */}
             <div className="border border-border bg-obsidian text-linen p-8 space-y-4">
               <p className="eyebrow text-gold">Richson Creatives Studio</p>
               <p className="text-xs text-linen/70 leading-relaxed">
-                For brand identity, website engineering, IT systems, or client book design and publishing production:
+                Dedicated line for branding, web engineering, IT systems, and client book production:
               </p>
-              <div className="space-y-2 text-xs">
+              <div className="space-y-1.5 text-xs">
                 <a href={`tel:${CREATIVES_COORDINATES.phoneRaw}`} className="block font-mono tabular-nums text-gold hover:text-linen">
-                  Phone / WhatsApp: {CREATIVES_COORDINATES.phoneDisplay} ({CREATIVES_COORDINATES.phone})
+                  {CREATIVES_COORDINATES.phoneDisplay} ({CREATIVES_COORDINATES.phone})
                 </a>
                 <a href={`mailto:${CREATIVES_COORDINATES.email}`} className="block text-linen/80 hover:text-gold">
-                  Email: {CREATIVES_COORDINATES.email}
+                  {CREATIVES_COORDINATES.email}
                 </a>
               </div>
-              <Link to="/creatives" className="btn-ember py-2.5 px-5 text-xs w-full text-center">
-                Visit Richson Creatives Portal
+              <Link to="/creatives/portfolio" className="btn-ember py-2.5 px-5 text-xs w-full text-center">
+                Open Creatives Portfolio
               </Link>
             </div>
 
             {/* Financial Coordinates */}
             <div className="border border-border bg-secondary/40 p-8 space-y-4">
-              <p className="eyebrow text-gold">Commercial &amp; Payment</p>
+              <p className="eyebrow text-gold">Settlement Coordinates</p>
 
               <div className="space-y-3 text-xs">
                 <div>
                   <span className="font-bold text-obsidian block">MTN Mobile Money:</span>
                   <span className="font-mono tabular-nums text-sm text-maritime font-bold">{SITE_COORDINATES.momo}</span>
-                  <span className="text-[0.68rem] text-muted-foreground block">Name: Eric Richson Darko</span>
+                  <span className="text-[0.68rem] text-muted-foreground block">Eric Richson Darko</span>
                 </div>
 
                 <div className="pt-2 border-t border-border">

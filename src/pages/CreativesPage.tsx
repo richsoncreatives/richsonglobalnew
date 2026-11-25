@@ -13,7 +13,10 @@ import {
   Facebook,
   Linkedin,
   X,
-  Menu
+  Menu,
+  AlertCircle,
+  Copy,
+  Check
 } from 'lucide-react';
 import {
   CREATIVES_COORDINATES,
@@ -27,7 +30,14 @@ import {
   WebProject
 } from '../data/siteData';
 import { XBrandIcon } from '../components/Icons';
-import { submitInquiry, SubmissionOutcome } from '../lib/formService';
+import {
+  submitViaWeb3Forms,
+  buildWhatsAppRoutingUrl,
+  formatInquirySummary,
+  copyTextToClipboard,
+  FormPayload,
+  EmailSubmissionResult
+} from '../lib/formService';
 
 const SERVICE_OPTIONS = [
   'Branding & Visual Communication',
@@ -36,6 +46,8 @@ const SERVICE_OPTIONS = [
   'Technology & IT Infrastructure Solutions',
   'Complete Creative Direction Retainer'
 ];
+
+const FORM_SOURCE = 'Richson Creatives Inquiry';
 
 export const CreativesPage: React.FC = () => {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
@@ -49,30 +61,53 @@ export const CreativesPage: React.FC = () => {
     timeline: '',
     message: ''
   });
-  const [outcome, setOutcome] = useState<SubmissionOutcome | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [emailResult, setEmailResult] = useState<EmailSubmissionResult | null>(null);
+  const [copiedSummary, setCopiedSummary] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const buildPayload = (): FormPayload => ({
+    formSource: FORM_SOURCE,
+    subject: `${FORM_SOURCE} — ${briefForm.service}`,
+    name: briefForm.name,
+    email: briefForm.email,
+    organisation: briefForm.organisation,
+    topic: briefForm.service,
+    budget: briefForm.budget,
+    timeline: briefForm.timeline,
+    message: briefForm.message
+  });
+
+  const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    const res = await submitInquiry({
-      channel: 'creatives',
-      name: briefForm.name,
-      email: briefForm.email,
-      organisation: briefForm.organisation,
-      topic: briefForm.service,
-      budget: briefForm.budget,
-      timeline: briefForm.timeline,
-      message: briefForm.message
-    });
-    setOutcome(res);
+    setEmailResult(null);
+    const res = await submitViaWeb3Forms(buildPayload(), true);
+    setEmailResult(res);
     setSubmitting(false);
   };
 
-  const whatsappMessage = encodeURIComponent(
-    `Hello Richson Creatives Studio, I would like to inquire about "${briefForm.service}".`
-  );
-  const studioWhatsappUrl = `https://wa.me/${CREATIVES_COORDINATES.phoneRaw}?text=${whatsappMessage}`;
+  const handleCopySummary = async () => {
+    const ok = await copyTextToClipboard(formatInquirySummary(buildPayload()));
+    if (ok) {
+      setCopiedSummary(true);
+      setTimeout(() => setCopiedSummary(false), 2500);
+    }
+  };
+
+  const handleReset = () => {
+    setBriefForm({
+      name: '',
+      email: '',
+      organisation: '',
+      service: SERVICE_OPTIONS[0],
+      budget: '',
+      timeline: '',
+      message: ''
+    });
+    setEmailResult(null);
+  };
+
+  const whatsappUrl = buildWhatsAppRoutingUrl(buildPayload());
 
   const renderSocialIcon = (name: string) => {
     switch (name) {
@@ -201,7 +236,7 @@ export const CreativesPage: React.FC = () => {
             </h1>
 
             <p className="text-base sm:text-lg text-linen/75 leading-relaxed max-w-2xl">
-              Richson Creatives is the creative, publishing production, and technology engineering studio within the Richson Global ecosystem. We design brand identities, websites, IT systems, and client book publications across Ghana and West Africa.
+              Richson Creatives is the creative, client book publishing production, and technology engineering studio within the Richson Global ecosystem. We design brand identities, websites, IT systems, and client book publications across Ghana and West Africa.
             </p>
 
             <div className="pt-2 flex flex-wrap items-center gap-4">
@@ -345,7 +380,7 @@ export const CreativesPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Selected Work & Case Studies */}
+      {/* Selected Work & Enterprise Track Record */}
       <section id="work" className="py-24 border-b border-linen/10 bg-black/25 scroll-mt-24">
         <div className="container-arc">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
@@ -373,17 +408,6 @@ export const CreativesPage: React.FC = () => {
                     </span>
                     <span className="text-[0.68rem] text-linen/50">Delivered</span>
                   </div>
-                  {item.screenshotUrl && (
-                    <div className="mb-4 aspect-[16/9] overflow-hidden border border-linen/15 bg-black">
-                      <img
-                        src={item.screenshotUrl}
-                        alt={`${item.title} website preview`}
-                        loading="lazy"
-                        referrerPolicy="no-referrer"
-                        className="h-full w-full object-cover object-top"
-                      />
-                    </div>
-                  )}
                   <h3 className="font-display text-xl font-semibold text-linen">{item.title}</h3>
                   <p className="mt-1 text-xs text-gold font-medium">{item.scope}</p>
                   <p className="mt-3 text-xs leading-relaxed text-linen/70">{item.description}</p>
@@ -417,7 +441,7 @@ export const CreativesPage: React.FC = () => {
               Books Designed, Formatted &amp; Produced For Clients
             </h2>
             <p className="mt-4 text-sm text-linen/70 leading-relaxed">
-              Cover design, interior typesetting, print-ready production, and publishing coordination delivered by Richson Creatives for independent authors and institutional titles — distinct from Eric Richson Darko's personal authorship catalog.
+              Cover design, interior typesetting, print-ready production, and publishing coordination delivered by Richson Creatives for independent authors and institutional titles — kept strictly separate from Eric Richson Darko's personal authorship catalog.
             </p>
           </div>
 
@@ -510,56 +534,69 @@ export const CreativesPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Project Brief Form */}
+      {/* Project Brief Form — Dual Routed (Web3Forms Email + WhatsApp + Copy Summary) */}
       <section id="start" className="py-24 border-b border-linen/10 bg-black/25 scroll-mt-24">
         <div className="container-arc grid gap-12 lg:grid-cols-[1fr_360px]">
           <div className="border border-linen/15 bg-linen/5 p-8 md:p-12">
-            {outcome ? (
-              <div className="py-8 space-y-6">
+            {emailResult?.ok ? (
+              <div className="py-6 space-y-6">
                 <div className="h-12 w-12 rounded-full bg-gold/20 text-gold flex items-center justify-center">
                   <CheckCircle2 className="h-6 w-6" />
                 </div>
                 <h3 className="font-display text-3xl font-semibold text-linen">
-                  {outcome.status === 'delivered' ? 'Project Brief Dispatched' : 'Brief Ready for Direct Dispatch'}
+                  Project Brief Delivered
                 </h3>
-                <p className="text-sm text-linen/75 max-w-xl leading-relaxed">{outcome.message}</p>
+                <p className="text-sm text-linen/75 max-w-xl leading-relaxed">
+                  {emailResult.message}
+                </p>
                 <div className="pt-2 flex flex-wrap gap-3">
                   <a
-                    href={outcome.mailtoUrl}
-                    className="btn-ember py-3 px-6 text-xs whitespace-nowrap"
-                  >
-                    <Mail className="h-4 w-4" />
-                    <span>Send via Email ({CREATIVES_COORDINATES.email})</span>
-                  </a>
-                  <a
-                    href={outcome.whatsappUrl}
+                    href={whatsappUrl}
                     target="_blank"
                     rel="noreferrer"
                     className="btn-gold py-3 px-6 text-xs whitespace-nowrap"
                   >
                     <MessageSquare className="h-4 w-4" />
-                    <span>Send via WhatsApp ({CREATIVES_COORDINATES.phoneDisplay})</span>
+                    <span>Also Send via WhatsApp</span>
                   </a>
                   <button
                     type="button"
-                    onClick={() => setOutcome(null)}
-                    className="btn-outline py-3 px-6 text-xs border-linen/30 text-linen hover:bg-linen hover:text-obsidian whitespace-nowrap"
+                    onClick={handleCopySummary}
+                    className="btn-outline py-3 px-5 text-xs border-linen/30 text-linen hover:bg-linen hover:text-obsidian whitespace-nowrap"
                   >
-                    Edit Brief
+                    {copiedSummary ? <Check className="h-4 w-4 text-gold" /> : <Copy className="h-4 w-4" />}
+                    <span>{copiedSummary ? 'Summary Copied' : 'Copy Summary'}</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleReset}
+                    className="btn-ember py-3 px-5 text-xs whitespace-nowrap"
+                  >
+                    Send Another Brief
                   </button>
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleEmailSubmit} className="space-y-6">
+                <input type="hidden" name="form_source" value={FORM_SOURCE} />
+                <input type="hidden" name="subject" value={`${FORM_SOURCE} — ${briefForm.service}`} />
+
                 <div>
                   <p className="eyebrow text-gold mb-2">Initiate Work</p>
                   <h3 className="font-display text-2xl md:text-3xl font-semibold text-linen">
                     Tell Richson Creatives What You Need
                   </h3>
                   <p className="mt-1 text-xs text-linen/60">
-                    Direct routing to {CREATIVES_COORDINATES.email} · {CREATIVES_COORDINATES.phoneDisplay}
+                    Submit via Email or send directly to our Studio WhatsApp ({CREATIVES_COORDINATES.phoneDisplay}).
                   </p>
                 </div>
+
+                {emailResult && !emailResult.ok && (
+                  <div className="flex items-start gap-2.5 border border-ember/50 bg-ember/15 p-3.5 text-xs text-linen">
+                    <AlertCircle className="h-4 w-4 text-gold shrink-0 mt-0.5" />
+                    <span>{emailResult.message}</span>
+                  </div>
+                )}
 
                 <div className="grid gap-5 sm:grid-cols-2">
                   <div>
@@ -649,14 +686,40 @@ export const CreativesPage: React.FC = () => {
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="btn-ember py-3.5 px-8 text-xs font-semibold w-full sm:w-auto whitespace-nowrap"
-                >
-                  <Send className="h-4 w-4" />
-                  <span>{submitting ? 'Submitting Brief...' : 'Send Project Brief'}</span>
-                </button>
+                <div className="pt-2 space-y-3">
+                  <div className="flex flex-wrap items-center gap-3">
+                    <button
+                      type="submit"
+                      disabled={submitting}
+                      className="btn-ember py-3.5 px-7 text-xs font-semibold whitespace-nowrap disabled:opacity-60"
+                    >
+                      <Send className="h-4 w-4" />
+                      <span>{submitting ? 'Sending via Email...' : 'Send via Email'}</span>
+                    </button>
+
+                    <a
+                      href={whatsappUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="btn-gold py-3.5 px-7 text-xs font-semibold whitespace-nowrap"
+                    >
+                      <MessageSquare className="h-4 w-4" />
+                      <span>Send via WhatsApp</span>
+                    </a>
+
+                    <button
+                      type="button"
+                      onClick={handleCopySummary}
+                      className="btn-outline py-3.5 px-5 text-xs border-linen/30 text-linen hover:bg-linen hover:text-obsidian font-semibold whitespace-nowrap"
+                    >
+                      {copiedSummary ? <Check className="h-4 w-4 text-gold" /> : <Copy className="h-4 w-4" />}
+                      <span>{copiedSummary ? 'Summary Copied' : 'Copy Summary'}</span>
+                    </button>
+                  </div>
+                  <p className="text-[0.72rem] text-linen/55">
+                    WhatsApp sends your filled project brief to {CREATIVES_COORDINATES.phoneDisplay}. Use Copy Summary if pop-ups are blocked.
+                  </p>
+                </div>
               </form>
             )}
           </div>
@@ -707,7 +770,7 @@ export const CreativesPage: React.FC = () => {
                 Message Richson Creatives directly on {CREATIVES_COORDINATES.phoneDisplay} for immediate project scoping.
               </p>
               <a
-                href={studioWhatsappUrl}
+                href={whatsappUrl}
                 target="_blank"
                 rel="noreferrer"
                 className="btn-gold py-2.5 px-5 text-xs w-full text-center justify-center"
