@@ -31,15 +31,16 @@ npm install
 npm run dev
 ```
 
-## Production Build & Cloudflare Pages Deployment
+## Production Build & Cloudflare Deployment
 
 ```bash
 npm run build
 ```
 
-Cloudflare Pages settings:
-- **Build command**: `npm run build`
+This repository is configured for direct GitHub deployment on **Cloudflare Workers (Static Assets)** and **Cloudflare Pages**:
+- **Build command**: `npm run build` (or `bun run build`)
+- **Deploy command (Cloudflare Workers Builds)**: `npx wrangler deploy`
 - **Build output directory**: `dist`
-- **SPA routing**: Configured via `public/_redirects` (`/* /index.html 200`)
+- **SPA routing**: Configured natively in `wrangler.toml` (`[assets]` with `not_found_handling = "single-page-application"`)
 - **Security & caching headers**: Configured via `public/_headers`
 - **SEO**: Per-route `<title>` and meta descriptions (`SeoHead.tsx`), `public/robots.txt`, and `public/sitemap.xml`

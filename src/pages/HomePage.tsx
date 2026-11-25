@@ -5,7 +5,7 @@ import {
   CREATIVES_COORDINATES,
   VENTURES,
   EMERGING_VENTURE,
-  CAPACITY_QUOTES
+  MARQUEE_QUOTES
 } from '../data/siteData';
 import { Marquee } from '../components/Marquee';
 import { InteractivePortrait } from '../components/InteractivePortrait';
@@ -128,7 +128,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* Infinite Marquee */}
-      <Marquee quotes={CAPACITY_QUOTES.slice(0, 8)} />
+      <Marquee quotes={MARQUEE_QUOTES} />
 
       {/* Concise Executive Thesis Gateway */}
       <section className="py-20 md:py-24 border-b border-border bg-linen">

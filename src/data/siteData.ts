@@ -5,7 +5,6 @@
  */
 
 import booksData from './books.json';
-import insightsData from './insights.json';
 
 export interface Venture {
   id: string;
@@ -589,12 +588,3 @@ export const COAUTHORED_BOOKS: Book[] = booksData.coauthored as unknown as Book[
 export const ALL_BOOKS: Book[] = [...SOLO_BOOKS, ...COAUTHORED_BOOKS];
 export const FEATURED_BOOKS: Book[] = ALL_BOOKS.filter(b => b.featured);
 export const CLIENT_PUBLISHED_BOOKS: ClientBook[] = booksData.client as unknown as ClientBook[];
-
-export const TECH_INSIGHTS: InsightArticle[] = insightsData.tech as unknown as InsightArticle[];
-export const RELATIONSHIP_INSIGHTS: InsightArticle[] = insightsData.relationships as unknown as InsightArticle[];
-export const LEADERSHIP_INSIGHTS: InsightArticle[] = insightsData.leadership as unknown as InsightArticle[];
-export const FAITH_INSIGHTS: InsightArticle[] = insightsData.faith as unknown as InsightArticle[];
-export const CREATIVE_INSIGHTS: InsightArticle[] = insightsData.creative as unknown as InsightArticle[];
-export const ALL_INSIGHTS: InsightArticle[] = [...TECH_INSIGHTS, ...RELATIONSHIP_INSIGHTS, ...LEADERSHIP_INSIGHTS, ...FAITH_INSIGHTS, ...CREATIVE_INSIGHTS];
-export const CAPACITY_QUOTES: string[] = insightsData.quotes as string[];
-export const DAILY_CAPSULES: string[] = CAPACITY_QUOTES;

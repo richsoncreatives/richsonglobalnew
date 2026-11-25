@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Search, BookOpen, Clock, ArrowRight, Copy, Check, X } from 'lucide-react';
-import { ALL_INSIGHTS, DAILY_CAPSULES, InsightArticle } from '../data/siteData';
+import type { InsightArticle } from '../data/siteData';
+import { ALL_INSIGHTS, DAILY_CAPSULES } from '../data/insightsArchive';
 import { InsightModal } from '../components/InsightModal';
 import { Marquee } from '../components/Marquee';
 
