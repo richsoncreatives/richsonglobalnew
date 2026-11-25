@@ -284,11 +284,6 @@ export const Footer: React.FC = () => {
                   Contact &amp; Inquiries
                 </Link>
               </li>
-              <li>
-                <a href="/sitemap.xml" className="hover:text-gold transition-colors text-linen/60">
-                  XML Sitemap
-                </a>
-              </li>
             </ul>
           </div>
 
