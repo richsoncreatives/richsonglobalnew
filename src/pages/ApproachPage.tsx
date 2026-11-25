@@ -63,7 +63,7 @@ export const ApproachPage: React.FC = () => {
             <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-semibold text-obsidian leading-tight">
               Building Beyond <br />The Founder.
             </h2>
-            <div className="mt-8 p-6 border-l-2 border-gold bg-linen">
+            <div className="mt-8 p-6 border border-border bg-linen">
               <p className="text-sm font-display text-maritime italic leading-relaxed">
                 "The ultimate measure of institution-building is not how dependent an organisation remains on its founder, but how effectively it can fulfil its purpose through established systems, capable leadership and sustainable organisational structures."
               </p>

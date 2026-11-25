@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { ArrowRight, CheckCircle2, MessageSquare, Handshake, Briefcase, Sparkles, Building, Send } from 'lucide-react';
+import { CheckCircle2, MessageSquare, Send, Mail } from 'lucide-react';
 import { SITE_COORDINATES } from '../data/siteData';
+import { submitInquiry, SubmissionOutcome } from '../lib/formService';
 
 const PARTNERSHIP_MODELS = [
   {
@@ -9,7 +10,7 @@ const PARTNERSHIP_MODELS = [
   },
   {
     title: "Business Collaborations",
-    desc: "Commercial joint ventures and operational partnerships across creative technology, software, and agro-business."
+    desc: "Commercial joint ventures and operational partnerships across creative technology, software, and enterprise."
   },
   {
     title: "Investment & Venture Opportunities",
@@ -17,11 +18,11 @@ const PARTNERSHIP_MODELS = [
   },
   {
     title: "Creative & Technology Engagements",
-    desc: "Retainer-based branding, visual identity systems, and enterprise IT infrastructure implementations."
+    desc: "Retainer-based branding, visual identity systems, and enterprise IT infrastructure implementations via Richson Creatives."
   },
   {
     title: "Publishing Collaborations",
-    desc: "Editorial direction, book cover design, interior layout, printing coordination, and distribution channels."
+    desc: "Editorial direction, client book cover design, interior layout, printing coordination, and distribution via Richson Creatives."
   },
   {
     title: "Institutional Development Initiatives",
@@ -38,22 +39,23 @@ export const PartnershipsPage: React.FC = () => {
     focus: 'Strategic Partnerships',
     proposal: ''
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [outcome, setOutcome] = useState<SubmissionOutcome | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    setTimeout(() => {
-      // Store locally
-      try {
-        const existing = JSON.parse(localStorage.getItem('richson_partnerships') || '[]');
-        existing.push({ ...formData, timestamp: new Date().toISOString() });
-        localStorage.setItem('richson_partnerships', JSON.stringify(existing));
-      } catch (err) {}
-      setSubmitting(false);
-      setSubmitted(true);
-    }, 600);
+    const res = await submitInquiry({
+      channel: 'partnerships',
+      name: formData.name,
+      email: formData.email,
+      organisation: formData.organisation,
+      phone: formData.phone,
+      topic: formData.focus,
+      message: formData.proposal
+    });
+    setOutcome(res);
+    setSubmitting(false);
   };
 
   const whatsappUrl = `https://wa.me/${SITE_COORDINATES.phoneRaw}?text=${encodeURIComponent(
@@ -67,10 +69,10 @@ export const PartnershipsPage: React.FC = () => {
         <div className="max-w-3xl">
           <p className="eyebrow text-gold mb-3">Strategic Alliances</p>
           <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-obsidian leading-[1.1]">
-            Partnerships & Co-Creation
+            Partnerships &amp; Co-Creation
           </h1>
           <p className="mt-6 text-base sm:text-lg leading-relaxed text-muted-foreground">
-            Richson Global welcomes strategic partnerships, business collaborations, creative & technology engagements, publishing projects, and institutional development initiatives.
+            Richson Global welcomes strategic partnerships, business collaborations, creative &amp; technology engagements, publishing projects, and institutional development initiatives.
           </p>
         </div>
       </section>
@@ -89,11 +91,11 @@ export const PartnershipsPage: React.FC = () => {
             {PARTNERSHIP_MODELS.map((model, idx) => (
               <div
                 key={idx}
-                className="border border-border bg-card p-8 flex flex-col justify-between shadow-xs hover:border-gold transition-colors"
+                className="border border-border bg-card p-8 flex flex-col justify-between hover:border-gold transition-colors"
               >
                 <div>
-                  <span className="text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-gold">
-                    Model 0{idx + 1}
+                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gold tabular-nums">
+                    0{idx + 1}. Model
                   </span>
                   <h3 className="mt-3 font-display text-xl font-semibold text-obsidian">
                     {model.title}
@@ -111,43 +113,43 @@ export const PartnershipsPage: React.FC = () => {
       {/* Proposal Submission Form */}
       <section className="py-20 border-b border-border bg-secondary/30">
         <div className="container-arc max-w-4xl">
-          <div className="border border-border bg-linen p-8 md:p-14 shadow-xl">
-            {submitted ? (
-              <div className="text-center py-12 space-y-6">
-                <div className="h-14 w-14 rounded-full bg-gold/15 text-gold flex items-center justify-center mx-auto">
-                  <CheckCircle2 className="h-8 w-8" />
+          <div className="border border-border bg-linen p-8 md:p-14">
+            {outcome ? (
+              <div className="py-8 space-y-6">
+                <div className="h-12 w-12 rounded-full bg-gold/15 text-gold flex items-center justify-center">
+                  <CheckCircle2 className="h-6 w-6" />
                 </div>
                 <h3 className="font-display text-3xl font-semibold text-obsidian">
-                  Partnership Proposal Received
+                  {outcome.status === 'delivered'
+                    ? 'Partnership Proposal Dispatched'
+                    : 'Proposal Ready for Direct Dispatch'}
                 </h3>
-                <p className="text-muted-foreground max-w-lg mx-auto text-sm leading-relaxed">
-                  Thank you for initiating this dialogue. Our executive desk will review your submission and respond within two business days.
+                <p className="text-muted-foreground max-w-xl text-sm leading-relaxed">
+                  {outcome.message}
                 </p>
-                <div className="pt-4 flex justify-center gap-4">
+                <div className="pt-2 flex flex-wrap gap-3">
                   <a
-                    href={whatsappUrl}
+                    href={outcome.mailtoUrl}
+                    className="btn-navy py-3 px-6 text-xs whitespace-nowrap"
+                  >
+                    <Mail className="h-4 w-4" />
+                    <span>Send via Email</span>
+                  </a>
+                  <a
+                    href={outcome.whatsappUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="btn-navy py-3 px-6 text-xs"
+                    className="btn-gold py-3 px-6 text-xs whitespace-nowrap"
                   >
                     <MessageSquare className="h-4 w-4" />
-                    <span>Message Directly on WhatsApp</span>
+                    <span>Send via WhatsApp</span>
                   </a>
                   <button
-                    onClick={() => {
-                      setSubmitted(false);
-                      setFormData({
-                        name: '',
-                        email: '',
-                        organisation: '',
-                        phone: '',
-                        focus: 'Strategic Partnerships',
-                        proposal: ''
-                      });
-                    }}
-                    className="btn-outline py-3 px-6 text-xs"
+                    type="button"
+                    onClick={() => setOutcome(null)}
+                    className="btn-outline py-3 px-6 text-xs whitespace-nowrap"
                   >
-                    Submit Another Brief
+                    Edit Proposal
                   </button>
                 </div>
               </div>
@@ -234,7 +236,7 @@ export const PartnershipsPage: React.FC = () => {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="btn-navy w-full sm:w-auto py-3.5 px-8 text-xs font-semibold"
+                    className="btn-navy w-full sm:w-auto py-3.5 px-8 text-xs font-semibold whitespace-nowrap"
                   >
                     <Send className="h-4 w-4" />
                     <span>{submitting ? 'Submitting Brief...' : 'Transmit Proposal'}</span>

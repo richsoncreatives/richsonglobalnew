@@ -1,0 +1,16 @@
+{
+  "name": "Richson Global — Eric Richson Darko",
+  "short_name": "Richson Global",
+  "description": "An ecosystem of ideas, enterprises, creative engineering, authorship, and purposeful leadership by Eric Richson Darko.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fbf9f5",
+  "theme_color": "#00294f",
+  "icons": [
+    {
+      "src": "/assets/aistudio/KAY2221_35470e71.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}

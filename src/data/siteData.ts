@@ -1,7 +1,7 @@
 /**
- * Eric Richson Darko: Executive & Creative Archive
+ * Richson Global — Eric Richson Darko
  * Comprehensive Data Store
- * All media mapped to local self-hosted assets; all Base44 signatures removed.
+ * Self-hosted local media assets; clear brand separation across all entities.
  */
 
 import booksData from './books.json';
@@ -57,14 +57,17 @@ export interface PortfolioKPI {
   scope: string;
   description: string;
   website?: string;
+  screenshotUrl?: string;
 }
 
 export interface WebProject {
   name: string;
   url: string;
+  domain: string;
   scope: string;
   attribution: string;
   summary: string;
+  screenshotUrl: string;
 }
 
 export interface Affiliation {
@@ -74,6 +77,7 @@ export interface Affiliation {
   nature: string;
   summary: string;
   url?: string | null;
+  screenshotUrl?: string;
 }
 
 export interface Education {
@@ -93,8 +97,14 @@ export interface InsightArticle {
   content: string[];
 }
 
+export interface PageSeoMeta {
+  title: string;
+  description: string;
+}
+
 export const SITE_COORDINATES = {
   founderName: "Eric Richson Darko",
+  brandName: "Richson Global",
   title: "Architect of Capacity",
   tagline: "An Ecosystem of Ideas, Enterprises & Impact",
   phone1: "+233 262 685 856",
@@ -109,19 +119,34 @@ export const SITE_COORDINATES = {
   selar: "https://selar.com/m/richsonericdarko",
   whatsapp: "https://wa.me/233262685856",
   selarUrl: "https://selar.com/m/richsonericdarko",
-  avatarUrl: "/assets/media/f04760bf2_kaypic1111.png",
-  portraitUrl: "/assets/media/d45d6e161_KAY2221.jpg",
-  heroPortrait: "/assets/media/ad0e24de6_KAYDD1.jpg",
-  formalPortrait: "/assets/media/5c43c1838_D00001.jpg"
+  logoUrl: "/assets/aistudio/KAY2221_35470e71.jpg",
+  avatarUrl: "/assets/aistudio/KAY2221_35470e71.jpg",
+  portraitUrl: "/assets/media/f3384e948_ChatGPTImageOct1202607_53_11AM.png",
+  heroPortrait: "/assets/aistudio/neutral_099b1d88.png",
+  formalPortrait: "/assets/media/f3384e948_ChatGPTImageOct1202607_53_11AM.png",
+  ministryPortrait: "/assets/media/5c43c1838_D00001.jpg",
+  wisefoldMark: "/assets/media/dc8be5d7e_wisefold-mark.png",
+  creativesMark: "/assets/media/f4fc790d9_richson-creatives-mark.png",
+  interactiveFaces: {
+    neutral: "/assets/aistudio/neutral_099b1d88.png",
+    left: "/assets/aistudio/look-left_a1d9f27b.png",
+    right: "/assets/aistudio/look-right_d7c348ec.png",
+    up: "/assets/aistudio/look-up_5b77304b.png",
+    down: "/assets/aistudio/look-down_c420ccce.png"
+  }
 };
 
 export const CREATIVES_COORDINATES = {
+  name: "Richson Creatives",
+  tagline: "Brand · Publishing · Digital · IT Solutions",
   email: "info@richsoncreatives.com",
   emailDirect: "richsoncreatives@gmail.com",
   phone: "+233 530 554 498",
+  phoneDisplay: "0530554498",
   phoneRaw: "233530554498",
   whatsapp: "https://wa.me/233530554498",
-  location: "Accra, Ghana"
+  location: "Accra, Ghana",
+  markUrl: "/assets/media/f4fc790d9_richson-creatives-mark.png"
 };
 
 export const SOCIAL_LINKS = [
@@ -136,6 +161,7 @@ export const CREATIVES_SOCIAL_LINKS = [
   { name: "Instagram", url: "https://www.instagram.com/richsoncreatives" },
   { name: "Facebook", url: "https://www.facebook.com/richsoncreatives" },
   { name: "LinkedIn", url: "https://www.linkedin.com/company/richsoncreatives/" },
+  { name: "X", url: "https://x.com/richsoneric" },
   { name: "WhatsApp", url: "https://wa.me/233530554498" },
   { name: "Email", url: "mailto:info@richsoncreatives.com" }
 ];
@@ -162,10 +188,54 @@ export const NAV_LINKS = [
 
 export const CREATIVES_NAV = [
   { label: "Work", path: "/creatives#work" },
+  { label: "Platforms", path: "/creatives#platforms" },
   { label: "Services", path: "/creatives#services" },
   { label: "Process", path: "/creatives#process" },
-  { label: "Start a Project", path: "/creatives#start" }
+  { label: "Client Books", path: "/creatives#client-books" }
 ];
+
+export const PAGE_SEO: Record<string, PageSeoMeta> = {
+  "/": {
+    title: "Richson Global — Eric Richson Darko | Ecosystem of Ideas & Enterprise",
+    description: "Explore Richson Global: Eric Richson Darko's ecosystem spanning Richson Creatives, 18 authored books, Wisefold Network, pastoral ministry, and strategic partnerships."
+  },
+  "/about": {
+    title: "About Eric Richson Darko — Founder & Architect of Capacity | Richson Global",
+    description: "Meet Eric Richson Darko: author, creative director, IT infrastructure specialist, Vice President of CORM, and Associate Pastor at CEM East Legon."
+  },
+  "/ecosystem": {
+    title: "Our Ecosystem — Ventures, Practices & Initiatives | Richson Global",
+    description: "Discover the distinct pillars of Richson Global: Richson Creatives, Personal Authorship, Wisefold Network, Pastoral Ministry, and Emerging Ventures."
+  },
+  "/approach": {
+    title: "Our Approach — From Ideas to Institutions | Richson Global",
+    description: "The five-stage institutional framework guiding Richson Global: Identify, Develop, Establish, Grow, and Institutionalise ventures designed to outlive their founder."
+  },
+  "/partnerships": {
+    title: "Partnerships & Strategic Co-Creation | Richson Global",
+    description: "Collaborate with Richson Global across strategic partnerships, business ventures, creative technology retainers, publishing, and institutional development."
+  },
+  "/ministry": {
+    title: "Pastoral Ministry & Youth Discipleship | Eric Richson Darko",
+    description: "Pastoral oversight at Charismatic Evangelistic Ministry (CEM) East Legon, pre-marital counseling, relational discernment, and biblical leadership development."
+  },
+  "/library-store": {
+    title: "Personal Authorship & Digital Bookstore — 18 Titles | Eric Richson Darko",
+    description: "Browse and order 18 published books by Eric Richson Darko on relational intelligence, leadership capacity, and faith, plus client publishing services via Richson Creatives."
+  },
+  "/creatives": {
+    title: "Richson Creatives — Brand, Publishing & Digital Engineering Studio",
+    description: "Creative and technology studio in Accra, Ghana delivering brand identity, client book design & publishing services, websites, and IT systems. Call 0530554498."
+  },
+  "/insights": {
+    title: "Insights & Blog Nuggets — Essays on Leadership, Tech & Faith | Richson Global",
+    description: "Read curated essays and diagnostic perspectives by Eric Richson Darko on systems thinking, relational intelligence, creative agency craft, and stewardship."
+  },
+  "/contact": {
+    title: "Contact & Direct Inquiries | Richson Global",
+    description: "Connect with Eric Richson Darko and Richson Global in Accra, Ghana for consulting, studio briefs, speaking engagements, book orders, and partnerships."
+  }
+};
 
 export const VENTURES: Venture[] = [
   {
@@ -187,8 +257,9 @@ export const VENTURES: Venture[] = [
       "Publishing and printing coordination for authors"
     ],
     mark: {
-      kind: "label",
-      label: "RC",
+      kind: "contain",
+      src: "/assets/media/f4fc790d9_richson-creatives-mark.png",
+      alt: "Richson Creatives emblem",
       caption: "Brand · Publishing · Digital"
     }
   },
@@ -209,9 +280,10 @@ export const VENTURES: Venture[] = [
       "Youth development & self-governance"
     ],
     mark: {
-      kind: "label",
-      label: "ED",
-      caption: "Authorship & Publishing"
+      kind: "contain",
+      src: "/assets/aistudio/KAY2221_35470e71.jpg",
+      alt: "Eric Richson Darko authorship mark",
+      caption: "18 Published Titles"
     }
   },
   {
@@ -230,8 +302,9 @@ export const VENTURES: Venture[] = [
       "Leadership & Character Development (Moral integrity & peer review)"
     ],
     mark: {
-      kind: "label",
-      label: "WN",
+      kind: "contain",
+      src: "/assets/media/dc8be5d7e_wisefold-mark.png",
+      alt: "Wisefold Network emblem",
       caption: "Disciplined Reading Community"
     }
   },
@@ -252,8 +325,9 @@ export const VENTURES: Venture[] = [
       "Biblical teaching and practical spiritual insights"
     ],
     mark: {
-      kind: "label",
-      label: "CEM",
+      kind: "image",
+      src: "/assets/media/5c43c1838_D00001.jpg",
+      alt: "Ministry and youth discipleship",
       caption: "Youth Pastoral Leadership"
     }
   }
@@ -294,7 +368,8 @@ export const AFFILIATIONS: Affiliation[] = [
     period: "2020–Present",
     nature: "Independent institution — Eric serves as Vice President.",
     summary: "Pre-marital education, marital preservation and relational counseling frameworks. Eric also led the design and build of the institution's website.",
-    url: "https://cormgh.org"
+    url: "https://cormgh.org",
+    screenshotUrl: "/assets/aistudio/corm_front_page_8d7c1759.jpg"
   },
   {
     name: "Ruth Tiso Foundation (UK/Ghana)",
@@ -358,14 +433,16 @@ export const TRACK_RECORD_KPIS: PortfolioKPI[] = [
     title: "College of Relationship & Marriage",
     scope: "Institutional Website",
     description: "Website design and build for an independent institution where Eric serves as Vice President — programme structure, resource pathways and a responsive enrollment journey.",
-    website: "https://cormgh.org"
+    website: "https://cormgh.org",
+    screenshotUrl: "/assets/aistudio/corm_front_page_8d7c1759.jpg"
   },
   {
     kpi: "Web",
     title: "Kerd Farms",
     scope: "Client Business Website",
     description: "A mobile-first website for an independent produce business — product story, farm-to-buyer narrative and a simple enquiry path.",
-    website: "https://kerdfarms.com"
+    website: "https://kerdfarms.com",
+    screenshotUrl: "/assets/aistudio/kerdfarms_front_3e40300e.jpg"
   }
 ];
 
@@ -373,30 +450,38 @@ export const WEB_PROJECTS: WebProject[] = [
   {
     name: "College of Relationship & Marriage (CORM)",
     url: "https://cormgh.org",
+    domain: "cormgh.org",
     scope: "Institutional Website",
-    attribution: "Independent institution. Eric serves as its Vice President and led the website design and build.",
-    summary: "An institutional home for pre-marital education and marital counseling — structured programme pages, resource pathways and a responsive enrollment journey."
+    attribution: "Independent institution. Eric serves as its Vice President and led the website design and build via Richson Creatives.",
+    summary: "An institutional home for pre-marital education and marital counseling — structured programme pages, resource pathways and a responsive enrollment journey.",
+    screenshotUrl: "/assets/aistudio/corm_front_page_8d7c1759.jpg"
   },
   {
     name: "Kerd Farms",
     url: "https://kerdfarms.com",
-    scope: "Business Website",
-    attribution: "Independent client business. Website designed and built by Richson Creatives.",
-    summary: "A produce business brought online with a clear product story, farm-to-buyer narrative and a mobile-first enquiry path."
-  },
-  {
-    name: "Richson Global",
-    url: "https://richsonglobal.com",
-    scope: "Personal Brand & Publishing Platform",
-    attribution: "Owned platform. Designed, built and maintained in-house.",
-    summary: "The parent estate: a personal headquarters carrying the professional record, the digital bookstore, the ministry archive and this studio portal."
+    domain: "kerdfarms.com",
+    scope: "Business & E-Commerce Website",
+    attribution: "Independent client business. Website designed and engineered by Richson Creatives.",
+    summary: "A produce business brought online with a clear product story, farm-to-buyer narrative and a mobile-first WhatsApp ordering and enquiry path.",
+    screenshotUrl: "/assets/aistudio/kerdfarms_front_3e40300e.jpg"
   },
   {
     name: "Isaiah Adegoke",
     url: "https://www.isaiahadegoke.com",
-    scope: "Client Website",
-    attribution: "Independent client. Website delivered by Richson Creatives.",
-    summary: "A personal platform delivered as a client project — clear positioning, structured content and a direct enquiry path, built to be maintained without a developer."
+    domain: "isaiahadegoke.com",
+    scope: "Executive & Author Platform",
+    attribution: "Independent client. Website designed and delivered by Richson Creatives.",
+    summary: "A personal platform for a quality assurance engineer, sustainability scholar, pastor and author — clear positioning, structured content and direct booking pathways.",
+    screenshotUrl: "/assets/aistudio/isaiah_front_1d115f04.jpg"
+  },
+  {
+    name: "Richson Global",
+    url: "https://richsonglobal.com",
+    domain: "richsonglobal.com",
+    scope: "Ecosystem & Publishing Platform",
+    attribution: "Parent digital estate. Designed, engineered and maintained by Richson Creatives.",
+    summary: "The flagship headquarters carrying the executive record, personal authorship digital bookstore, pastoral ministry archive, Wisefold Network, and creative studio portal.",
+    screenshotUrl: "/assets/aistudio/richsonglobal_front_fc84dd72.jpg"
   }
 ];
 

@@ -45,11 +45,12 @@ export const BookModal: React.FC<BookModalProps> = ({ book, onClose }) => {
           {/* Book Cover */}
           <div className="relative aspect-[3/4] w-full max-w-[260px] mx-auto overflow-hidden shadow-lg bg-obsidian/5 border border-border/80">
             <img
-              src={book.coverUrl}
+              src={book.coverUrl || SITE_COORDINATES.logoUrl}
               alt={book.title}
+              referrerPolicy="no-referrer"
               className="h-full w-full object-cover"
               onError={(e) => {
-                e.currentTarget.src = SITE_COORDINATES.avatarUrl;
+                e.currentTarget.src = SITE_COORDINATES.logoUrl;
               }}
             />
           </div>

@@ -66,7 +66,7 @@ export const InsightModal: React.FC<InsightModalProps> = ({ article, onClose }) 
         {/* Article Body */}
         <div className="overflow-y-auto py-6 pr-2 space-y-5 text-obsidian/85 text-base leading-relaxed">
           {/* Excerpt callout */}
-          <div className="border-l-2 border-gold pl-4 py-1 italic font-display text-lg text-maritime bg-gold/5">
+          <div className="border border-border px-5 py-4 italic font-display text-lg text-maritime bg-gold/5">
             "{article.excerpt}"
           </div>
 
@@ -81,11 +81,14 @@ export const InsightModal: React.FC<InsightModalProps> = ({ article, onClose }) 
         {/* Modal Footer */}
         <div className="pt-6 border-t border-border flex items-center justify-between shrink-0">
           <div className="flex items-center gap-3">
-            <img
-              src={SITE_COORDINATES.avatarUrl}
-              alt={SITE_COORDINATES.founderName}
-              className="h-9 w-9 rounded-full object-cover ring-1 ring-gold/40"
-            />
+            <span className="h-9 w-9 rounded-full bg-white ring-1 ring-gold/40 overflow-hidden flex items-center justify-center shrink-0">
+              <img
+                src={SITE_COORDINATES.logoUrl}
+                alt={SITE_COORDINATES.founderName}
+                referrerPolicy="no-referrer"
+                className="h-full w-full object-contain p-0.5"
+              />
+            </span>
             <div>
               <p className="text-xs font-semibold text-obsidian">{SITE_COORDINATES.founderName}</p>
               <p className="text-[0.62rem] uppercase tracking-wider text-muted-foreground">{SITE_COORDINATES.title}</p>

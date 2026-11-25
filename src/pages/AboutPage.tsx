@@ -3,14 +3,8 @@ import { Link } from 'react-router-dom';
 import {
   ArrowRight,
   GraduationCap,
-  Briefcase,
-  Globe,
-  Award,
   CheckCircle2,
-  ExternalLink,
-  Shield,
-  Layers,
-  HeartHandshake
+  ExternalLink
 } from 'lucide-react';
 import {
   SITE_COORDINATES,
@@ -18,8 +12,7 @@ import {
   EDUCATION_LIST,
   SKILLS_LIST,
   LANGUAGES_LIST,
-  CORE_VALUES,
-  TRACK_RECORD_KPIS
+  CORE_VALUES
 } from '../data/siteData';
 
 export const AboutPage: React.FC = () => {
@@ -29,7 +22,7 @@ export const AboutPage: React.FC = () => {
       <section className="container-arc py-12 md:py-20 border-b border-border">
         <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] items-center">
           <div>
-            <p className="eyebrow text-gold mb-3">Founder & Architect of Capacity</p>
+            <p className="eyebrow text-gold mb-3">Founder &amp; Architect of Capacity</p>
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-obsidian leading-[1.1]">
               Eric Richson Darko
             </h1>
@@ -40,23 +33,24 @@ export const AboutPage: React.FC = () => {
               A multidisciplinary practitioner bridging creative design, robust IT infrastructure, intellectual publishing, and spiritual formation. Based in Accra, Ghana, operating across international spheres.
             </p>
             <div className="pt-6 flex flex-wrap gap-4">
-              <Link to="/contact" className="btn-navy py-3 px-6 text-xs font-semibold">
+              <Link to="/contact" className="btn-navy py-3 px-6 text-xs font-semibold whitespace-nowrap">
                 <span>Inquire With Eric</span>
                 <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link to="/library-store" className="btn-outline py-3 px-6 text-xs font-semibold">
+              <Link to="/library-store" className="btn-outline py-3 px-6 text-xs font-semibold whitespace-nowrap">
                 <span>Explore Authorship (18 Titles)</span>
               </Link>
             </div>
           </div>
 
-          <div className="relative aspect-[4/5] w-full max-w-md mx-auto overflow-hidden border border-border shadow-2xl bg-obsidian">
+          <div className="relative aspect-[4/5] w-full max-w-md mx-auto overflow-hidden border border-border shadow-xl bg-obsidian">
             <img
               src={SITE_COORDINATES.formalPortrait}
-              alt="Eric Richson Darko"
+              alt="Eric Richson Darko, founder of Richson Global"
+              referrerPolicy="no-referrer"
               className="h-full w-full object-cover object-top"
               onError={(e) => {
-                e.currentTarget.src = SITE_COORDINATES.avatarUrl;
+                e.currentTarget.src = SITE_COORDINATES.logoUrl;
               }}
             />
           </div>
@@ -73,7 +67,7 @@ export const AboutPage: React.FC = () => {
             </h2>
           </div>
 
-          <div className="space-y-6 text-base leading-relaxed text-muted-foreground">
+          <div className="space-y-6 text-base leading-relaxed text-muted-foreground max-w-2xl">
             <p className="text-obsidian font-medium text-lg">
               "We believe that real leadership is not the preservation of an individual's charisma, but the establishment of enduring capacity."
             </p>
@@ -81,10 +75,10 @@ export const AboutPage: React.FC = () => {
               Eric Richson Darko is a Ghanaian author, creative director, information systems professional, and ordained youth pastor whose life work centers on personal capacity, relational intelligence, and institutional resilience.
             </p>
             <p>
-              With a professional background spanning over seven years managing enterprise IT infrastructure and leading brand communication agencies, Eric couples technical rigor with deep relational counseling insight. As author of 18 published books (including 15 solo treatises and 3 co-authored volumes), he provides practical frameworks for youth leadership, marital readiness, and purposeful living.
+              With a professional background spanning over seven years managing enterprise IT infrastructure and leading brand communication projects, Eric couples technical rigor with deep relational counseling insight. As author of 18 published books (15 solo titles and 3 co-authored volumes), he provides practical frameworks for youth leadership, marital readiness, and purposeful living.
             </p>
             <p>
-              He serves as the Associate Pastor with dedicated youth oversight at Charismatic Evangelistic Ministry (CEM), East Legon, and Vice President of the College of Relationship & Marriage (CORM).
+              He serves as the Associate Pastor with dedicated youth oversight at Charismatic Evangelistic Ministry (CEM), East Legon, and Vice President of the College of Relationship &amp; Marriage (CORM).
             </p>
           </div>
         </div>
@@ -94,9 +88,9 @@ export const AboutPage: React.FC = () => {
       <section id="affiliations" className="py-20 border-b border-border bg-secondary/30 scroll-mt-24">
         <div className="container-arc">
           <div className="max-w-2xl mb-14">
-            <p className="eyebrow text-gold mb-3">Governance & Service</p>
+            <p className="eyebrow text-gold mb-3">Governance &amp; Service</p>
             <h2 className="font-display text-3xl md:text-4xl font-semibold text-obsidian">
-              Leadership & Institutional Affiliations
+              Leadership &amp; Institutional Affiliations
             </h2>
             <p className="mt-2 text-sm text-muted-foreground">
               Independent organizations and ministerial bodies where Eric serves or has provided leadership.
@@ -107,16 +101,14 @@ export const AboutPage: React.FC = () => {
             {AFFILIATIONS.map((affil, idx) => (
               <div
                 key={idx}
-                className="border border-border bg-linen p-8 flex flex-col justify-between shadow-xs"
+                className="border border-border bg-linen p-8 flex flex-col justify-between"
               >
                 <div>
-                  <div className="flex items-center justify-between border-b border-border pb-3 mb-4">
-                    <span className="text-xs font-semibold text-maritime uppercase tracking-wider">
+                  <div className="flex items-center justify-between border-b border-border pb-3 mb-4 text-xs">
+                    <span className="font-semibold text-maritime uppercase tracking-wider tabular-nums">
                       {affil.period}
                     </span>
-                    <span className="text-[0.62rem] font-semibold uppercase tracking-wider text-gold">
-                      Active
-                    </span>
+                    <span className="text-muted-foreground">Independent Institution</span>
                   </div>
                   <h3 className="font-display text-xl font-semibold text-obsidian">
                     {affil.name}
@@ -130,6 +122,18 @@ export const AboutPage: React.FC = () => {
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                     {affil.summary}
                   </p>
+
+                  {affil.screenshotUrl && (
+                    <div className="mt-5 overflow-hidden border border-border bg-obsidian">
+                      <img
+                        src={affil.screenshotUrl}
+                        alt={`${affil.name} website front page`}
+                        loading="lazy"
+                        referrerPolicy="no-referrer"
+                        className="w-full aspect-[16/9] object-cover object-top"
+                      />
+                    </div>
+                  )}
                 </div>
 
                 {affil.url && (
@@ -138,10 +142,10 @@ export const AboutPage: React.FC = () => {
                       href={affil.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs text-maritime hover:text-gold font-medium"
+                      className="inline-flex items-center gap-1.5 text-xs text-maritime hover:text-gold font-semibold uppercase tracking-wider"
                     >
                       <span>Visit Institution Website</span>
-                      <ExternalLink className="h-3 w-3" />
+                      <ExternalLink className="h-3.5 w-3.5" />
                     </a>
                   </div>
                 )}
@@ -157,7 +161,7 @@ export const AboutPage: React.FC = () => {
           <div className="max-w-2xl mb-14">
             <p className="eyebrow text-gold mb-3">Academic Foundation</p>
             <h2 className="font-display text-3xl md:text-4xl font-semibold text-obsidian">
-              Education & Professional Credentials
+              Education &amp; Professional Credentials
             </h2>
           </div>
 
@@ -176,7 +180,7 @@ export const AboutPage: React.FC = () => {
                     {edu.school}
                   </p>
                 </div>
-                <div className="mt-4 pt-3 border-t border-border text-[0.65rem] font-mono text-maritime font-semibold">
+                <div className="mt-4 pt-3 border-t border-border text-[0.7rem] font-mono tabular-nums text-maritime font-semibold">
                   {edu.year}
                 </div>
               </div>
@@ -188,7 +192,6 @@ export const AboutPage: React.FC = () => {
       {/* Core Competencies & Languages */}
       <section className="py-20 border-b border-border bg-secondary/20">
         <div className="container-arc grid gap-12 lg:grid-cols-2">
-          {/* Competencies */}
           <div className="border border-border bg-linen p-8">
             <p className="eyebrow text-gold mb-4">Core Competencies</p>
             <h3 className="font-display text-2xl font-semibold text-obsidian mb-6">
@@ -204,26 +207,18 @@ export const AboutPage: React.FC = () => {
             </ul>
           </div>
 
-          {/* Languages & Values */}
           <div className="border border-border bg-linen p-8 flex flex-col justify-between">
             <div>
               <p className="eyebrow text-gold mb-4">Linguistic Fluency</p>
               <h3 className="font-display text-2xl font-semibold text-obsidian mb-4">
                 Languages
               </h3>
-              <div className="flex flex-wrap gap-2.5 mb-8">
-                {LANGUAGES_LIST.map((lang, idx) => (
-                  <span
-                    key={idx}
-                    className="px-3.5 py-1.5 bg-secondary text-xs font-semibold text-maritime uppercase tracking-wider border border-border"
-                  >
-                    {lang}
-                  </span>
-                ))}
-              </div>
+              <p className="text-sm font-medium text-maritime leading-relaxed">
+                {LANGUAGES_LIST.join('  ·  ')}
+              </p>
             </div>
 
-            <div className="pt-6 border-t border-border">
+            <div className="pt-6 mt-8 border-t border-border">
               <p className="eyebrow text-gold mb-3">Institutional Creed</p>
               <p className="font-display text-lg text-obsidian italic">
                 "Work designed to outlive the season that produced it."

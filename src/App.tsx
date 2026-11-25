@@ -1,13 +1,13 @@
 /**
- * Eric Richson Darko: Executive & Creative Archive
+ * Richson Global — Eric Richson Darko
  * Single Page Application Router & Layout Architecture
- * Completely independent of Base44 signatures.
  */
 
 import React, { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Navigate, useLocation, Outlet } from 'react-router-dom';
-import { Header } from './components/Header';
-import { Footer } from './components/Footer';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { MainLayout } from './layouts/MainLayout';
+import { SeoHead } from './components/SeoHead';
+import { EnquireWidget } from './components/EnquireWidget';
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
 import { EcosystemPage } from './pages/EcosystemPage';
@@ -21,7 +21,6 @@ import { ContactPage } from './pages/ContactPage';
 import { LoginPage, RegisterPage, ForgotPasswordPage, ResetPasswordPage } from './pages/AuthPages';
 import { NotFoundPage } from './pages/NotFoundPage';
 
-// Scroll to top on route change or hash navigation
 function ScrollHandler() {
   const { pathname, hash } = useLocation();
 
@@ -39,22 +38,10 @@ function ScrollHandler() {
   return null;
 }
 
-// Main Site Layout (Header + Page + Footer)
-function MainLayout() {
-  return (
-    <div className="flex min-h-screen flex-col bg-linen selection:bg-gold/30 selection:text-maritime">
-      <Header />
-      <main className="flex-1">
-        <Outlet />
-      </main>
-      <Footer />
-    </div>
-  );
-}
-
 export default function App() {
   return (
     <BrowserRouter>
+      <SeoHead />
       <ScrollHandler />
       <Routes>
         {/* Main Layout Routes */}
@@ -76,7 +63,7 @@ export default function App() {
           <Route path="/agency-portfolio" element={<Navigate to="/creatives#work" replace />} />
           <Route path="/blog-nuggets" element={<Navigate to="/insights" replace />} />
 
-          {/* Auth Pages */}
+          {/* Portal Auth Information Pages */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
@@ -89,6 +76,7 @@ export default function App() {
         {/* Standalone Dark Luxury Agency Portal */}
         <Route path="/creatives" element={<CreativesPage />} />
       </Routes>
+      <EnquireWidget />
     </BrowserRouter>
   );
 }
