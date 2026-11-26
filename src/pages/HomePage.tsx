@@ -82,10 +82,10 @@ export const HomePage: React.FC = () => {
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                to="/ecosystem"
+                to="/creatives/portfolio"
                 className="inline-flex items-center justify-center gap-2 border border-linen/30 px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.18em] text-linen hover:bg-linen hover:text-obsidian transition-colors whitespace-nowrap"
               >
-                <span>Ecosystem</span>
+                <span>Portfolio</span>
               </Link>
               <Link
                 to="/library-store"

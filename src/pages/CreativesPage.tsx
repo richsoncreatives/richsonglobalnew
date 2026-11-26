@@ -29,7 +29,6 @@ import {
   SITE_COORDINATES,
   WebProject
 } from '../data/siteData';
-import { XBrandIcon } from '../components/Icons';
 import {
   submitViaWeb3Forms,
   buildWhatsAppRoutingUrl,
@@ -111,18 +110,14 @@ export const CreativesPage: React.FC = () => {
 
   const renderSocialIcon = (name: string) => {
     switch (name) {
-      case 'Instagram':
-        return <Instagram className="h-4 w-4" />;
       case 'Facebook':
         return <Facebook className="h-4 w-4" />;
+      case 'Instagram':
+        return <Instagram className="h-4 w-4" />;
       case 'LinkedIn':
         return <Linkedin className="h-4 w-4" />;
-      case 'X':
-        return <XBrandIcon className="h-3.5 w-3.5" />;
-      case 'WhatsApp':
-        return <MessageSquare className="h-4 w-4" />;
       default:
-        return <Mail className="h-4 w-4" />;
+        return <ExternalLink className="h-4 w-4" />;
     }
   };
 
@@ -268,6 +263,26 @@ export const CreativesPage: React.FC = () => {
                   {CREATIVES_COORDINATES.phoneDisplay} · {CREATIVES_COORDINATES.phone}
                 </a>
               </div>
+              <div className="border-t border-linen/15 pt-4">
+                <p className="text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-linen/55 mb-3">
+                  Follow Richson Creatives
+                </p>
+                <div className="flex items-center justify-center gap-3">
+                  {CREATIVES_SOCIAL_LINKS.map((s) => (
+                    <a
+                      key={s.name}
+                      href={s.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Richson Creatives on ${s.name}`}
+                      title={`Richson Creatives on ${s.name}`}
+                      className="h-10 w-10 rounded-full border border-linen/25 bg-black/30 flex items-center justify-center text-linen hover:text-gold hover:border-gold transition-colors"
+                    >
+                      {renderSocialIcon(s.name)}
+                    </a>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -367,7 +382,7 @@ export const CreativesPage: React.FC = () => {
                   <a
                     href={wp.url}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-gold hover:text-linen font-semibold uppercase tracking-[0.16em]"
                   >
                     <span>Visit Site</span>
@@ -418,7 +433,7 @@ export const CreativesPage: React.FC = () => {
                     <a
                       href={item.website}
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 text-xs text-gold hover:text-linen"
                     >
                       <span>Explore Live Project</span>
@@ -553,7 +568,7 @@ export const CreativesPage: React.FC = () => {
                   <a
                     href={whatsappUrl}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     className="btn-gold py-3 px-6 text-xs whitespace-nowrap"
                   >
                     <MessageSquare className="h-4 w-4" />
@@ -700,7 +715,7 @@ export const CreativesPage: React.FC = () => {
                     <a
                       href={whatsappUrl}
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                       className="btn-gold py-3.5 px-7 text-xs font-semibold whitespace-nowrap"
                     >
                       <MessageSquare className="h-4 w-4" />
@@ -747,19 +762,31 @@ export const CreativesPage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-linen/10 flex flex-wrap gap-2">
-                {CREATIVES_SOCIAL_LINKS.map((s) => (
-                  <a
-                    key={s.name}
-                    href={s.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={`Richson Creatives on ${s.name}`}
-                    className="h-9 w-9 rounded-full border border-linen/20 flex items-center justify-center text-linen/80 hover:text-gold hover:border-gold transition-colors"
-                  >
-                    {renderSocialIcon(s.name)}
-                  </a>
-                ))}
+              <div className="pt-4 border-t border-linen/10 space-y-3">
+                <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-gold">
+                  Official Richson Creatives Socials
+                </p>
+                <div className="flex flex-col gap-2">
+                  {CREATIVES_SOCIAL_LINKS.map((s) => (
+                    <a
+                      key={s.name}
+                      href={s.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Richson Creatives on ${s.name}`}
+                      className="flex items-center justify-between gap-3 border border-linen/15 bg-black/25 px-3.5 py-2.5 text-xs text-linen/85 hover:border-gold hover:text-gold transition-colors"
+                    >
+                      <span className="inline-flex items-center gap-2.5 font-medium">
+                        {renderSocialIcon(s.name)}
+                        <span>{s.name}</span>
+                      </span>
+                      <span className="inline-flex items-center gap-1.5 text-[0.7rem] text-linen/55">
+                        <span>{s.handle}</span>
+                        <ExternalLink className="h-3 w-3 text-gold" />
+                      </span>
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -772,7 +799,7 @@ export const CreativesPage: React.FC = () => {
               <a
                 href={whatsappUrl}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="btn-gold py-2.5 px-5 text-xs w-full text-center justify-center"
               >
                 <MessageSquare className="h-4 w-4" />
@@ -783,11 +810,37 @@ export const CreativesPage: React.FC = () => {
         </div>
       </section>
 
+      {/* Full Portfolio Archive CTA (Google Drive) */}
+      <section className="py-16 border-b border-linen/10 bg-obsidian">
+        <div className="container-arc">
+          <div className="border border-gold/30 bg-linen/5 p-8 md:p-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+            <div className="max-w-2xl space-y-2">
+              <p className="eyebrow text-gold">Complete Works Archive</p>
+              <h2 className="font-display text-2xl md:text-3xl font-semibold text-linen">
+                Inspect Our Full Design &amp; Production Archive
+              </h2>
+              <p className="text-sm text-linen/70 leading-relaxed">
+                Browse additional branding systems, packaging deliverables, publication layouts, and visual campaigns in our curated Google Drive portfolio archive.
+              </p>
+            </div>
+            <a
+              href={CREATIVES_COORDINATES.portfolioDriveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-gold py-3.5 px-6 text-xs font-semibold tracking-[0.14em] whitespace-nowrap shrink-0 self-start lg:self-center"
+            >
+              <span>VIEW FULL PORTFOLIO ARCHIVE (GOOGLE DRIVE)</span>
+              <ExternalLink className="h-4 w-4 shrink-0" />
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Studio Attribution Footer */}
       <footer className="py-10 bg-obsidian text-xs text-linen/60">
-        <div className="container-arc flex flex-col sm:flex-row items-center justify-between gap-4 pb-12 sm:pb-0">
+        <div className="container-arc flex flex-col md:flex-row items-center justify-between gap-5 pb-12 sm:pb-0">
           <div className="flex items-center gap-3">
-            <span className="h-8 w-8 rounded-full bg-white overflow-hidden flex items-center justify-center">
+            <span className="h-8 w-8 rounded-full bg-white overflow-hidden flex items-center justify-center shrink-0">
               <img
                 src={SITE_COORDINATES.logoUrl}
                 alt="Richson Global Logo"
@@ -802,6 +855,23 @@ export const CreativesPage: React.FC = () => {
               </a>
             </span>
           </div>
+
+          <div className="flex items-center gap-3">
+            {CREATIVES_SOCIAL_LINKS.map((s) => (
+              <a
+                key={s.name}
+                href={s.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Richson Creatives on ${s.name}`}
+                title={`Richson Creatives on ${s.name}`}
+                className="h-8 w-8 rounded-full border border-linen/20 flex items-center justify-center text-linen/80 hover:text-gold hover:border-gold transition-colors"
+              >
+                {renderSocialIcon(s.name)}
+              </a>
+            ))}
+          </div>
+
           <div className="flex items-center gap-4">
             <Link to="/" className="hover:text-gold">Richson Global</Link>
             <span aria-hidden="true">·</span>
@@ -833,7 +903,7 @@ export const CreativesPage: React.FC = () => {
                 <a
                   href={previewPlatform.url}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="btn-gold py-2 px-4 text-xs whitespace-nowrap"
                 >
                   <span>Visit Site</span>

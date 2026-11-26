@@ -145,7 +145,8 @@ export const CREATIVES_COORDINATES = {
   phoneRaw: "233530554498",
   whatsapp: "https://wa.me/233530554498",
   location: "Accra, Ghana",
-  markUrl: "/assets/media/f4fc790d9_richson-creatives-mark.png"
+  markUrl: "/assets/media/f4fc790d9_richson-creatives-mark.png",
+  portfolioDriveUrl: "https://drive.google.com/drive/folders/19jzdZa2cSr3oO34Wpks0Io5Kvp-I4mnA?usp=sharing"
 };
 
 export const SOCIAL_LINKS = [
@@ -157,12 +158,9 @@ export const SOCIAL_LINKS = [
 ];
 
 export const CREATIVES_SOCIAL_LINKS = [
-  { name: "Instagram", url: "https://www.instagram.com/richsoncreatives" },
-  { name: "Facebook", url: "https://www.facebook.com/richsoncreatives" },
-  { name: "LinkedIn", url: "https://www.linkedin.com/company/richsoncreatives/" },
-  { name: "X", url: "https://x.com/richsoneric" },
-  { name: "WhatsApp", url: "https://wa.me/233530554498" },
-  { name: "Email", url: "mailto:info@richsoncreatives.com" }
+  { name: "Facebook", handle: "@richsoncreatives", url: "https://www.facebook.com/richsoncreatives" },
+  { name: "Instagram", handle: "@richsoncreatives", url: "https://www.instagram.com/richsoncreatives" },
+  { name: "LinkedIn", handle: "Richson Creatives", url: "https://www.linkedin.com/company/richsoncreatives/" }
 ];
 
 export const NAV_LINKS = [

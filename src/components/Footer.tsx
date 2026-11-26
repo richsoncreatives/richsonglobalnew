@@ -354,6 +354,10 @@ export const Footer: React.FC = () => {
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-4 text-[0.72rem] text-linen/65">
+            <Link to="/creatives" className="hover:text-gold transition-colors">
+              Richson Creatives Studio
+            </Link>
+            <span aria-hidden="true" className="text-linen/25">·</span>
             <Link to="/creatives/portfolio#platforms" className="hover:text-gold transition-colors">
               Client Platforms
             </Link>
@@ -361,28 +365,10 @@ export const Footer: React.FC = () => {
             <a
               href={CREATIVES_COORDINATES.whatsapp}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="hover:text-gold transition-colors"
             >
               WhatsApp Studio
-            </a>
-            <span aria-hidden="true" className="text-linen/25">·</span>
-            <a
-              href="https://www.instagram.com/richsoncreatives"
-              target="_blank"
-              rel="noreferrer"
-              className="hover:text-gold transition-colors"
-            >
-              Instagram
-            </a>
-            <span aria-hidden="true" className="text-linen/25">·</span>
-            <a
-              href="https://www.linkedin.com/company/richsoncreatives/"
-              target="_blank"
-              rel="noreferrer"
-              className="hover:text-gold transition-colors"
-            >
-              LinkedIn
             </a>
           </div>
         </div>
