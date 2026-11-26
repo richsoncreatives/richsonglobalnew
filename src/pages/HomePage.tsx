@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ChevronRight } from 'lucide-react';
+import { ArrowRight, BookOpen, ChevronRight } from 'lucide-react';
 import {
   CREATIVES_COORDINATES,
   VENTURES,
@@ -73,19 +73,26 @@ export const HomePage: React.FC = () => {
             </p>
 
             {/* Primary & Secondary CTAs */}
-            <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-4 pt-2">
+            <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3.5 pt-2">
               <Link
                 to="/contact"
-                className="btn-ember py-3.5 px-7 text-xs font-semibold whitespace-nowrap"
+                className="btn-ember py-3.5 px-6 text-xs font-semibold whitespace-nowrap"
               >
-                <span>Book Us / Start a Project</span>
+                <span>Work With Us</span>
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 to="/ecosystem"
-                className="inline-flex items-center justify-center gap-2 border border-linen/30 px-7 py-3.5 text-xs font-semibold uppercase tracking-[0.18em] text-linen hover:bg-linen hover:text-obsidian transition-colors whitespace-nowrap"
+                className="inline-flex items-center justify-center gap-2 border border-linen/30 px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.18em] text-linen hover:bg-linen hover:text-obsidian transition-colors whitespace-nowrap"
               >
-                <span>Explore Our Ecosystem</span>
+                <span>Ecosystem</span>
+              </Link>
+              <Link
+                to="/library-store"
+                className="inline-flex items-center justify-center gap-2 border border-gold/60 px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.18em] text-gold hover:bg-gold hover:text-obsidian transition-colors whitespace-nowrap"
+              >
+                <BookOpen className="h-4 w-4 shrink-0" />
+                <span>Bookstore</span>
               </Link>
             </div>
           </div>

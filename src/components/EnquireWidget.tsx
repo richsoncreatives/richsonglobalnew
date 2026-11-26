@@ -296,7 +296,7 @@ export const EnquireWidget: React.FC = () => {
         type="button"
         onClick={() => setOpen((prev) => !prev)}
         aria-expanded={open}
-        aria-label="Enquire With Us"
+        aria-label="Enquire"
         className="btn-ember py-3 px-5 text-xs font-semibold tracking-[0.16em] whitespace-nowrap shadow-2xl"
       >
         {open ? (
@@ -307,7 +307,7 @@ export const EnquireWidget: React.FC = () => {
         ) : (
           <>
             <MessageSquare className="h-4 w-4 shrink-0" />
-            <span>Enquire With Us</span>
+            <span>ENQUIRE</span>
           </>
         )}
       </button>
