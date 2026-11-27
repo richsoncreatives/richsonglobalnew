@@ -121,13 +121,13 @@ export const EcosystemPage: React.FC = () => {
 
             <div className="space-y-5 order-1 lg:order-2">
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold">
-                02 · Independent Authorship Catalog · 18 Titles
+                02 · Independent Authorship Catalog · 18 Authored Titles
               </p>
               <h2 className="font-display text-3xl md:text-4xl font-semibold text-obsidian">
                 Personal Authorship — Eric Richson Darko
               </h2>
               <p className="text-xs font-semibold uppercase tracking-wider text-maritime">
-                15 Solo Works · 3 Co-Authored Volumes
+                15 Solo · 3 Co-Authored
               </p>
               <p className="text-sm md:text-base leading-relaxed text-muted-foreground">
                 Eric Richson Darko's personal catalog of written works covering spiritual formation, relational intelligence, pre-marital discernment, and leadership capacity—maintained strictly separate from commercial client book production handled by Richson Creatives.

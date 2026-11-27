@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {
   ArrowRight,
   CheckCircle2,
@@ -49,6 +49,10 @@ const SERVICE_OPTIONS = [
 const FORM_SOURCE = 'Richson Creatives Inquiry';
 
 export const CreativesPage: React.FC = () => {
+  const { pathname } = useLocation();
+  const normalizedPath = pathname.replace(/\/+$/, '');
+  const isCreativesRoute = normalizedPath === '/creatives';
+  const isPortfolioRoute = normalizedPath === '/creatives/portfolio';
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [previewPlatform, setPreviewPlatform] = useState<WebProject | null>(null);
   const [briefForm, setBriefForm] = useState({
@@ -153,6 +157,15 @@ export const CreativesPage: React.FC = () => {
             <Link to="/" className="hover:text-gold transition-colors whitespace-nowrap shrink-0">
               Richson Global
             </Link>
+            {isPortfolioRoute ? (
+              <Link to="/creatives" className="hover:text-gold transition-colors whitespace-nowrap shrink-0">
+                Studio Home
+              </Link>
+            ) : (
+              <Link to="/creatives/portfolio" className="hover:text-gold transition-colors whitespace-nowrap shrink-0">
+                Portfolio
+              </Link>
+            )}
             <a href="#platforms" className="hover:text-gold transition-colors whitespace-nowrap shrink-0">
               Platforms
             </a>
@@ -196,6 +209,15 @@ export const CreativesPage: React.FC = () => {
               <Link to="/" onClick={() => setMobileNavOpen(false)} className="text-gold">
                 ← Return to Richson Global
               </Link>
+              {isPortfolioRoute ? (
+                <Link to="/creatives" onClick={() => setMobileNavOpen(false)}>
+                  Richson Creatives Studio
+                </Link>
+              ) : (
+                <Link to="/creatives/portfolio" onClick={() => setMobileNavOpen(false)}>
+                  Creatives Portfolio
+                </Link>
+              )}
               <a href="#platforms" onClick={() => setMobileNavOpen(false)}>Digital Platforms Delivered</a>
               <a href="#work" onClick={() => setMobileNavOpen(false)}>Selected Work</a>
               <a href="#client-books" onClick={() => setMobileNavOpen(false)}>Client Books</a>
@@ -263,26 +285,28 @@ export const CreativesPage: React.FC = () => {
                   {CREATIVES_COORDINATES.phoneDisplay} · {CREATIVES_COORDINATES.phone}
                 </a>
               </div>
-              <div className="border-t border-linen/15 pt-4">
-                <p className="text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-linen/55 mb-3">
-                  Follow Richson Creatives
-                </p>
-                <div className="flex items-center justify-center gap-3">
-                  {CREATIVES_SOCIAL_LINKS.map((s) => (
-                    <a
-                      key={s.name}
-                      href={s.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`Richson Creatives on ${s.name}`}
-                      title={`Richson Creatives on ${s.name}`}
-                      className="h-10 w-10 rounded-full border border-linen/25 bg-black/30 flex items-center justify-center text-linen hover:text-gold hover:border-gold transition-colors"
-                    >
-                      {renderSocialIcon(s.name)}
-                    </a>
-                  ))}
+              {isCreativesRoute && (
+                <div className="border-t border-linen/15 pt-4">
+                  <p className="text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-linen/55 mb-3">
+                    Follow Richson Creatives
+                  </p>
+                  <div className="flex items-center justify-center gap-3">
+                    {CREATIVES_SOCIAL_LINKS.map((s) => (
+                      <a
+                        key={s.name}
+                        href={s.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Richson Creatives on ${s.name}`}
+                        title={`Richson Creatives on ${s.name}`}
+                        className="h-10 w-10 rounded-full border border-linen/25 bg-black/30 flex items-center justify-center text-linen hover:text-gold hover:border-gold transition-colors"
+                      >
+                        {renderSocialIcon(s.name)}
+                      </a>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </div>
@@ -762,32 +786,34 @@ export const CreativesPage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-linen/10 space-y-3">
-                <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-gold">
-                  Official Richson Creatives Socials
-                </p>
-                <div className="flex flex-col gap-2">
-                  {CREATIVES_SOCIAL_LINKS.map((s) => (
-                    <a
-                      key={s.name}
-                      href={s.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`Richson Creatives on ${s.name}`}
-                      className="flex items-center justify-between gap-3 border border-linen/15 bg-black/25 px-3.5 py-2.5 text-xs text-linen/85 hover:border-gold hover:text-gold transition-colors"
-                    >
-                      <span className="inline-flex items-center gap-2.5 font-medium">
-                        {renderSocialIcon(s.name)}
-                        <span>{s.name}</span>
-                      </span>
-                      <span className="inline-flex items-center gap-1.5 text-[0.7rem] text-linen/55">
-                        <span>{s.handle}</span>
-                        <ExternalLink className="h-3 w-3 text-gold" />
-                      </span>
-                    </a>
-                  ))}
+              {isCreativesRoute && (
+                <div className="pt-4 border-t border-linen/10 space-y-3">
+                  <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-gold">
+                    Official Richson Creatives Socials
+                  </p>
+                  <div className="flex flex-col gap-2">
+                    {CREATIVES_SOCIAL_LINKS.map((s) => (
+                      <a
+                        key={s.name}
+                        href={s.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Richson Creatives on ${s.name}`}
+                        className="flex items-center justify-between gap-3 border border-linen/15 bg-black/25 px-3.5 py-2.5 text-xs text-linen/85 hover:border-gold hover:text-gold transition-colors"
+                      >
+                        <span className="inline-flex items-center gap-2.5 font-medium">
+                          {renderSocialIcon(s.name)}
+                          <span>{s.name}</span>
+                        </span>
+                        <span className="inline-flex items-center gap-1.5 text-[0.7rem] text-linen/55">
+                          <span>{s.handle}</span>
+                          <ExternalLink className="h-3 w-3 text-gold" />
+                        </span>
+                      </a>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
 
             <div className="border border-linen/15 bg-gold/10 p-6 space-y-3">
@@ -810,31 +836,33 @@ export const CreativesPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Full Portfolio Archive CTA (Google Drive) */}
-      <section className="py-16 border-b border-linen/10 bg-obsidian">
-        <div className="container-arc">
-          <div className="border border-gold/30 bg-linen/5 p-8 md:p-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-            <div className="max-w-2xl space-y-2">
-              <p className="eyebrow text-gold">Complete Works Archive</p>
-              <h2 className="font-display text-2xl md:text-3xl font-semibold text-linen">
-                Inspect Our Full Design &amp; Production Archive
-              </h2>
-              <p className="text-sm text-linen/70 leading-relaxed">
-                Browse additional branding systems, packaging deliverables, publication layouts, and visual campaigns in our curated Google Drive portfolio archive.
-              </p>
+      {/* Complete Works Archive CTA — /creatives/portfolio */}
+      {isPortfolioRoute && (
+        <section className="py-16 border-b border-linen/10 bg-obsidian">
+          <div className="container-arc">
+            <div className="border border-gold/30 bg-linen/5 p-8 md:p-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+              <div className="max-w-2xl space-y-2">
+                <p className="eyebrow text-gold">Complete Works Archive</p>
+                <h2 className="font-display text-2xl md:text-3xl font-semibold text-linen">
+                  Inspect Our Full Design &amp; Production Archive
+                </h2>
+                <p className="text-sm text-linen/70 leading-relaxed">
+                  Browse additional branding systems, packaging deliverables, publication layouts, and visual campaigns in our extended portfolio archive.
+                </p>
+              </div>
+              <a
+                href={CREATIVES_COORDINATES.portfolioDriveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-gold py-3.5 px-6 text-xs font-semibold tracking-[0.14em] whitespace-nowrap shrink-0 self-start lg:self-center"
+              >
+                <span>VIEW PORTFOLIO</span>
+                <ExternalLink className="h-4 w-4 shrink-0" />
+              </a>
             </div>
-            <a
-              href={CREATIVES_COORDINATES.portfolioDriveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-gold py-3.5 px-6 text-xs font-semibold tracking-[0.14em] whitespace-nowrap shrink-0 self-start lg:self-center"
-            >
-              <span>VIEW FULL PORTFOLIO ARCHIVE (GOOGLE DRIVE)</span>
-              <ExternalLink className="h-4 w-4 shrink-0" />
-            </a>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Studio Attribution Footer */}
       <footer className="py-10 bg-obsidian text-xs text-linen/60">
@@ -856,21 +884,23 @@ export const CreativesPage: React.FC = () => {
             </span>
           </div>
 
-          <div className="flex items-center gap-3">
-            {CREATIVES_SOCIAL_LINKS.map((s) => (
-              <a
-                key={s.name}
-                href={s.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Richson Creatives on ${s.name}`}
-                title={`Richson Creatives on ${s.name}`}
-                className="h-8 w-8 rounded-full border border-linen/20 flex items-center justify-center text-linen/80 hover:text-gold hover:border-gold transition-colors"
-              >
-                {renderSocialIcon(s.name)}
-              </a>
-            ))}
-          </div>
+          {isCreativesRoute && (
+            <div className="flex items-center gap-3">
+              {CREATIVES_SOCIAL_LINKS.map((s) => (
+                <a
+                  key={s.name}
+                  href={s.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Richson Creatives on ${s.name}`}
+                  title={`Richson Creatives on ${s.name}`}
+                  className="h-8 w-8 rounded-full border border-linen/20 flex items-center justify-center text-linen/80 hover:text-gold hover:border-gold transition-colors"
+                >
+                  {renderSocialIcon(s.name)}
+                </a>
+              ))}
+            </div>
+          )}
 
           <div className="flex items-center gap-4">
             <Link to="/" className="hover:text-gold">Richson Global</Link>

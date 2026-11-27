@@ -1,0 +1,15 @@
+# Legacy .html redirects (301 Permanent)
+/about.html        /about                301
+/ministry.html     /ministry             301
+/library.html      /library-store        301
+/contact.html      /contact              301
+/blognugget.html   /insights             301
+/ecosystem.html    /ecosystem            301
+/creatives.html    /creatives            301
+/portfolio.html    /creatives/portfolio  301
+/approach.html     /approach             301
+/partnerships.html /partnerships         301
+/insights.html     /insights             301
+
+# Cloudflare Pages SPA fallback
+/*                 /index.html           200

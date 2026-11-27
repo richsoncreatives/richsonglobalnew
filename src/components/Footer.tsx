@@ -215,7 +215,7 @@ export const Footer: React.FC = () => {
             </p>
             <ul className="space-y-3 text-sm text-linen/75">
               <li>
-                <Link to="/creatives/portfolio" className="hover:text-gold transition-colors">
+                <Link to="/creatives" className="hover:text-gold transition-colors">
                   Richson Creatives
                 </Link>
               </li>
@@ -243,7 +243,7 @@ export const Footer: React.FC = () => {
                 <a
                   href="https://cormgh.org"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="hover:text-gold transition-colors inline-flex items-center gap-1.5"
                 >
                   <span>CORM Ghana</span>
@@ -310,18 +310,6 @@ export const Footer: React.FC = () => {
                 </a>
               </div>
             </div>
-
-            <div className="pt-3 border-t border-linen/10">
-              <p className="text-[0.62rem] uppercase tracking-wider text-gold font-semibold">
-                Direct Mobile Money
-              </p>
-              <p className="text-xs text-linen/80 font-mono tabular-nums mt-0.5">
-                MTN MoMo: {SITE_COORDINATES.momo}
-              </p>
-              <p className="text-[0.68rem] text-linen/50">
-                Eric Richson Darko
-              </p>
-            </div>
           </div>
         </div>
       </div>
@@ -332,7 +320,7 @@ export const Footer: React.FC = () => {
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-2 gap-y-1">
             <span className="text-linen/60">Website Designed &amp; Engineered by</span>
             <Link
-              to="/creatives/portfolio"
+              to="/creatives"
               className="font-semibold text-gold hover:text-linen transition-colors underline underline-offset-4"
             >
               Richson Creatives
@@ -383,7 +371,7 @@ export const Footer: React.FC = () => {
             <span aria-hidden="true" className="text-linen/20">·</span>
             <Link to="/library-store" className="hover:text-gold">Library Store</Link>
             <span aria-hidden="true" className="text-linen/20">·</span>
-            <Link to="/creatives/portfolio" className="hover:text-gold">Richson Creatives</Link>
+            <Link to="/creatives" className="hover:text-gold">Richson Creatives</Link>
             <span aria-hidden="true" className="text-linen/20">·</span>
             <Link to="/contact" className="hover:text-gold">Contact</Link>
           </div>

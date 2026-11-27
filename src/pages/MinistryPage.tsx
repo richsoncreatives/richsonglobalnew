@@ -72,7 +72,7 @@ export const MinistryPage: React.FC = () => {
               <a
                 href="https://cormgh.org"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="btn-outline py-3 px-6 text-xs font-semibold whitespace-nowrap"
               >
                 <span>Visit CORM Ghana</span>
@@ -143,7 +143,7 @@ export const MinistryPage: React.FC = () => {
           </p>
           <div className="pt-4 flex justify-center gap-4">
             <Link to="/library-store" className="btn-gold py-3.5 px-8 text-xs font-semibold whitespace-nowrap">
-              <span>View The 18 Published Titles</span>
+              <span>View All 18 Authored Titles</span>
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>

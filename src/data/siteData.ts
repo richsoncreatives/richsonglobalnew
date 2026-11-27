@@ -171,7 +171,8 @@ export const NAV_LINKS = [
     path: "/ecosystem",
     children: [
       { label: "Ecosystem Overview", path: "/ecosystem" },
-      { label: "Richson Creatives", path: "/creatives/portfolio" },
+      { label: "Richson Creatives", path: "/creatives" },
+      { label: "Creatives Portfolio", path: "/creatives/portfolio" },
       { label: "Personal Authorship", path: "/library-store" },
       { label: "Wisefold Network", path: "/ecosystem#wisefold" },
       { label: "Ministry", path: "/ministry" },
@@ -217,8 +218,8 @@ export const PAGE_SEO: Record<string, PageSeoMeta> = {
     description: "Pastoral oversight at Charismatic Evangelistic Ministry (CEM) East Legon, pre-marital counseling, relational discernment, and biblical leadership development."
   },
   "/library-store": {
-    title: "Personal Authorship & Digital Bookstore — 18 Titles | Eric Richson Darko",
-    description: "Browse and order 18 published books authored by Eric Richson Darko on relational intelligence, leadership capacity, and faith."
+    title: "Personal Authorship & Digital Bookstore — 18 Authored Titles | Eric Richson Darko",
+    description: "Browse and order 18 authored titles (15 solo and 3 co-authored) by Eric Richson Darko on relational intelligence, leadership capacity, and faith."
   },
   "/creatives": {
     title: "Richson Creatives — Brand, Publishing & Digital Engineering Studio",
@@ -245,8 +246,8 @@ export const VENTURES: Venture[] = [
     name: "Richson Creatives",
     category: "Creative & Technology Solutions",
     status: "Operating venture",
-    path: "/creatives/portfolio",
-    ctaLabel: "Open Creatives Portfolio",
+    path: "/creatives",
+    ctaLabel: "Visit Richson Creatives",
     description: "Richson Creatives brings together creative thinking, design excellence and technological innovation to help individuals, businesses and organisations communicate effectively, establish strong brands and solve practical problems.",
     purpose: "To make good organisations visible, credible and easy to choose.",
     focus: [
@@ -272,7 +273,7 @@ export const VENTURES: Venture[] = [
     status: "Authorship practice",
     path: "/library-store",
     ctaLabel: "Visit The Author's Desk",
-    description: "The personal authorship of Eric Richson Darko — original titles, co-authored works and written reflections on relationships, leadership, discipline, faith and purposeful living. Eighteen published titles exploring relational intelligence, executive capacity, and kingdom values.",
+    description: "The personal authorship of Eric Richson Darko — 18 authored titles (15 solo and 3 co-authored) exploring relationships, leadership, discipline, faith and purposeful living.",
     purpose: "To provide practical frameworks, mental clarity, and spiritual depth for readers across Africa and the globe.",
     focus: [
       "Relational intelligence & pre-marital discernment",
@@ -284,7 +285,7 @@ export const VENTURES: Venture[] = [
       kind: "contain",
       src: "/assets/aistudio/KAY2221_35470e71.jpg",
       alt: "Eric Richson Darko authorship mark",
-      caption: "18 Published Titles"
+      caption: "18 Authored Titles"
     }
   },
   {

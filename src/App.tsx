@@ -71,11 +71,22 @@ export default function App() {
             <Route path="/insights" element={<InsightsPage />} />
             <Route path="/contact" element={<ContactPage />} />
 
-            {/* Canonical Aliases & Redirects */}
+            {/* Canonical Aliases & Legacy .html Redirects */}
             <Route path="/publishing-services" element={<Navigate to="/creatives/portfolio#client-books" replace />} />
             <Route path="/leadership" element={<Navigate to="/about#affiliations" replace />} />
             <Route path="/agency-portfolio" element={<Navigate to="/creatives/portfolio" replace />} />
             <Route path="/blog-nuggets" element={<Navigate to="/insights" replace />} />
+            <Route path="/about.html" element={<Navigate to="/about" replace />} />
+            <Route path="/ministry.html" element={<Navigate to="/ministry" replace />} />
+            <Route path="/library.html" element={<Navigate to="/library-store" replace />} />
+            <Route path="/contact.html" element={<Navigate to="/contact" replace />} />
+            <Route path="/blognugget.html" element={<Navigate to="/insights" replace />} />
+            <Route path="/ecosystem.html" element={<Navigate to="/ecosystem" replace />} />
+            <Route path="/creatives.html" element={<Navigate to="/creatives" replace />} />
+            <Route path="/portfolio.html" element={<Navigate to="/creatives/portfolio" replace />} />
+            <Route path="/approach.html" element={<Navigate to="/approach" replace />} />
+            <Route path="/partnerships.html" element={<Navigate to="/partnerships" replace />} />
+            <Route path="/insights.html" element={<Navigate to="/insights" replace />} />
 
             {/* Portal Auth Information Pages */}
             <Route path="/login" element={<LoginPage />} />

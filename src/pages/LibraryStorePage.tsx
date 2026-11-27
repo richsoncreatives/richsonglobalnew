@@ -40,8 +40,15 @@ export const LibraryStorePage: React.FC = () => {
             The Complete Authorship Archive
           </h1>
           <p className="mt-6 text-base sm:text-lg leading-relaxed text-muted-foreground">
-            Eighteen published titles authored by Eric Richson Darko (15 solo works and 3 co-authored with Collins Angel Ross). Order digital editions (ePub &amp; PDF) directly via Selar, Mobile Money ({SITE_COORDINATES.momo}), or WhatsApp.
+            Eighteen authored titles by Eric Richson Darko (15 solo and 3 co-authored with Collins Angel Ross). Order digital editions (ePub &amp; PDF) directly via Selar, MTN Mobile Money ({SITE_COORDINATES.momo}), OmniBSIC bank transfer, or WhatsApp.
           </p>
+          <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-muted-foreground tabular-nums">
+            <span className="font-semibold text-obsidian">18 Authored Titles</span>
+            <span aria-hidden="true">·</span>
+            <span>15 Solo</span>
+            <span aria-hidden="true">·</span>
+            <span>3 Co-Authored</span>
+          </div>
         </div>
       </section>
 

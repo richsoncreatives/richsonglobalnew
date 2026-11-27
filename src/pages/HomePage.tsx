@@ -21,9 +21,9 @@ const DESTINATION_PREVIEWS = [
   },
   {
     eyebrow: 'Personal Authorship',
-    title: '18 Authored Books by Eric Richson Darko',
+    title: '18 Authored Titles by Eric Richson Darko',
     summary:
-      'Browse 15 solo titles and 3 co-authored volumes on relational intelligence, leadership capacity, and spiritual architecture—separate from studio client work.',
+      'Browse 15 solo and 3 co-authored titles on relational intelligence, leadership capacity, and spiritual architecture—separate from studio client work.',
     cta: 'Browse Digital Library',
     path: '/library-store'
   },

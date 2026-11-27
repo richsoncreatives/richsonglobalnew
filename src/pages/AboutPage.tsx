@@ -37,7 +37,7 @@ export const AboutPage: React.FC = () => {
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link to="/library-store" className="btn-outline py-3 px-6 text-xs font-semibold whitespace-nowrap">
-                <span>Explore Authorship (18 Titles)</span>
+                <span>Explore 18 Authored Titles</span>
               </Link>
             </div>
           </div>
@@ -74,7 +74,7 @@ export const AboutPage: React.FC = () => {
               Eric Richson Darko is a Ghanaian author, creative director, information systems professional, and ordained youth pastor whose work centers on personal capacity, relational intelligence, and institutional resilience.
             </p>
             <p>
-              With over seven years of enterprise IT infrastructure administration (maintaining 99.5% network uptime across 100+ user environments) and brand direction experience, Eric pairs technical precision with relational counseling insight. As author of 18 published books (15 solo titles and 3 co-authored volumes), he provides practical frameworks for youth leadership, marital readiness, and purposeful living.
+              With over seven years of enterprise IT infrastructure administration (maintaining 99.5% network uptime across 100+ user environments) and brand direction experience, Eric pairs technical precision with relational counseling insight. As author of 18 authored titles (15 solo and 3 co-authored), he provides practical frameworks for youth leadership, marital readiness, and purposeful living.
             </p>
             <p>
               He serves as Associate Pastor with dedicated youth oversight at Charismatic Evangelistic Ministry (CEM), East Legon, and Vice President of the College of Relationship &amp; Marriage (CORM).
@@ -128,7 +128,7 @@ export const AboutPage: React.FC = () => {
                     <a
                       href={affil.url}
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 text-xs text-maritime hover:text-gold font-semibold uppercase tracking-wider"
                     >
                       <span>Visit Institution Website</span>

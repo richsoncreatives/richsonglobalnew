@@ -1,4 +1,4 @@
-name: Build & Deploy to Cloudflare
+name: Build & Deploy to Cloudflare Pages
 
 on:
   push:
@@ -36,10 +36,12 @@ jobs:
       - name: Build Production Bundle
         run: npm run build
 
-      - name: Deploy to Cloudflare Workers Static Assets
-        uses: cloudflare/wrangler-action@v3
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
         if: ${{ env.CLOUDFLARE_API_TOKEN != '' }}
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy
+          projectName: 'richson-global'
+          directory: 'dist'
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}

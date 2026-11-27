@@ -125,7 +125,7 @@ export const BookModal: React.FC<BookModalProps> = ({ book, onClose }) => {
                 <a
                   href={SITE_COORDINATES.selar}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="btn-ember py-2.5 text-xs text-center justify-center"
                 >
                   <ShoppingBag className="h-3.5 w-3.5" />
@@ -136,7 +136,7 @@ export const BookModal: React.FC<BookModalProps> = ({ book, onClose }) => {
                 <a
                   href={whatsappUrl}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="btn-navy py-2.5 text-xs text-center justify-center"
                 >
                   <MessageSquare className="h-3.5 w-3.5" />
@@ -144,20 +144,28 @@ export const BookModal: React.FC<BookModalProps> = ({ book, onClose }) => {
                 </a>
               </div>
 
-              {/* Mobile Money Direct Pay */}
-              <div className="p-3 bg-secondary/50 border border-border flex items-center justify-between text-xs">
-                <div>
-                  <span className="font-semibold text-obsidian">MTN Mobile Money: </span>
-                  <span className="font-mono text-maritime font-bold">{SITE_COORDINATES.momo}</span>
-                  <span className="text-[0.68rem] text-muted-foreground block">Eric Richson Darko</span>
+              {/* Direct Settlement Details (MTN MoMo & OmniBSIC) */}
+              <div className="p-3.5 bg-secondary/50 border border-border space-y-2.5 text-xs">
+                <div className="flex items-center justify-between gap-3">
+                  <div>
+                    <span className="font-semibold text-obsidian">MTN Mobile Money: </span>
+                    <span className="font-mono tabular-nums text-maritime font-bold">{SITE_COORDINATES.momo}</span>
+                    <span className="text-[0.68rem] text-muted-foreground block">Eric Richson Darko</span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={handleCopyMomo}
+                    className="btn-gold py-1.5 px-3 text-[0.68rem] font-semibold shrink-0"
+                  >
+                    {copiedMomo ? 'Copied!' : 'Copy MoMo'}
+                  </button>
                 </div>
-                <button
-                  type="button"
-                  onClick={handleCopyMomo}
-                  className="btn-gold py-1.5 px-3 text-[0.68rem] font-semibold"
-                >
-                  {copiedMomo ? 'Copied!' : 'Copy MoMo'}
-                </button>
+                <div className="pt-2 border-t border-border/80 flex flex-wrap items-center justify-between gap-x-3 gap-y-1 text-[0.7rem]">
+                  <span className="text-muted-foreground">{SITE_COORDINATES.bankBranch}</span>
+                  <span className="font-mono tabular-nums font-semibold text-obsidian">
+                    Account: {SITE_COORDINATES.bankAccount}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
