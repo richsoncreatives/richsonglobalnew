@@ -11,6 +11,3 @@
 /approach.html     /approach             301
 /partnerships.html /partnerships         301
 /insights.html     /insights             301
-
-# Cloudflare Pages SPA fallback
-/*                 /index.html           200
