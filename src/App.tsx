@@ -15,6 +15,7 @@ const EcosystemPage = lazy(() => import('./pages/EcosystemPage').then((m) => ({ 
 const ApproachPage = lazy(() => import('./pages/ApproachPage').then((m) => ({ default: m.ApproachPage })));
 const PartnershipsPage = lazy(() => import('./pages/PartnershipsPage').then((m) => ({ default: m.PartnershipsPage })));
 const MinistryPage = lazy(() => import('./pages/MinistryPage').then((m) => ({ default: m.MinistryPage })));
+const WisefoldPage = lazy(() => import('./pages/WisefoldPage').then((m) => ({ default: m.WisefoldPage })));
 const LibraryStorePage = lazy(() => import('./pages/LibraryStorePage').then((m) => ({ default: m.LibraryStorePage })));
 const CreativesPage = lazy(() => import('./pages/CreativesPage').then((m) => ({ default: m.CreativesPage })));
 const InsightsPage = lazy(() => import('./pages/InsightsPage').then((m) => ({ default: m.InsightsPage })));
@@ -67,6 +68,7 @@ export default function App() {
             <Route path="/approach" element={<ApproachPage />} />
             <Route path="/partnerships" element={<PartnershipsPage />} />
             <Route path="/ministry" element={<MinistryPage />} />
+            <Route path="/wisefold" element={<WisefoldPage />} />
             <Route path="/library-store" element={<LibraryStorePage />} />
             <Route path="/insights" element={<InsightsPage />} />
             <Route path="/contact" element={<ContactPage />} />
@@ -78,6 +80,7 @@ export default function App() {
             <Route path="/blog-nuggets" element={<Navigate to="/insights" replace />} />
             <Route path="/about.html" element={<Navigate to="/about" replace />} />
             <Route path="/ministry.html" element={<Navigate to="/ministry" replace />} />
+            <Route path="/wisefold.html" element={<Navigate to="/wisefold" replace />} />
             <Route path="/library.html" element={<Navigate to="/library-store" replace />} />
             <Route path="/contact.html" element={<Navigate to="/contact" replace />} />
             <Route path="/blognugget.html" element={<Navigate to="/insights" replace />} />

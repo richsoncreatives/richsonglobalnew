@@ -1,6 +1,7 @@
 # Legacy .html redirects (301 Permanent)
 /about.html        /about                301
 /ministry.html     /ministry             301
+/wisefold.html     /wisefold             301
 /library.html      /library-store        301
 /contact.html      /contact              301
 /blognugget.html   /insights             301

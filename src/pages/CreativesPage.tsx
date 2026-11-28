@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
+  ArrowLeft,
   ArrowRight,
   CheckCircle2,
   ExternalLink,
   MessageSquare,
   Send,
-  Phone,
-  Mail,
-  MapPin,
   Instagram,
   Facebook,
   Linkedin,
@@ -120,6 +118,22 @@ export const CreativesPage: React.FC = () => {
         return <Instagram className="h-4 w-4" />;
       case 'LinkedIn':
         return <Linkedin className="h-4 w-4" />;
+      case 'WhatsApp':
+        return (
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="h-4 w-4"
+            aria-hidden="true"
+          >
+            <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
+            <path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" />
+          </svg>
+        );
       default:
         return <ExternalLink className="h-4 w-4" />;
     }
@@ -129,7 +143,7 @@ export const CreativesPage: React.FC = () => {
     <div className="bg-obsidian text-linen min-h-screen">
       {/* Clean Inline 3-Zone Studio Top Bar */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-obsidian/95 backdrop-blur-md border-b border-linen/15 py-3.5">
-        <div className="container-arc flex items-center justify-between gap-8">
+        <div className="container-arc flex items-center justify-between gap-6">
           {/* Zone 1: Official Logo + Studio Wordmark */}
           <Link
             to="/"
@@ -151,11 +165,16 @@ export const CreativesPage: React.FC = () => {
 
           {/* Zone 2: Inline Navigation Links */}
           <nav
-            className="hidden lg:flex items-center gap-7 text-xs font-medium uppercase tracking-[0.16em] text-linen/80"
+            className="hidden lg:flex items-center gap-6 text-xs font-medium uppercase tracking-[0.16em] text-linen/80"
             aria-label="Richson Creatives Navigation"
           >
-            <Link to="/" className="hover:text-gold transition-colors whitespace-nowrap shrink-0">
-              Richson Global
+            <Link
+              to="/"
+              aria-label="Back to Richson Global"
+              title="Back to Richson Global"
+              className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-linen/20 text-linen/85 hover:text-gold hover:border-gold transition-colors shrink-0"
+            >
+              <ArrowLeft className="h-4 w-4" aria-hidden="true" />
             </Link>
             {isPortfolioRoute ? (
               <Link to="/creatives" className="hover:text-gold transition-colors whitespace-nowrap shrink-0">
@@ -575,7 +594,7 @@ export const CreativesPage: React.FC = () => {
 
       {/* Project Brief Form — Dual Routed (Web3Forms Email + WhatsApp + Copy Summary) */}
       <section id="start" className="py-24 border-b border-linen/10 bg-black/25 scroll-mt-24">
-        <div className="container-arc grid gap-12 lg:grid-cols-[1fr_360px]">
+        <div className="container-arc max-w-4xl">
           <div className="border border-linen/15 bg-linen/5 p-8 md:p-12">
             {emailResult?.ok ? (
               <div className="py-6 space-y-6">
@@ -761,77 +780,6 @@ export const CreativesPage: React.FC = () => {
                 </div>
               </form>
             )}
-          </div>
-
-          {/* Studio Direct Coordinates */}
-          <div className="space-y-6">
-            <div className="border border-linen/15 bg-linen/5 p-6 space-y-4">
-              <p className="eyebrow text-gold">Studio Direct Lines</p>
-              <div className="space-y-3 text-xs text-linen/80">
-                <div className="flex items-center gap-3">
-                  <Phone className="h-4 w-4 text-gold shrink-0" />
-                  <a href={`tel:${CREATIVES_COORDINATES.phoneRaw}`} className="hover:text-gold font-mono tabular-nums">
-                    {CREATIVES_COORDINATES.phoneDisplay} ({CREATIVES_COORDINATES.phone})
-                  </a>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Mail className="h-4 w-4 text-gold shrink-0" />
-                  <a href={`mailto:${CREATIVES_COORDINATES.email}`} className="hover:text-gold">
-                    {CREATIVES_COORDINATES.email}
-                  </a>
-                </div>
-                <div className="flex items-center gap-3">
-                  <MapPin className="h-4 w-4 text-gold shrink-0" />
-                  <span>{CREATIVES_COORDINATES.location}</span>
-                </div>
-              </div>
-
-              {isCreativesRoute && (
-                <div className="pt-4 border-t border-linen/10 space-y-3">
-                  <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-gold">
-                    Official Richson Creatives Socials
-                  </p>
-                  <div className="flex flex-col gap-2">
-                    {CREATIVES_SOCIAL_LINKS.map((s) => (
-                      <a
-                        key={s.name}
-                        href={s.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`Richson Creatives on ${s.name}`}
-                        className="flex items-center justify-between gap-3 border border-linen/15 bg-black/25 px-3.5 py-2.5 text-xs text-linen/85 hover:border-gold hover:text-gold transition-colors"
-                      >
-                        <span className="inline-flex items-center gap-2.5 font-medium">
-                          {renderSocialIcon(s.name)}
-                          <span>{s.name}</span>
-                        </span>
-                        <span className="inline-flex items-center gap-1.5 text-[0.7rem] text-linen/55">
-                          <span>{s.handle}</span>
-                          <ExternalLink className="h-3 w-3 text-gold" />
-                        </span>
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            <div className="border border-linen/15 bg-gold/10 p-6 space-y-3">
-              <p className="eyebrow text-gold">Fast Track</p>
-              <h4 className="font-display text-lg font-semibold text-linen">Prefer WhatsApp?</h4>
-              <p className="text-xs text-linen/70 leading-relaxed">
-                Message Richson Creatives directly on {CREATIVES_COORDINATES.phoneDisplay} for immediate project scoping.
-              </p>
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-gold py-2.5 px-5 text-xs w-full text-center justify-center"
-              >
-                <MessageSquare className="h-4 w-4" />
-                <span>Chat On WhatsApp</span>
-              </a>
-            </div>
           </div>
         </div>
       </section>

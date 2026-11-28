@@ -141,39 +141,25 @@ export const EcosystemPage: React.FC = () => {
             </div>
           </div>
 
-          {/* 03: Wisefold Network (Canonical Home) */}
+          {/* 03: Wisefold Network */}
           <div id="wisefold" className="grid gap-10 lg:grid-cols-2 items-center border border-border bg-card p-8 md:p-12 scroll-mt-28">
             <div className="space-y-5">
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold">
                 03 · Active Network Initiative · Founded July 10, 2024
               </p>
               <h2 className="font-display text-3xl md:text-4xl font-semibold text-obsidian">
-                Wisefold Network
+                Wisefold Network — The House of Wisdom
               </h2>
               <p className="text-xs font-semibold uppercase tracking-wider text-maritime">
-                Disciplined Reading Community &amp; Capacity Hub
+                Reading Discipline · Mentorship · Corporate Stewardship
               </p>
               <p className="text-sm md:text-base leading-relaxed text-muted-foreground">
-                Wisefold Network exists to counter superficial knowledge and mental stagnation through intentional, book-by-book reading, structured knowledge synthesis, and peer accountability among young professionals, executives, and students.
+                Headquartered in the Greater Accra Region, Ghana with global digital operations, Wisefold Network raises Wise Builders through systematic reading, peer accountability, mentorship, publishing, and transparent long-term stewardship.
               </p>
-              <div className="space-y-3 border-t border-border pt-4">
-                <div className="text-xs text-muted-foreground space-y-1">
-                  <p className="font-semibold text-obsidian">Pillar 1: Structured Reading Culture</p>
-                  <p>Book-by-book reading journeys that build sustained mental stamina.</p>
-                </div>
-                <div className="text-xs text-muted-foreground space-y-1">
-                  <p className="font-semibold text-obsidian">Pillar 2: Intellectual Capacity Building</p>
-                  <p>Training members in knowledge synthesis, critical thinking, and practical execution.</p>
-                </div>
-                <div className="text-xs text-muted-foreground space-y-1">
-                  <p className="font-semibold text-obsidian">Pillar 3: Leadership &amp; Character Development</p>
-                  <p>Fostering peer accountability, moral integrity, and professional excellence.</p>
-                </div>
-              </div>
               <div className="pt-2">
-                <Link to="/contact" className="btn-gold py-3 px-6 text-xs whitespace-nowrap">
+                <Link to="/wisefold" className="btn-gold py-3 px-6 text-xs whitespace-nowrap">
                   <Users className="h-4 w-4" />
-                  <span>Inquire About Wisefold Membership</span>
+                  <span>Explore Wisefold Network</span>
                 </Link>
               </div>
             </div>
@@ -186,14 +172,13 @@ export const EcosystemPage: React.FC = () => {
                   referrerPolicy="no-referrer"
                   className="h-14 w-14 object-contain shrink-0"
                 />
-                <p className="eyebrow text-gold">The Wisefold Mandate</p>
+                <p className="eyebrow text-gold">The Wisefold Motto</p>
               </div>
               <blockquote className="font-display text-2xl font-semibold leading-snug text-linen">
-                "Ideas worth reading. Knowledge worth sharing. A disciplined mind cannot be easily enslaved."
+                "Where the Manifold Wisdom of God becomes the Light of the World."
               </blockquote>
-              <div className="pt-5 border-t border-linen/15 text-xs text-linen/65 space-y-1">
-                <p>Convener: Eric Richson Darko</p>
-                <p>Format: Structured reading cohorts, synthesis papers, and discussion forums.</p>
+              <div className="pt-5 border-t border-linen/15 text-xs text-linen/65">
+                Anchor Scriptures: Ephesians 3:10 · Proverbs 4:7
               </div>
             </div>
           </div>

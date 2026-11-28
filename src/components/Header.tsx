@@ -6,6 +6,7 @@ import { SITE_COORDINATES, NAV_LINKS } from '../data/siteData';
 export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [ecosystemDropdownOpen, setEcosystemDropdownOpen] = useState(false);
+  const [mobileEcosystemOpen, setMobileEcosystemOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
@@ -20,6 +21,7 @@ export const Header: React.FC = () => {
   useEffect(() => {
     setMobileMenuOpen(false);
     setEcosystemDropdownOpen(false);
+    setMobileEcosystemOpen(false);
   }, [location.pathname]);
 
   const isHomeTop = location.pathname === '/' && !scrolled;
@@ -68,6 +70,7 @@ export const Header: React.FC = () => {
               const isEcosystemActive =
                 location.pathname.startsWith('/ecosystem') ||
                 location.pathname.startsWith('/creatives') ||
+                location.pathname.startsWith('/wisefold') ||
                 location.pathname === '/library-store' ||
                 location.pathname === '/ministry' ||
                 location.pathname === '/partnerships';
@@ -183,28 +186,47 @@ export const Header: React.FC = () => {
                 About Us
               </Link>
 
-              <div className="py-2 pl-4 border-t border-b border-border space-y-3">
-                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-maritime">
-                  Our Ecosystem
-                </p>
-                <Link to="/ecosystem" className="block text-sm text-obsidian/80 hover:text-maritime">
-                  Ecosystem Overview
-                </Link>
-                <Link to="/creatives/portfolio" className="block text-sm text-obsidian/90 hover:text-maritime font-medium">
-                  Richson Creatives Studio
-                </Link>
-                <Link to="/library-store" className="block text-sm text-obsidian/80 hover:text-maritime">
-                  Personal Authorship & Store
-                </Link>
-                <Link to="/ecosystem#wisefold" className="block text-sm text-obsidian/80 hover:text-maritime">
-                  Wisefold Network
-                </Link>
-                <Link to="/ministry" className="block text-sm text-obsidian/80 hover:text-maritime">
-                  Pastoral Ministry
-                </Link>
-                <Link to="/partnerships" className="block text-sm text-obsidian/80 hover:text-maritime">
-                  Emerging Ventures & Partnerships
-                </Link>
+              <div className="border-t border-b border-border py-2">
+                <button
+                  type="button"
+                  onClick={() => setMobileEcosystemOpen((prev) => !prev)}
+                  aria-expanded={mobileEcosystemOpen}
+                  aria-controls="mobile-ecosystem-submenu"
+                  className="w-full flex items-center justify-between py-1 font-display text-xl text-obsidian hover:text-maritime transition-colors cursor-pointer"
+                >
+                  <span>Our Ecosystem</span>
+                  <ChevronDown
+                    className={`h-5 w-5 text-maritime transition-transform duration-200 ${
+                      mobileEcosystemOpen ? 'rotate-180' : ''
+                    }`}
+                  />
+                </button>
+
+                {mobileEcosystemOpen && (
+                  <div
+                    id="mobile-ecosystem-submenu"
+                    className="mt-3 pl-4 space-y-3 pb-2"
+                  >
+                    <Link to="/ecosystem" className="block text-sm text-obsidian/80 hover:text-maritime">
+                      Ecosystem Overview
+                    </Link>
+                    <Link to="/creatives" className="block text-sm text-obsidian/90 hover:text-maritime font-medium">
+                      Richson Creatives
+                    </Link>
+                    <Link to="/library-store" className="block text-sm text-obsidian/80 hover:text-maritime">
+                      Personal Authorship &amp; Store
+                    </Link>
+                    <Link to="/wisefold" className="block text-sm text-obsidian/80 hover:text-maritime">
+                      Wisefold Network
+                    </Link>
+                    <Link to="/ministry" className="block text-sm text-obsidian/80 hover:text-maritime">
+                      Pastoral Ministry
+                    </Link>
+                    <Link to="/partnerships" className="block text-sm text-obsidian/80 hover:text-maritime">
+                      Emerging Ventures &amp; Partnerships
+                    </Link>
+                  </div>
+                )}
               </div>
 
               <Link to="/approach" className="font-display text-xl text-obsidian hover:text-maritime">
@@ -224,7 +246,7 @@ export const Header: React.FC = () => {
               <span>Book Us</span>
               <ArrowRight className="h-4 w-4" />
             </Link>
-            <Link to="/creatives/portfolio" className="btn-navy w-full text-center">
+            <Link to="/creatives" className="btn-navy w-full text-center">
               <span>Richson Creatives Studio</span>
               <ArrowRight className="h-4 w-4" />
             </Link>

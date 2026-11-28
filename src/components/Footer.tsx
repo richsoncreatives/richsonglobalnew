@@ -186,10 +186,6 @@ export const Footer: React.FC = () => {
               </div>
             </Link>
 
-            <p className="text-sm leading-relaxed text-linen/65">
-              An ecosystem of ideas, enterprises, authorship, and purposeful leadership based in Accra, Ghana.
-            </p>
-
             {/* Social Links with Original X Icon */}
             <div className="flex flex-wrap gap-2 pt-2">
               {SOCIAL_LINKS.map((social) => (
@@ -225,7 +221,7 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/ecosystem#wisefold" className="hover:text-gold transition-colors">
+                <Link to="/wisefold" className="hover:text-gold transition-colors">
                   Wisefold Network
                 </Link>
               </li>

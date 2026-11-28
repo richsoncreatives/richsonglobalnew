@@ -160,7 +160,8 @@ export const SOCIAL_LINKS = [
 export const CREATIVES_SOCIAL_LINKS = [
   { name: "Facebook", handle: "@richsoncreatives", url: "https://www.facebook.com/richsoncreatives" },
   { name: "Instagram", handle: "@richsoncreatives", url: "https://www.instagram.com/richsoncreatives" },
-  { name: "LinkedIn", handle: "Richson Creatives", url: "https://www.linkedin.com/company/richsoncreatives/" }
+  { name: "LinkedIn", handle: "Richson Creatives", url: "https://www.linkedin.com/company/richsoncreatives/" },
+  { name: "WhatsApp", handle: "0530554498", url: "https://wa.me/233530554498" }
 ];
 
 export const NAV_LINKS = [
@@ -172,9 +173,8 @@ export const NAV_LINKS = [
     children: [
       { label: "Ecosystem Overview", path: "/ecosystem" },
       { label: "Richson Creatives", path: "/creatives" },
-      { label: "Creatives Portfolio", path: "/creatives/portfolio" },
       { label: "Personal Authorship", path: "/library-store" },
-      { label: "Wisefold Network", path: "/ecosystem#wisefold" },
+      { label: "Wisefold Network", path: "/wisefold" },
       { label: "Ministry", path: "/ministry" },
       { label: "Emerging Ventures", path: "/ecosystem#emerging" }
     ]
@@ -216,6 +216,10 @@ export const PAGE_SEO: Record<string, PageSeoMeta> = {
   "/ministry": {
     title: "Pastoral Ministry & Youth Discipleship | Eric Richson Darko",
     description: "Pastoral oversight at Charismatic Evangelistic Ministry (CEM) East Legon, pre-marital counseling, relational discernment, and biblical leadership development."
+  },
+  "/wisefold": {
+    title: "Wisefold Network — The House of Wisdom | Richson Global",
+    description: "Founded July 10, 2024 in Greater Accra, Ghana with global digital operations. Explore Wisefold Network's study rhythm, gatherings, mentorship standards, governance, and 30-year vision."
   },
   "/library-store": {
     title: "Personal Authorship & Digital Bookstore — 18 Authored Titles | Eric Richson Darko",
@@ -294,7 +298,7 @@ export const VENTURES: Venture[] = [
     name: "Wisefold Network",
     category: "Knowledge, Reading Culture & Mentorship",
     status: "Active network initiative",
-    path: "/ecosystem#wisefold",
+    path: "/wisefold",
     ctaLabel: "Discover Wisefold Network",
     description: "A disciplined reading community, intellectual development hub, and knowledge-sharing network cultivating deep reading habits, critical thinking, mental capacity, and continuous personal growth among leaders, professionals, and youth.",
     purpose: "To counter superficial knowledge and mental stagnation through intentional, book-by-book study and rigorous peer accountability.",
